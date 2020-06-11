@@ -8,7 +8,7 @@ const PostSchema = new Schema({
   },
   author: {
     type: Schema.Types.ObjectId,
-    ref: "user"
+    ref: 'User'
   },
   body: {
     type: String,
@@ -20,4 +20,4 @@ const PostSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+module.exports = mongoose.model('Post', PostSchema);
