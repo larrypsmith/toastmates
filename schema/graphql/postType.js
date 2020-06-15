@@ -15,7 +15,7 @@ const PostType = new GraphQLObjectType({
       resolve(parentValue) {
         return User.findById(parentValue.author)
           .then(user => user)
-          .catch(err => null);
+          .catch(() => null);
       }
     }
   }

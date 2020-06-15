@@ -1,24 +1,18 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = graphql;
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const { GraphQLObjectType, GraphQLID, GraphQLString } = graphql;
+const NameType = require('./nameType');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: () => ({
     id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    email: { type: GraphQLString },
-    posts: {
-      type: new GraphQLList(require('./postType')),
-      resolve(parentValue) {
-        return(
-          User.findById(parentValue.id)
-            .populate('posts')
-            .then(user => user.posts)
-        );
-      } 
-    }
+    name: {
+      type: NameType,
+      resolve(obj) {
+        return obj.name;
+      }
+    },
+    email: { type: GraphQLString }
   })
 });
 
