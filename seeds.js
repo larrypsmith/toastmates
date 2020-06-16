@@ -24,7 +24,8 @@ async function deleteMerchants() {
   } catch(err) {
     console.log(err);
   }
-}
+};
+
 const giosPizza = new Merchant({
   name: `Gio's Pizza`,
   cuisine: `Pizza`,
