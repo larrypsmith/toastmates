@@ -23,7 +23,7 @@ const merchantSchema = new Schema({
     type: Number,
     required: true
   },
-  deliverTimeUpper: {
+  deliveryTimeUpper: {
     type: Number,
     required: true
   },
