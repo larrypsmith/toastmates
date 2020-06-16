@@ -1,6 +1,7 @@
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
+  GraphQLList,
   GraphQLString,
   GraphQLID,
   GraphQLFloat,
@@ -20,7 +21,7 @@ const MerchantType = new GraphQLObjectType({
     deliveryTimeUpper: { type: GraphQLInt},
     photoUrl: { type: GraphQLString },
     menus: {
-      type: MenuType,
+      type: new GraphQLList(MenuType),
       resolve(parent) {
         parent.menus 
       }

@@ -14,8 +14,8 @@ const MenuType = new GraphQLObjectType({
     name: { type: GraphQLString },
     items: {
       type: new GraphQLList(ItemType),
-      resolve(parentObj) {
-        return parentObj.items
+      resolve(parent) {
+        return parent.items
       }
     }
   })
