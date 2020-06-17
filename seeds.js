@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const Merchant = require('./models/Merchant');
+const Order = require('./models/Order');
 
 const db = require('./config/keys').mongoURI;
 
@@ -11,6 +12,8 @@ const db = require('./config/keys').mongoURI;
     await seedMerchants();
     await deleteUsers();
     await seedUsers();
+    await deleteOrders();
+    await seedOrders();
     await mongoose.connection.close();
     console.log('DB seeded successfully!');
   } catch(err) {
@@ -85,16 +88,7 @@ const stevenFitzgerald = new User({
     last: 'Fitzgerald'
   },
   email: 'email@email2.com',
-  passwordDigest: 'notARealDigest',
-  orders: [
-    {
-      merchant: giosPizza.id,
-      items: [
-        giosPizza.menus[0].items[1].id,
-        giosPizza.menus[1].items[1].id
-      ]
-    }
-  ]
+  passwordDigest: 'notARealDigest'
 });
 
 async function seedUsers() {
@@ -102,5 +96,29 @@ async function seedUsers() {
     await stevenFitzgerald.save();
   } catch (err) {
     console.log(err)
+  }
+};
+
+const order1 = new Order({
+  user: stevenFitzgerald.id,
+  items: [
+    giosPizza.menus[0].items[1].id,
+    giosPizza.menus[1].items[1].id
+  ]
+});
+
+async function deleteOrders() {
+  try {
+    await Order.deleteMany({});
+  } catch(err) {
+    console.log(err);
+  }
+};
+
+async function seedOrders() {
+  try {
+    await order1.save();
+  } catch(err) {
+    console.log(err);
   }
 };

@@ -1,5 +1,10 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLID
+} = graphql;
 const User = require('../../models/User');
 const UserType = require('./userType');
 
@@ -16,7 +21,7 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, args) {
-        return User.findById(args.id)
+        return User.findById(args.id);
       }
     }
   }

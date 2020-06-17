@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const nameSchema = require('./nameSchema');
-const orderSchema = require('./orderSchema');
 
 const userSchema = new Schema({
   name: nameSchema,
@@ -16,7 +15,6 @@ const userSchema = new Schema({
   photoUrl: {
     type: String
   },
-  orders: [orderSchema],
   dateCreated: {
     type: Date,
     default: Date.now
