@@ -5,9 +5,9 @@ const {
   GraphQLNonNull,
   GraphQLID
 } = graphql;
-const User = require('../../models/User');
-const Order = require('../../models/Order');
-const Item = require('../../models/Item');
+const User = require('../models/User');
+const Order = require('../models/Order');
+const Item = require('../models/Item');
 const UserType = require('./userType');
 const OrderType = require('./orderType');
 

@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const itemSchema = require('./itemSchema');
 
 const menuSchema = new Schema({
   name: {
     type: String,
     required: true
   },
-  items: [itemSchema]
+  merchant: {
+    type: Schema.Types.ObjectId,
+    ref: 'Merchant',
+    required: true
+  }
 });
 
-module.exports = menuSchema;
+module.exports = mongoose.model('Menu', menuSchema);

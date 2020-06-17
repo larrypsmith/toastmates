@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressGraphQL = require('express-graphql');
-const schema = require('./schema/graphql/schema');
+const schema = require('./schema/schema');
 
 app.use('/graphql', expressGraphQL({
   schema,
