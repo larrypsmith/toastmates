@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
+const db = require('./config/keys').mongoURI;
 const Cuisine = require('./models/Cuisine');
 const Item = require('./models/Item');
 const Menu = require('./models/Menu');
 const Merchant = require('./models/Merchant');
 const Order = require('./models/Order');
 const User = require('./models/User');
-const { collection } = require('./models/Order');
-
-const db = require('./config/keys').mongoURI;
 
 (async function() {
   try {

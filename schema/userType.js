@@ -7,9 +7,8 @@ const {
 } = graphql;
 const NameType = require('./nameType');
 const OrderType = require('./orderType');
-const mongoose = require('mongoose');
 const Order = require('../models/Order');
-const Item = require('../models/Item');
+// const Item = require('../models/Item');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
@@ -26,8 +25,8 @@ const UserType = new GraphQLObjectType({
       type: new GraphQLList(OrderType),
       resolve({ id }) {
         return Order.find({ user: id })
-          .populate('items')
-          .populate('user');
+          .populate('user')
+          .populate('items');
       }
     }
   })

@@ -16,7 +16,7 @@ const merchantSchema = new Schema({
     required: true
   },
   deliveryFee: {
-    type: Schema.Types.Decimal128,
+    type: Schema.Types.Number,
     required: true
   },
   deliveryTimeLower: {

@@ -8,7 +8,7 @@ const itemSchema = new Schema({
   },
   description: String,
   price: {
-    type: Schema.Types.Decimal128,
+    type: Schema.Types.Number,
     required: true
   },
   menu: {
