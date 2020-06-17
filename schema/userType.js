@@ -8,7 +8,6 @@ const {
 const NameType = require('./nameType');
 const OrderType = require('./orderType');
 const Order = require('../models/Order');
-// const Item = require('../models/Item');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',

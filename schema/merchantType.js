@@ -8,13 +8,15 @@ const {
   GraphQLInt
 } = graphql;
 const MenuType = require('./menuType');
+const CuisineType = require('./cuisineType');
+const Menu = require('../models/Menu');
 
 const MerchantType = new GraphQLObjectType({
   name: 'MerchantType',
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    cuisine: { type: GraphQLString },
+    cuisine: { type: CuisineType },
     address: { type: GraphQLString },
     deliveryFee: { type: GraphQLFloat },
     deliveryTimeLower: { type: GraphQLInt},
@@ -22,8 +24,8 @@ const MerchantType = new GraphQLObjectType({
     photoUrl: { type: GraphQLString },
     menus: {
       type: new GraphQLList(MenuType),
-      resolve(parent) {
-        parent.menus 
+      resolve({ id }) {
+        return Menu.find({ merchant: id })
       }
     }
   })

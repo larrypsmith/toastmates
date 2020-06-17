@@ -3,13 +3,17 @@ const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLString
 } = graphql;
 const User = require('../models/User');
 const Order = require('../models/Order');
 const Item = require('../models/Item');
+const Merchant = require('../models/Merchant');
+const Cuisine = require('../models/Cuisine');
 const UserType = require('./userType');
 const OrderType = require('./orderType');
+const MerchantType = require('./merchantType');
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -23,7 +27,7 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(parentValue, args) {
+      resolve(_, args) {
         return User.findById(args.id);
       }
     },
@@ -33,6 +37,21 @@ const RootQuery = new GraphQLObjectType({
         return Order.find({})
           .populate('user')
           .populate('items');
+      }
+    },
+    merchants: {
+      type: new GraphQLList(MerchantType),
+      resolve() {
+        return Merchant.find({})
+          .populate('cuisine');
+      }
+    },
+    merchantsByCuisine: {
+      type: new GraphQLList(MerchantType),
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, { id }) {
+        return Merchant.find({ cuisine: id })
+          .populate('cuisine');
       }
     }
   }

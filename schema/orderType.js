@@ -10,18 +10,8 @@ const OrderType = new GraphQLObjectType({
   name: 'OrderType',
   fields: () => ({
     id: { type: GraphQLID },
-    user: {
-      type: require('./userType'),
-      resolve({ user }) {
-        return user;
-      }
-    },
-    items: { 
-      type: new GraphQLList(ItemType),
-      resolve({ items }) {
-        return items;
-      }
-    }
+    user: { type: require('./userType') },
+    items: { type: new GraphQLList(ItemType) }
   })
 });
 

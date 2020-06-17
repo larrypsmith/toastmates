@@ -6,6 +6,7 @@ const {
   GraphQLList
 } = graphql;
 const ItemType = require('./itemType');
+const Item = require('../models/Item');
 
 const MenuType = new GraphQLObjectType({
   name: 'MenuType',
@@ -14,8 +15,8 @@ const MenuType = new GraphQLObjectType({
     name: { type: GraphQLString },
     items: {
       type: new GraphQLList(ItemType),
-      resolve(parent) {
-        return parent.items
+      resolve({ id }) {
+        return Item.find({ menu: id });
       }
     }
   })
