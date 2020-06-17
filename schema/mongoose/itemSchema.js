@@ -10,7 +10,7 @@ const itemSchema = new Schema({
   price: {
     type: Schema.Types.Decimal128,
     required: true
-  }
+  },
 });
 
 module.exports = itemSchema;
