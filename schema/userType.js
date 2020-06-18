@@ -14,12 +14,7 @@ const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: () => ({
     id: { type: GraphQLID },
-    name: {
-      type: NameType,
-      resolve(obj) {
-        return obj.name;
-      }
-    },
+    name: { type: NameType },
     email: { type: GraphQLString },
     orders: {
       type: new GraphQLList(OrderType),
