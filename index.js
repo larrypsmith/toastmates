@@ -2,9 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require('./models/');
 const expressGraphQL = require('express-graphql');
-const User = require('./models/User')
-const Post = require('./models/Post');
 const schema = require('./schema/schema');
 
 app.use('/graphql', expressGraphQL({
@@ -13,20 +12,6 @@ app.use('/graphql', expressGraphQL({
 }));
 
 app.use(bodyParser.json());
-
-// app.get('/users', (req, res) => {
-//   User.find({})
-//     .populate('posts')
-//     .then(user => res.json(user))
-//     .catch(err => res.json(err));
-// })
-
-// app.get('/posts', (req, res) => {
-//   Post.find({})
-//     .populate('author')
-//     .then(posts => res.json(posts))
-//     .catch(err => res.json(err));
-// })
 
 const db = require('./config/keys').mongoURI;
 mongoose.connect(db, { useNewUrlParser: true })

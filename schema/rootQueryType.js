@@ -1,10 +1,18 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLList, GraphQLNonNull, GraphQLID } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLID,
+  GraphQLString
+} = graphql;
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const Post = mongoose.model('Post');
+const Order = mongoose.model('Order');
+const Merchant = mongoose.model('Merchant');
 const UserType = require('./userType');
-const PostType = require('./postType');
+const OrderType = require('./orderType');
+const MerchantType = require('./merchantType');
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -18,21 +26,31 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(parentValue, args) {
-        return User.findById(args.id)
+      resolve(_, args) {
+        return User.findById(args.id);
       }
     },
-    posts: {
-      type: new GraphQLList(PostType),
+    orders: {
+      type: new GraphQLList(OrderType),
       resolve() {
-        return Post.find({});
+        return Order.find({})
+          .populate('user')
+          .populate('items');
       }
     },
-    post: {
-      type: PostType,
+    merchants: {
+      type: new GraphQLList(MerchantType),
+      resolve() {
+        return Merchant.find({})
+          .populate('cuisine');
+      }
+    },
+    merchantsByCuisine: {
+      type: new GraphQLList(MerchantType),
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(parentValue, args) {
-        return Post.findById(args.id)
+      resolve(_, { id }) {
+        return Merchant.find({ cuisine: id })
+          .populate('cuisine');
       }
     }
   }

@@ -1,23 +1,33 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLID,
+  GraphQLString,
+} = graphql;
+const NameType = require('./nameType');
+const OrderType = require('./orderType');
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+const Order = mongoose.model('Order');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: () => ({
     id: { type: GraphQLID },
-    name: { type: GraphQLString },
+    name: {
+      type: NameType,
+      resolve(obj) {
+        return obj.name;
+      }
+    },
     email: { type: GraphQLString },
-    posts: {
-      type: new GraphQLList(require('./postType')),
-      resolve(parentValue) {
-        return(
-          User.findById(parentValue.id)
-            .populate('posts')
-            .then(user => user.posts)
-        );
-      } 
+    orders: {
+      type: new GraphQLList(OrderType),
+      resolve({ id }) {
+        return Order.find({ user: id })
+          .populate('user')
+          .populate('items');
+      }
     }
   })
 });
