@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('./models/');
 const expressGraphQL = require('express-graphql');
 const schema = require('./schema/schema');
+
+app.use(cors());
 
 app.use('/graphql', expressGraphQL({
   schema,
