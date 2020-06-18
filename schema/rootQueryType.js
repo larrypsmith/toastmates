@@ -6,11 +6,10 @@ const {
   GraphQLID,
   GraphQLString
 } = graphql;
-const User = require('../models/User');
-const Order = require('../models/Order');
-const Item = require('../models/Item');
-const Merchant = require('../models/Merchant');
-const Cuisine = require('../models/Cuisine');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const Order = mongoose.model('Order');
+const Merchant = mongoose.model('Merchant');
 const UserType = require('./userType');
 const OrderType = require('./orderType');
 const MerchantType = require('./merchantType');

@@ -7,7 +7,8 @@ const {
 } = graphql;
 const NameType = require('./nameType');
 const OrderType = require('./orderType');
-const Order = require('../models/Order');
+const mongoose = require('mongoose');
+const Order = mongoose.model('Order');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',

@@ -6,7 +6,8 @@ const {
   GraphQLList
 } = graphql;
 const ItemType = require('./itemType');
-const Item = require('../models/Item');
+const mongoose = require('mongoose');
+const Item = mongoose.model('Item');
 
 const MenuType = new GraphQLObjectType({
   name: 'MenuType',

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+require('./models/');
 const expressGraphQL = require('express-graphql');
 const schema = require('./schema/schema');
 

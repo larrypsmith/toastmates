@@ -9,7 +9,8 @@ const {
 } = graphql;
 const MenuType = require('./menuType');
 const CuisineType = require('./cuisineType');
-const Menu = require('../models/Menu');
+const mongoose = require('mongoose');
+const Menu = mongoose.model('Menu');
 
 const MerchantType = new GraphQLObjectType({
   name: 'MerchantType',
