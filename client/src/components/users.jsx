@@ -26,7 +26,9 @@ function Users() {
         data.users.map(user => (
           <li key={user.id}>
             First name: {user.name.first}
+            <br/>
             Last name: {user.name.last}
+            <br/>
             id: {user.id}
           </li>
         ))
