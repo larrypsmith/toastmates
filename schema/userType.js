@@ -4,6 +4,7 @@ const {
   GraphQLList,
   GraphQLID,
   GraphQLString,
+  GraphQLBoolean
 } = graphql;
 const NameType = require('./nameType');
 const OrderType = require('./orderType');
@@ -16,6 +17,8 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: NameType },
     email: { type: GraphQLString },
+    loggedIn: { type: GraphQLBoolean },
+    token: { type: GraphQLString },
     orders: {
       type: new GraphQLList(OrderType),
       resolve({ id }) {
