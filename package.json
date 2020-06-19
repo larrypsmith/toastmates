@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev:debugger": "concurrently \"npm run server:debug\" \"npm run client\"",
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
     "server": "nodemon index.js",
+    "server:debug": "nodemon --inspect index.js",
     "seed": "node seeds.js"
   },
   "keywords": [],
