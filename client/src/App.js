@@ -1,9 +1,13 @@
 import React from 'react';
 import Users from './components/users';
+import Auth from './components/auth';
 
 function App() {
   return (
-    <Users />
+    <React.Fragment>
+      <Users />
+      <Auth />
+    </React.Fragment>
   );
 }
 
