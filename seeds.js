@@ -6,6 +6,8 @@ const Menu = require('./models/Menu');
 const Merchant = require('./models/Merchant');
 const Order = require('./models/Order');
 const User = require('./models/User');
+const { register } = require('./services/auth');
+const bcrypt = require('bcryptjs');
 
 (async function() {
   try {
@@ -97,8 +99,8 @@ const stevenFitzgerald = new User({
     first: 'Steven',
     last: 'Fitzgerald'
   },
-  email: 'email@email2.com',
-  passwordDigest: 'notARealDigest'
+  email: 'email@email.com',
+  password: bcrypt.hashSync('password', 10)
 });
 
 const order1 = new Order({

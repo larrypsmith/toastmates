@@ -1,10 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = graphql;
-const mongoose = require('mongoose');
 const UserType = require('./userType');
-const NameType = require('./nameType');
-const User = mongoose.model('User');
-const { register } = require('../services/auth');
+const { register, login } = require('../services/auth');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -19,6 +16,16 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, data) {
         return register(data);
+      }
+    },
+    login: {
+      type: UserType,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(_, data) {
+        return login(data);
       }
     }
   }
