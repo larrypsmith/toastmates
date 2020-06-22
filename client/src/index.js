@@ -6,9 +6,19 @@ import * as serviceWorker from './serviceWorker';
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { VERIFY_USER } from './mutations';
+import { BrowserRouter } from 'react-router-dom';
 
 const cache = new InMemoryCache({
   dataIdFromObject: object => object.id || null
+});
+
+const token = localStorage.getItem('auth-token');
+
+cache.writeData({
+  data: {
+    isLoggedIn: false
+  }
 })
 
 const client = new ApolloClient({
@@ -17,15 +27,32 @@ const client = new ApolloClient({
     console.log('graphQLErrors', graphQLErrors);
     console.log('networkErrors', networkError);
   },
-  cache
+  cache,
+  headers: {
+    authorization: localStorage.getItem('auth-token')
+  }
 });
 
-
+if (token) {
+  client.mutate({
+    mutation: VERIFY_USER,
+    variables: { token }
+  })
+    .then(({ data }) => {
+      cache.writeData({
+        data: {
+          isLoggedIn: data.verifyUser.loggedIn
+        }
+      })
+    })
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

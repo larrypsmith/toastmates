@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = graphql;
 const UserType = require('./userType');
-const { register, login } = require('../services/auth');
+const { register, login, verifyUser } = require('../services/auth');
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -26,6 +26,15 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, data) {
         return login(data);
+      }
+    },
+    verifyUser: {
+      type: UserType,
+      args: {
+        token: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(_, data) {
+        return verifyUser(data);
       }
     }
   }

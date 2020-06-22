@@ -13,7 +13,13 @@ const REGISTER_USER = gql`
   }
 `;
 
-function Auth() {
+function Register() {
+  const updateCache = (client, { data }) => {
+    client.writeData({
+      data: { isLoggedIn: data.register.loggedIn }
+    });
+  }
+
   const [registerUser, { data }] = useMutation(
     REGISTER_USER,
     {
@@ -21,7 +27,8 @@ function Auth() {
         const { token } = data.register;
         localStorage.setItem('auth-token', token);
         console.log('localStorage: ', localStorage.getItem('auth-token'));
-      }
+      },
+      update: (client, data) => updateCache(client, data)
     }
   );
 
@@ -29,10 +36,10 @@ function Auth() {
     e.preventDefault();
     registerUser({
       variables: {
-        fname: 'Larry',
-        lname: 'Bird',
-        email: 'larry@bird.com',
-        password: 'password'
+        fname: 'user',
+        lname: 'user',
+        email: 'user@user.com',
+        password: 'user'
       }
     })
   }
@@ -42,4 +49,4 @@ function Auth() {
   )
 };
 
-export default Auth;
+export default Register;
