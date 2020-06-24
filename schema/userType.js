@@ -4,6 +4,7 @@ const {
   GraphQLList,
   GraphQLID,
   GraphQLString,
+  GraphQLBoolean
 } = graphql;
 const NameType = require('./nameType');
 const OrderType = require('./orderType');
@@ -20,10 +21,12 @@ const UserType = new GraphQLObjectType({
       type: new GraphQLList(OrderType),
       resolve({ id }) {
         return Order.find({ user: id })
-          .populate('user')
-          .populate('items');
+        .populate('user')
+        .populate('items');
       }
-    }
+    },
+    token: { type: GraphQLString },
+    loggedIn: { type: GraphQLBoolean }
   })
 });
 

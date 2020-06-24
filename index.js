@@ -4,15 +4,22 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('./models/');
-const expressGraphQL = require('express-graphql');
+const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
 
 app.use(cors());
 
-app.use('/graphql', expressGraphQL({
-  schema,
-  graphiql: true
-}));
+app.use('/graphql',
+  graphqlHTTP(req => {
+    return {
+      schema,
+      context: {
+        token: req.headers.authorization
+      },
+      graphiql: true
+    }
+  })
+);
 
 app.use(bodyParser.json());
 

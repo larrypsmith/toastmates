@@ -1,9 +1,15 @@
 import React from 'react';
-import Users from './components/users';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import SplashPage from './components/SplashPage';
 
 function App() {
   return (
-    <Users />
+    <Switch>
+      <Route exact path='/'>
+        <SplashPage />
+      </Route>
+      <Redirect to='/' />
+    </Switch>
   );
 }
 
