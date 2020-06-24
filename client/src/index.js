@@ -7,7 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { VERIFY_USER } from './mutations';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const cache = new InMemoryCache({
   dataIdFromObject: object => object.id || null
@@ -50,9 +50,9 @@ if (token) {
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-function useControlledInput(intialValue) {
+function useControlledInput(initialValue) {
   const [value, setValue] = useState(initialValue);
 
   function updateControlledInput(e) {

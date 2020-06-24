@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+import useControlledInput from '../hooks/useControlledInput';
 
 const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
@@ -36,17 +37,8 @@ function Login() {
     }
   );
   
-  let [email, setEmail] = useState('');
-  let [password, setPassword] = useState('');
-
-  const updateField = (e, field) => {
-    const updateFunction = (field === 'email'
-      ? setEmail
-      : setPassword
-    )
-
-    updateFunction(e.currentTarget.value);
-  };
+  let [email, updateEmail] = useControlledInput('');
+  let [password, updatePassword] = useControlledInput('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,13 +55,13 @@ function Login() {
       <input
         type="text"
         value={email}
-        onChange={e => updateField(e, 'email')}
+        onChange={updateEmail}
         placeholder="email"
       />
       <input
         type="text"
         value={password}
-        onChange={e => updateField(e, 'password')}
+        onChange={updatePassword}
         placeholder="password"
       />
       <input type="submit" value="Login"/>

@@ -19,7 +19,6 @@ function Register() {
       data: { isLoggedIn: data.register.loggedIn }
     });
   }
-
   const [registerUser, { data }] = useMutation(
     REGISTER_USER,
     {
