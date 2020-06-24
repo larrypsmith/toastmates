@@ -1,8 +1,9 @@
 import React from 'react';
+import Navigation from './Navigation';
 
 function SplashPage() {
   return (
-    <div>Hello There</div>
+    <Navigation />
   )
 };
 

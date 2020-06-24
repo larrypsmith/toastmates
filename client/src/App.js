@@ -4,12 +4,15 @@ import SplashPage from './components/SplashPage';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path='/'>
-        <SplashPage />
-      </Route>
-      <Redirect to='/' />
-    </Switch>
+    <React.Fragment>
+      
+      <Switch>
+        <Route exact path='/'>
+          <SplashPage />
+        </Route>
+        <Redirect to='/' />
+      </Switch>
+    </React.Fragment>
   );
 }
 
