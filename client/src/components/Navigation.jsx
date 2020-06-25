@@ -1,20 +1,40 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import Container from './Container';
+import FlexContainer from './FlexContainer';
+import FlexChild from './FlexChild';
+import LogInButton from './LogInButton';
+import Typography from './Typography';
+import SignUpButton from './SignUpButton';
 
 const StyledNavigation = styled.nav`
-  font: Helvetica;
-  font-size: 16px;
-  color: red;
-  background-color: green;
-  margin: 0;
+  background-color: ${props => props.theme.palette.secondary.main};
+  width: 100vw;
+`;
+
+const NavFlexContainer = styled(FlexContainer)`
+  min-height: 72px;
+  overflow: scroll;
 `;
 
 function Navigation() {
   return (
     <StyledNavigation>
-      <div>What's up doc</div>
+      <Container maxWidth='1024px'>
+        <NavFlexContainer justifyContent='space-between' alignItems='center'>
+          <FlexChild>
+            <Typography weight='500' size='20px'>
+              Toastmates
+            </Typography>
+          </FlexChild>
+          <FlexChild>
+            <LogInButton />
+            <SignUpButton />
+          </FlexChild>
+        </NavFlexContainer>
+      </Container>
     </StyledNavigation>
-  )
+  );
 };
 
 export default Navigation;

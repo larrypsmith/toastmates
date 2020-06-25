@@ -8,6 +8,8 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { VERIFY_USER } from './mutations';
 import { HashRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components/macro';
+import theme from './theme';
 
 const cache = new InMemoryCache({
   dataIdFromObject: object => object.id || null
@@ -50,9 +52,11 @@ if (token) {
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <ThemeProvider theme={theme}>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
