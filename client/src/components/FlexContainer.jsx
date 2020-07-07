@@ -5,7 +5,6 @@ const FlexContainer = styled.div`
   flex-direction: ${props => props.flexDirection || 'row'};
   justify-content: ${props => props.justifyContent || 'flex-start'};
   align-items: ${props => props.alignItems || 'stretch'};
-  padding: 0 25px;
 `;
 
 export default FlexContainer;
