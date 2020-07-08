@@ -17,6 +17,10 @@ const theme = {
       main: '#ffdf18',
       contrastText: '#2d1383'
     }
+  },
+  breakpoints: {
+    sm: 767,
+    md: 1059
   }
 };
 

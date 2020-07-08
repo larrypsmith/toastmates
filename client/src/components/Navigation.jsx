@@ -14,11 +14,6 @@ const StyledNavigation = styled.nav`
 
 const NavFlexContainer = styled(FlexContainer)`
   min-height: 72px;
-  overflow: scroll;
-  @media screen and (max-width: 1059px) and (min-width: 768px) {
-    padding-left: 54px;
-    padding-right: 54px;
-  }
 `;
 
 function Navigation() {
