@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 const Container = styled.div`
-  max-width: ${props => props.maxWidth ? props.maxWidth : 'none'};
+  max-width: ${props => props.maxWidth || 'none'};
   margin: 0 auto;
   
   @media screen and (max-width: 767px) {
