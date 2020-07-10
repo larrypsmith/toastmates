@@ -5,18 +5,15 @@ const Container = styled.div`
   margin: 0 auto;
   
   @media screen and (max-width: 767px) {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: ${props => '0 ' + ((props.padding && props.padding[0]) || 25) + 'px'};
   }
 
   @media screen and (max-width: 1059px) and (min-width: 768px) {
-    padding-left: 54px;
-    padding-right: 54px;
+    padding: ${props => '0 ' + ((props.padding && props.padding[1]) || 54) + 'px'};
   } 
 
   @media screen and (min-width: 1060px) {
-    padding-left: 36px;
-    padding-right: 36px;
+    padding: ${props => '0 ' + ((props.padding && props.padding[2]) || 36) + 'px'};
   }
 `;
 

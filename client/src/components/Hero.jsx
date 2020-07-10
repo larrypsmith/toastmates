@@ -1,18 +1,24 @@
 import styled from 'styled-components/macro';
 import React, { useState, useEffect } from 'react';
-import BackgroundImage from './BackgroundImage';
 import Container from './Container';
 import FlexContainer from './FlexContainer';
+import FoodBackgroundImage from './FoodBackgroundImage';
 import OrderNowButton from './OrderNowButton';
+import TableBackgroundImage from './TableBackgroundImage';
 import Typography from './Typography';
-import food from '../images/hero-food.png';
-import table from '../images/hero-table.png';
+
+const StyledHero = styled.header`
+  position: relative;
+  height: 528px;
+
+  @media screen and (min-width: 1060px) {
+    height: 608px;
+  }
+`;
 
 const StyledContainer = styled(Container)`
   position: relative;
-  z-index: 100;
   box-sizing: border-box;
-  height: 528px;
 
   @media screen and (max-width: 767px) {
     padding-left: 16px;
@@ -54,22 +60,26 @@ function Hero() {
     });
   }, []);
 
-  const innerHTML = windowWidth < 768 ? 'You want it. We get it.' : 'Something else.';
+  const headerText = windowWidth < 768 ? 'You want it. We get it.' : 'Something else.';
 
   return (
-    <StyledContainer>
-      <HeroContent flexDirection='column' alignItems='center'>
-        <Header>
-          {innerHTML}
-        </Header>
-        <SubHeader>
-          Food, drinks, groceries, and more available for delivery and pickup.
-        </SubHeader>
-        <OrderNowButton />
-      </HeroContent>
-      <BackgroundImage zIndex={101} url={table} />
-      <BackgroundImage zIndex={102} url={food} />
-    </StyledContainer>
+    <StyledHero>
+      <StyledContainer>
+        <Container maxWidth='1024px'>
+          <HeroContent flexDirection='column' alignItems='center'>
+            <Header>
+              {headerText}
+            </Header>
+            <SubHeader>
+              Food, drinks, groceries, and more available for delivery and pickup.
+            </SubHeader>
+            <OrderNowButton />
+          </HeroContent>
+        </Container>
+      </StyledContainer>
+      <TableBackgroundImage />
+      <FoodBackgroundImage />
+    </StyledHero>
   )
 };
 

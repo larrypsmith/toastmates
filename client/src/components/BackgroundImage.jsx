@@ -8,11 +8,14 @@ const BackgroundImage = styled.div`
   height: 100%;
   z-index: ${props => props.zIndex || 1};
   background-image: url(${props => props.url});
-  background-size: auto;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-size: cover;
+  background-size: ${props => props.backgroundSize || 'cover'};
   background-color: transparent;
+
+  @media screen and (min-width: 1060px) {
+    background-size: auto 120%;
+  }
 `;
 
 export default BackgroundImage;
