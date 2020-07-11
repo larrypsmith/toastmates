@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Container from './Container';
-import Image from './Image';
+import ResponsiveImage from './ResponsiveImage';
 import takeoutBoxes from '../images/takeout-boxes.png';
 
 const StyledSplashPageMainSection = styled.section`
@@ -143,30 +143,6 @@ const OrderNowButton = styled.button`
   letter-spacing: 0.8px;
 `;
 
-const SplashPageMainSectionContentImageContainer = styled.div`
-  position: relative;
-  background-color: transparent;
-  width: calc(100% + 32px);
-  overflow: hidden;
-
-  @media screen and (min-width: 768px) {
-    margin-right: -20px;
-    margin-top: -80px;
-    max-width: 360px;
-  }
-
-  @media screen and (min-width: 1060px) {
-    margin-right: -40px;
-    max-width: none;
-    width: 600px;
-    height: auto;
-  }
-`;
-
-const Img = styled.img`
-  display: none;
-`;
-
 function SplashPageMainSection() {
   return (
     <StyledSplashPageMainSection>
@@ -186,17 +162,7 @@ function SplashPageMainSection() {
               </Paragraph>
               <OrderNowButton>Order Now</OrderNowButton>
             </StyledSplashPageMainSectionContentText>
-            <SplashPageMainSectionContentImageContainer>
-              <div>
-                <Img src={takeoutBoxes} alt="takeout-boxes.png" />
-                <Image
-                  src={takeoutBoxes}
-                  backgroundPosition='center center'
-                  z={1000}
-                />
-              </div>
-              <div style={{height: '0', paddingBottom: '67%', boxSizing: 'border-box'}}></div>
-            </SplashPageMainSectionContentImageContainer>
+            <ResponsiveImage src={takeoutBoxes} alt="takeout-boxes.png" backgroundPosition='center center' z={1000} />
           </StyledSplashPageMainSectionContent>
         </StyledVerticalContainer>
       </Container>
