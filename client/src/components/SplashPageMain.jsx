@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import takeoutBoxes from '../images/takeout-boxes.png';
+import SplashPageMainSection from './SplashPageMainSection';
 
 const StyledSplashPageMain = styled.main`
-  width: 100vw;
+  max-width: 1024px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin: 0 auto;
+  box-sizing: content-box;
 `;
 
 const Image = styled.div`
@@ -17,6 +21,7 @@ const Image = styled.div`
 function SplashPageMain() {
   return (
     <StyledSplashPageMain>
+      <SplashPageMainSection />
     </StyledSplashPageMain>
   );
 };

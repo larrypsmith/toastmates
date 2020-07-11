@@ -87,6 +87,11 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 100;
     font-style: italic;
   }
+
+  *, ::before, ::after {
+    box-align: border-box;
+    font-family: Roboto, sans-serif;
+  }
 `;
 
 export default GlobalStyle;

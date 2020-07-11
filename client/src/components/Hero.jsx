@@ -18,7 +18,6 @@ const StyledHero = styled.header`
 
 const StyledContainer = styled(Container)`
   position: relative;
-  box-sizing: border-box;
 
   @media screen and (max-width: 767px) {
     padding-left: 16px;
