@@ -1,11 +1,11 @@
 import styled from 'styled-components/macro';
 import React, { useState, useEffect } from 'react';
-import Container from './Container';
-import FlexContainer from './FlexContainer';
+import Container from '../common/Container';
+import FlexContainer from '../common/FlexContainer';
 import FoodBackgroundImage from './FoodBackgroundImage';
 import OrderNowButton from './OrderNowButton';
-import TableBackgroundImage from './TableBackgroundImage';
-import Typography from './Typography';
+import TableBackgroundImage from '../common/TableBackgroundImage';
+import Typography from '../common/Typography';
 
 const StyledHero = styled.header`
   position: relative;

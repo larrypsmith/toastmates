@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import useRotatingWords from '../hooks/useRotatingWords';
+import useRotatingWords from '../../hooks/useRotatingWords';
 import styled, { keyframes } from 'styled-components/macro';
 
 const duration = 3 * 1000;

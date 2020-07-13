@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import useControlledInput from '../hooks/useControlledInput';
+import useControlledInput from '../../hooks/useControlledInput';
 
 const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {

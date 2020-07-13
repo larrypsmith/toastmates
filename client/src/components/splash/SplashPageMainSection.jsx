@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Container from './Container';
-import ResponsiveImage from './ResponsiveImage';
+import Container from '../common/Container';
+import ResponsiveImage from '../common/ResponsiveImage';
 
 const StyledSplashPageMainSection = styled.section`
   margin-left: -16px;
