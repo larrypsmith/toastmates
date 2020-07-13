@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import SplashPage from './components/SplashPage';
-import GlobalStyle from './components/GlobalStyle';
+import SplashPage from './components/splash/SplashPage';
+import GlobalStyle from './components/common/GlobalStyle';
 
 function App() {
   return (

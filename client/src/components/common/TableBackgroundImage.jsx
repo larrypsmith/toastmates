@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import table from '../images/hero-table.png';
+import table from '../../images/hero-table.png';
 
 const TableBackgroundImage = styled.div`
   position: absolute;

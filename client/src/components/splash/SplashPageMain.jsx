@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import SplashPageMainSection from './SplashPageMainSection';
-import takeoutBoxes from '../images/takeout-boxes.png';
-import itemsGrid from '../images/items-grid.PNG';
+import takeoutBoxes from '../../images/takeout-boxes.png';
+import itemsGrid from '../../images/items-grid.PNG';
 
 const SplashPageMain = () => (
   <StyledSplashPageMain>

@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
-import food from '../images/hero-food.png';
-import foodWithHand from '../images/hero-food-with-hand.png';
+import food from '../../images/hero-food.png';
+import foodWithHand from '../../images/hero-food-with-hand.png';
 
 const FoodBackgroundImage = styled.div`
   position: absolute;

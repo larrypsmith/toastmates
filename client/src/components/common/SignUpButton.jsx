@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { StyledLogInButton } from './LogInButton';
-import Typography from '../common/Typography';
+import Typography from './Typography';
 
 const StyledSignUpButton = styled(StyledLogInButton)`
   color: ${props => props.theme.palette.secondary.main};

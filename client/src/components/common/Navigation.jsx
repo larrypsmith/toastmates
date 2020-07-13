@@ -5,7 +5,7 @@ import FlexContainer from './FlexContainer';
 import FlexChild from './FlexChild';
 import LogInButton from './LogInButton';
 import Typography from './Typography';
-import SignUpButton from '../splash/SignUpButton';
+import SignUpButton from './SignUpButton';
 
 const StyledNavigation = styled.nav`
   background-color: ${props => props.theme.palette.secondary.main};
