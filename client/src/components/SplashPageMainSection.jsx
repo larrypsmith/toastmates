@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Container from './Container';
 import ResponsiveImage from './ResponsiveImage';
-import takeoutBoxes from '../images/takeout-boxes.png';
 
 const StyledSplashPageMainSection = styled.section`
   margin-left: -16px;
@@ -141,9 +140,13 @@ const OrderNowButton = styled.button`
   width: 265px;
   height: 48px; 
   letter-spacing: 0.8px;
+
+  @media screen and (min-width: 768px) {
+    width: 165px;
+  }
 `;
 
-function SplashPageMainSection() {
+function SplashPageMainSection({ headerText, paragraphText, imgSrc }) {
   return (
     <StyledSplashPageMainSection>
       <Container maxWidth='1024px' padding={[16, 54, 36]}>
@@ -151,18 +154,14 @@ function SplashPageMainSection() {
           <StyledSplashPageMainSectionContent>
             <StyledSplashPageMainSectionContentText>
               <Header>
-                Order from local favorites near you.
+                {headerText}
               </Header>
               <Paragraph>
-                Need another charger?
-                Kitchen staples?
-                Party supplies?
-                We’ve got everything you need
-                available for delivery within an hour.
+                {paragraphText}
               </Paragraph>
               <OrderNowButton>Order Now</OrderNowButton>
             </StyledSplashPageMainSectionContentText>
-            <ResponsiveImage src={takeoutBoxes} alt="takeout-boxes.png" backgroundPosition='center center' z={1000} />
+            <ResponsiveImage src={imgSrc} alt="" backgroundPosition='center center' z={1000} />
           </StyledSplashPageMainSectionContent>
         </StyledVerticalContainer>
       </Container>

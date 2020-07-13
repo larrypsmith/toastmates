@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import SplashPageMainSection from './SplashPageMainSection';
+import takeoutBoxes from '../images/takeout-boxes.png';
+import itemsGrid from '../images/items-grid.PNG';
 
 const StyledSplashPageMain = styled.main`
   max-width: 1024px;
@@ -10,18 +12,30 @@ const StyledSplashPageMain = styled.main`
   box-sizing: content-box;
 `;
 
-const Image = styled.div`
-  width: 100%;
-  height: 337px;
-  background-image: url(${props => props.url});
-  background-size: contain;
-  background-repeat: no-repeat;
-`;
-
 function SplashPageMain() {
   return (
     <StyledSplashPageMain>
-      <SplashPageMainSection />
+      <SplashPageMainSection
+        headerText="Order from local favorites near you."
+        paragraphText="
+          Whatever you want, we get it.
+          Order delivery for yourself or with friends
+          and watch in real-time
+          as your Postmate brings you all the things you love.
+        "
+        imgSrc={takeoutBoxes}
+      />
+      <SplashPageMainSection
+        headerText="We deliver more than dinner."
+        paragraphText="
+          Need another charger?
+          Kitchen staples?
+          Party supplies?
+          We’ve got everything you need
+          available for delivery within an hour.
+        "
+        imgSrc={itemsGrid}
+      />
     </StyledSplashPageMain>
   );
 };

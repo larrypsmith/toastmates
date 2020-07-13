@@ -6,6 +6,7 @@ const StyledResponsiveImage = styled.div`
   position: relative;
   background-color: transparent;
   width: calc(100% + 32px);
+  /* width: 100%; */
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
