@@ -19,9 +19,10 @@ const token = localStorage.getItem('auth-token');
 
 cache.writeData({
   data: {
-    isLoggedIn: false
+    isLoggedIn: false,
+    modal: null
   }
-})
+});
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',

@@ -25,7 +25,7 @@ export default Footer;
 const StyledFooter = styled.footer`
   background-color: ${props => props.theme.palette.common.black};
   color: ${props => props.theme.palette.common.white};
-  padding-top: 86px;
+  padding-top: 43px;
   padding-bottom: 43px;
 `;
 

@@ -1,9 +1,9 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 import Footer from './Footer';
 import Hero from './Hero';
 import Navigation from '../common/Navigation';
 import SplashPageMain from './SplashPageMain';
-import styled from 'styled-components/macro';
 
 const StyledSplashPage = styled.div`
   min-height: 100vh;
