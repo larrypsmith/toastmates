@@ -1,6 +1,7 @@
 import React from 'react';
-import Navigation from '../common/Navigation';
+import Footer from './Footer';
 import Hero from './Hero';
+import Navigation from '../common/Navigation';
 import SplashPageMain from './SplashPageMain';
 import styled from 'styled-components/macro';
 
@@ -15,6 +16,7 @@ function SplashPage() {
       <Navigation />
       <Hero />
       <SplashPageMain />
+      <Footer />
     </StyledSplashPage>
   )
 };
