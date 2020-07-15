@@ -6,15 +6,18 @@ const Container = styled.div`
   box-sizing: content-box;
   
   @media screen and (max-width: 767px) {
-    padding: ${props => '0 ' + ((props.padding && props.padding[0]) || 16) + 'px'};
+    padding-left: ${props => ((props.padding && props.padding[0]) || 16) + 'px'};
+    padding-right: ${props => ((props.padding && props.padding[0]) || 16) + 'px'};
   }
 
   @media screen and (max-width: 1059px) and (min-width: 768px) {
-    padding: ${props => '0 ' + ((props.padding && props.padding[1]) || 24) + 'px'};
+    padding-left: ${props => ((props.padding && props.padding[1]) || 24) + 'px'};
+    padding-right: ${props => ((props.padding && props.padding[1]) || 24) + 'px'};
   } 
 
   @media screen and (min-width: 1060px) {
-    padding: ${props => '0 ' + ((props.padding && props.padding[2]) || 36) + 'px'};
+    padding-left: ${props => ((props.padding && props.padding[2]) || 36) + 'px'};
+    padding-right: ${props => ((props.padding && props.padding[2]) || 36) + 'px'};
   }
 `;
 
