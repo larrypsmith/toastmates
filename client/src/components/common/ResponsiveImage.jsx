@@ -5,7 +5,7 @@ import Image from './Image';
 const StyledResponsiveImage = styled.div`
   position: relative;
   background-color: transparent;
-  width: 100%;
+  width: calc(100% + 32px);
   overflow: hidden;
   grid-area: image;
 

@@ -4,7 +4,6 @@ import Container from '../common/Container';
 import Header from './Header';
 import Paragraph from './Paragraph';
 import MainSection from './MainSection';
-import ResponsiveImage from '../common/ResponsiveImage';
 import takeoutBoxes from '../../images/takeout-boxes.png';
 import itemsGrid from '../../images/items-grid.PNG';
 
@@ -23,7 +22,14 @@ const SplashPageMain = () => (
                 as your Postmate brings you
                 all the things you love.
               </Paragraph>
-              <ResponsiveImage src={takeoutBoxes}/>
+              <StyledImageContainer1>
+                <BackgroundImage
+                  src={takeoutBoxes}
+                  size='cover'
+                  position='center center'
+                />
+                <ImagePadding width={1328} height={900} />
+              </StyledImageContainer1>
               <OrderNowButton>Order Now</OrderNowButton>
             </Grid1>
           </MainSectionContent1>
@@ -40,8 +46,15 @@ const SplashPageMain = () => (
                 and watch in real-time
                 as your Postmate brings you all the things you love.
               </Paragraph>
-              <ResponsiveImage src={itemsGrid}/>
               <OrderNowButton>Order Now</OrderNowButton>
+              <StyledImageContainer2>
+                <BackgroundImage
+                  src={itemsGrid}
+                  size='contain'
+                  position='center center'
+                />
+                <ImagePadding width={470.4} height={313.6} />
+              </StyledImageContainer2>
             </Grid2>
           </MainSectionContent2>
         </Container>
@@ -51,6 +64,54 @@ const SplashPageMain = () => (
 );
 
 export default SplashPageMain;
+
+const ImageContainer = styled.div`
+  position: relative;
+  background-color: transparent;
+  width: 100%;
+  overflow: hidden;
+  grid-area: image;
+`;
+
+const StyledImageContainer1 = styled(ImageContainer)`
+  width: calc(100% + 32px);
+  align-self: center;
+
+  @media screen and (min-width: 768px) {
+    margin-right: -20px;
+    margin-top: -60px;
+  }
+
+  @media screen and (min-width: 1060px) {
+    margin-right: -40px;
+    height: auto
+  }
+`;
+
+const StyledImageContainer2 = styled(ImageContainer)`
+  @media screen and (min-width: 1060px) {
+    width: 488px;
+  }
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: ${props => props.size || 'unset'};
+  background-position: ${props => props.position || 'unset'};
+  background-repeat: no-repeat;
+  transition: opacity 0.4s linear 0s;
+  background-image: ${props => props.src ? `url(${props.src})` : 'none'};
+`;
+
+const ImagePadding = styled.div`
+  height: auto;
+  padding-bottom: ${props => (props.height / props.width) * 100}%;
+`;
+
 
 const MainSectionContent1 = styled.div`
   padding: 25px 0px 40px;
@@ -116,19 +177,19 @@ const Grid2 = styled.div`
 
   @media screen and (min-width: 768px) {
     grid-template-areas:
-      "header image"
-      "paragraph image"
-      "button image"
+      "image header"
+      "image paragraph"
+      "image button"
     ;
-    grid-template-columns: minmax(auto, 300px) 360px;
+    grid-template-columns: 300px minmax(auto, 300px);
     justify-content: space-around;
     justify-items: start;
-    
+    align-content: start;
   }
 
   @media screen and (min-width: 1060px) {
     height: 326px;
-    grid-template-columns: minmax(auto, 452px) 600px;
+    grid-template-columns: 600px minmax(auto, 452px);
     justify-content: space-between;
   }
 `;
