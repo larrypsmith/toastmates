@@ -1,15 +1,16 @@
 import styled from 'styled-components/macro';
 
 const Container = styled.div`
-  max-width: ${props => props.maxWidth || 'none'};
+  max-width: ${props => props.maxWidth || '1024px'};
   margin: 0 auto;
+  box-sizing: content-box;
   
   @media screen and (max-width: 767px) {
-    padding: ${props => '0 ' + ((props.padding && props.padding[0]) || 25) + 'px'};
+    padding: ${props => '0 ' + ((props.padding && props.padding[0]) || 16) + 'px'};
   }
 
   @media screen and (max-width: 1059px) and (min-width: 768px) {
-    padding: ${props => '0 ' + ((props.padding && props.padding[1]) || 54) + 'px'};
+    padding: ${props => '0 ' + ((props.padding && props.padding[1]) || 24) + 'px'};
   } 
 
   @media screen and (min-width: 1060px) {

@@ -1,10 +1,14 @@
 import styled from 'styled-components/macro';
 
-const SplashPageMainSection = styled.section`
+const MainSection = styled.div`
   margin-left: -16px;
   margin-right: -16px;
-  background-color: ${({ theme }) => theme.palette.common.white};
+  background-color: ${props => props.theme.palette.common.white};
   padding-bottom: 16px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
 
   @media screen and (min-width: 768px) {
     padding-bottom: 0;
@@ -13,9 +17,10 @@ const SplashPageMainSection = styled.section`
   }
 
   @media screen and (min-width: 1060px) {
+    padding-bottom: 0;
     margin-left: -36px;
     margin-right: -36px;
   }
 `;
 
-export default SplashPageMainSection;
+export default MainSection;

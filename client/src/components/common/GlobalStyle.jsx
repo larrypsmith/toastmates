@@ -89,7 +89,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   *, ::before, ::after {
-    box-align: border-box;
+    box-sizing: border-box;
     font-family: Roboto, sans-serif;
   }
 `;

@@ -19,7 +19,7 @@ const NavFlexContainer = styled(FlexContainer)`
 function Navigation() {
   return (
     <StyledNavigation>
-      <Container maxWidth='1024px'>
+      <Container maxWidth='1024px' padding={[25, 54, 36]}>
         <NavFlexContainer justifyContent='space-between' alignItems='center'>
           <FlexChild>
             <Typography weight='500' size='20px'>

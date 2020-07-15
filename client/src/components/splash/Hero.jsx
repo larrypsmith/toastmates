@@ -64,7 +64,7 @@ function Hero() {
   return (
     <StyledHero>
       <StyledContainer>
-        <Container maxWidth='1024px'>
+        <Container maxWidth='1024px' padding={[25, 54, 36]}>
           <HeroContent flexDirection='column' alignItems='center'>
             <Header>
               {headerText}

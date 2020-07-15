@@ -9,6 +9,7 @@ const Paragraph = styled.p`
   line-height: 26px;
   color: ${({ theme }) => theme.palette.text.secondary};
   text-align: center;
+  grid-area: paragraph;
 
   @media screen and (min-width: 768px) {
     text-align: left;

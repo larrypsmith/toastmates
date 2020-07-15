@@ -7,11 +7,10 @@ const StyledResponsiveImage = styled.div`
   background-color: transparent;
   width: 100%;
   overflow: hidden;
+  grid-area: image;
 
   @media screen and (min-width: 768px) {
     margin-right: -20px;
-    margin-top: -80px;
-    max-width: 360px;
   }
 
   @media screen and (min-width: 1060px) {
@@ -39,6 +38,7 @@ const ResponsiveImage = ({ src, alt, backgroundPosition, z }) => (
         src={src}
         backgroundPosition={backgroundPosition}
         z={z}
+        backgroundSize='cover'
       />
     </div>
     <PaddingDiv />
