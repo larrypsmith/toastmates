@@ -20,6 +20,7 @@ const ModalRoot = ({ children }) => {
   );
 };
 
+export default ModalRoot;
 
 const StyledModalRoot = styled.div`
   position: fixed;
@@ -37,4 +38,3 @@ const StyledModalRoot = styled.div`
   z-index: 1000;
 `;
 
-export default ModalRoot;

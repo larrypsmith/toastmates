@@ -1,22 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { StyledLogInButton } from './LogInButton';
-import Typography from './Typography';
+import NavigationButton from './NavigationButton';
 
-const StyledSignUpButton = styled(StyledLogInButton)`
+const StyledNavigationButton = styled(NavigationButton)`
   color: ${props => props.theme.palette.secondary.main};
   background-color: ${props => props.theme.palette.common.black};
-  margin-right: 0;
+  margin-left: 10px;
 `;
 
-function SignUpButton() {
-  return (
-    <StyledSignUpButton>
-      <Typography size='12px' uppercase>
-        Sign Up
-      </Typography>
-    </StyledSignUpButton>
-  );
-};
+const SignUpButton = () => (
+  <StyledNavigationButton modal="signup">
+    Sign Up
+  </StyledNavigationButton>
+);
 
 export default SignUpButton;

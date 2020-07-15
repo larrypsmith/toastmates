@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro'
 import React from 'react';
 import Container from './Container';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import SignUpButton from './SignUpButton';
 
 const AuthModalContent = () => {
   return (
@@ -8,6 +11,7 @@ const AuthModalContent = () => {
       <StyledContainer>
         <Header>Log In</Header>
         <ExitButton />
+        <StyledSignUpButton />
       </StyledContainer>
     </div>
   )
@@ -50,7 +54,12 @@ const ExitButtonContainer = styled.div`
 const ExitButton = () => {
   return (
     <ExitButtonContainer>
-      <i class="fas fa-times"></i>
+      <FontAwesomeIcon icon={faTimes} size="lg" />
     </ExitButtonContainer>
   );
 }
+
+const StyledSignUpButton = styled(SignUpButton)`
+  color: ${props => props.theme.palette.common.black};
+  background-color: ${props => props.theme.palette.common.white};
+`;
