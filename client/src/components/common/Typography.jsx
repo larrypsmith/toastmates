@@ -1,12 +1,19 @@
+import React from 'react';
 import styled from 'styled-components/macro';
 
-const Typography = styled.span`
+const StyledTypography = styled.div`
   font-family: Roboto, sans-serif;
   font-weight: ${props => props.weight};
   font-style: ${props => props.italic ? 'italic' : 'normal'};
-  font-size: ${props => props.size ? props.size : '16px'};
+  font-size: ${props => props.size || '16px'};
   text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};
-  display: ${props => props.block ? 'block' : 'inline'};
+  display: ${props => props.inline ? 'inline' : 'block'};
 `;
+
+const Typography = ({ children, ...props }) => (
+  <StyledTypography {...props}>
+    <span>{children}</span>
+  </StyledTypography>
+);
 
 export default Typography;
