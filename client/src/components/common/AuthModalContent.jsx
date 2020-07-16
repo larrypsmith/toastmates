@@ -3,8 +3,9 @@ import React from 'react';
 import AuthForm from './AuthForm';
 import Container from './Container';
 import ExitModalButton from './ExitModalButton';
+import LoginForm from './LoginForm';
 import NavigationButton from './NavigationButton';
-
+import SignUpForm from './SignUpForm';
 import useQueryModal from '../../hooks/useQueryModal';
 
 const AuthModalContent = () => {
@@ -24,12 +25,15 @@ const AuthModalContent = () => {
   };
 
   let content;
+  let Form;
   switch (modalType) {
     case 'login':
       content = authContent.login;  
+      Form = LoginForm;
       break;
     case 'signup':
       content = authContent.signup;
+      Form = SignUpForm; 
       break;
     default:
       content = null;
@@ -46,7 +50,7 @@ const AuthModalContent = () => {
         </StyledNavigationButton>
       </HeaderContainer>
       <AuthFormContainer>
-        <AuthForm />
+        <Form />
       </AuthFormContainer>
     </div>
   )

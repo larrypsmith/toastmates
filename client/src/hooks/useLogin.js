@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import useControlledInput from '../../hooks/useControlledInput';
 
 const LOGIN_USER = gql`
-  mutation LoginUser($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       id
       name {
@@ -18,7 +16,9 @@ const LOGIN_USER = gql`
   }
 `;
 
-function Login() {
+// return a function that takes an email and pw and logs in
+
+const useLogin = () => {
   const updateCache = (client, { data }) => {
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn }
@@ -37,11 +37,7 @@ function Login() {
     }
   );
   
-  let [email, updateEmail] = useControlledInput('');
-  let [password, updatePassword] = useControlledInput('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  return (email, password) => {
     loginUser({
       variables: {
         email,
@@ -49,24 +45,6 @@ function Login() {
       }
     })
   }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={email}
-        onChange={updateEmail}
-        placeholder="email"
-      />
-      <input
-        type="text"
-        value={password}
-        onChange={updatePassword}
-        placeholder="password"
-      />
-      <input type="submit" value="Login"/>
-    </form>
-  )
 };
 
-export default Login;
+export default useLogin;

@@ -1,44 +1,24 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Button from './Button';
-import Flex from './Flex';
 import Typography from './Typography';
 import useControlledInput from '../../hooks/useControlledInput';
-import useQueryModal from '../../hooks/useQueryModal.js';
 import useLogin from '../../hooks/useLogin';
-import useRegister from '../../hooks/useRegister';
 
 
-const AuthForm = () => {
-  const authState = useQueryModal();
+const LoginForm = () => {
   const [email, updateEmail] = useControlledInput('');
   const [password, updatePassword] = useControlledInput('');
-  const [firstName, updateFirstName] = useControlledInput('');
-  const [lastName, updateLastName] = useControlledInput('');
   const login = useLogin();
-  const register = useRegister();
 
-  const dataToSubmit = [email, password];
-  if (authState === 'signup') dataToSubmit.push(firstName, lastName);
-
-  let isReadyToContinue = true;
-  for (let field of dataToSubmit) {
-    if (!field.length) isReadyToContinue = false;
+  let isFormReady = true;
+  for (let field of [email, password]) {
+    if (!field.length) isFormReady = false;
   }
-
-  let instructionsText = authState === 'login'
-    ? 'Enter your email and password'
-    : 'Enter your name, email, and password'
-  ;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (authState === 'signup') {
-      register(...dataToSubmit);
-    } else {
-      login(...dataToSubmit);
-    }
+    login(email, password);
   };
 
   const handleSubmitDemo = (e) => {
@@ -49,26 +29,8 @@ const AuthForm = () => {
   return (
     <StyledAuthForm onSubmit={handleSubmit}>
       <StyledInstructions weight={400} size='18px'>
-        {instructionsText}
+        Enter your email and password
       </StyledInstructions>
-      <StyledFlex
-        parent
-        direction={['column', 'row']}
-        justify="space-between"
-        isHidden={authState === 'login'}
-      >
-        <Input
-          placeholder="First Name"
-          value={firstName}
-          onChange={updateFirstName}
-          />
-        <Input
-          placeholder="Last Name"
-          value={lastName}
-          onChange={updateLastName}
-          
-        />
-      </StyledFlex>
       <Input
         placeholder="Email"
         value={email}
@@ -80,7 +42,7 @@ const AuthForm = () => {
         value={password}
         onChange={updatePassword}
       />
-      <StyledButton type='submit' disabled={!isReadyToContinue}>
+      <StyledButton type='submit' disabled={!isFormReady}>
         Continue
       </StyledButton>
       <StyledOutlineButton type='button' onClick={handleSubmitDemo}>
@@ -90,7 +52,7 @@ const AuthForm = () => {
   )
 };
 
-export default AuthForm;
+export default LoginForm;
 
 const StyledAuthForm = styled.form`
   width: 100%;
@@ -142,8 +104,4 @@ const StyledOutlineButton = styled(StyledButton)`
   &:hover {
     background-color: rgba(0, 0, 0, 0.03);
   }
-`;
-
-const StyledFlex = styled(Flex)`
-  display: ${props => props.isHidden ? 'none' : 'initial' }
 `;

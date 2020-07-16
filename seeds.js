@@ -36,7 +36,7 @@ async function deleteAllCollections() {
 
 async function saveAllCollections() {
   try {
-    const collections = [pizza, giosPizza, giosPizzaPizza, giosPizzaPasta, giosPizzaPizzaCheese, giosPizzaPizzaPepperoni, giosPizzaPastaRigatoni, giosPizzaPastaSpaghetti, stevenFitzgerald, order1];
+    const collections = [pizza, giosPizza, giosPizzaPizza, giosPizzaPasta, giosPizzaPizzaCheese, giosPizzaPizzaPepperoni, giosPizzaPastaRigatoni, giosPizzaPastaSpaghetti, johnDoe, order1];
     
     while (collections.length) {
       let collection = collections.shift();
@@ -94,17 +94,17 @@ const giosPizzaPastaRigatoni = new Item({
   menu: giosPizzaPasta.id
 })
 
-const stevenFitzgerald = new User({
+const johnDoe = new User({
   name: {
-    first: 'Steven',
-    last: 'Fitzgerald'
+    first: 'John',
+    last: 'Doe'
   },
-  email: 'email@email.com',
+  email: 'johndoe@mail.com',
   password: bcrypt.hashSync('password', 10)
 });
 
 const order1 = new Order({
-  user: stevenFitzgerald.id,
+  user: johnDoe.id,
   items: [
     giosPizzaPastaRigatoni.id,
     giosPizzaPizzaCheese.id
