@@ -92,6 +92,25 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: Roboto, sans-serif;
   }
+  
+  textarea, input {
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+  }
+
+  button, input {
+    overflow: visible;
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  html {
+    color: ${props => props.theme.palette.text.primary};
+  }
 `;
 
 export default GlobalStyle;

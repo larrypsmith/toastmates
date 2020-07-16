@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro'
 import React from 'react';
+import AuthForm from './AuthForm';
 import Container from './Container';
-import NavigationButton from './NavigationButton';
 import ExitModalButton from './ExitModalButton';
+import NavigationButton from './NavigationButton';
 
 import useQueryModal from '../../hooks/useQueryModal';
 
@@ -45,7 +46,7 @@ const AuthModalContent = () => {
         </StyledNavigationButton>
       </HeaderContainer>
       <AuthFormContainer>
-        {/* <AuthForm /> */}
+        <AuthForm />
       </AuthFormContainer>
     </div>
   )

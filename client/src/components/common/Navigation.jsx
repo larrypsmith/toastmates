@@ -22,7 +22,11 @@ function Navigation() {
       <Container maxWidth='1024px' padding={[25, 54, 36]}>
         <NavFlexContainer justifyContent='space-between' alignItems='center'>
           <FlexChild>
-            <Typography weight='500' size='20px'>
+            <Typography
+              weight='500'
+              size='20px'
+              color='black'
+            >
               Toastmates
             </Typography>
           </FlexChild>

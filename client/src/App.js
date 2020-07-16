@@ -12,11 +12,6 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <ModalRoot>
-        <ModalContainer>
-          <ModalContent>
-            <AuthModalContent />
-          </ModalContent>
-        </ModalContainer>
       </ModalRoot>
       <Switch>
         <Route exact path='/'>

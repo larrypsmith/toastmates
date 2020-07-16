@@ -66,10 +66,10 @@ function Hero() {
       <StyledContainer>
         <Container maxWidth='1024px' padding={[25, 54, 36]}>
           <HeroContent flexDirection='column' alignItems='center'>
-            <Header>
+            <Header color="black">
               {headerText}
             </Header>
-            <SubHeader>
+            <SubHeader color="black">
               Food, drinks, groceries, and more available for delivery and pickup.
             </SubHeader>
             <OrderNowButton />

@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useQueryModal from '../../hooks/useQueryModal';
+import ModalContainer from './ModalContainer';
 
-const ModalRoot = ({ children }) => {
+const ModalRoot = () => {
   const modalType = useQueryModal();
   const isOpen = Boolean(modalType);
 
   return (
     <StyledModalRoot isOpen={isOpen}>
-      {isOpen ? children : null}
+      <div>
+        <ModalContainer isOpen={isOpen} />
+      </div>
     </StyledModalRoot>
   );
 };

@@ -16,7 +16,8 @@ const theme = {
     secondary: {
       main: '#ffdf18',
       contrastText: '#2d1383'
-    }
+    },
+    disabled: 'rgb(217, 219, 224)'
   },
   breakpoints: {
     sm: 767,

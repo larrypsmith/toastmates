@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const StyledOrderNowButton = styled.button`
-  font-family: Roboto, sans-serif;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
