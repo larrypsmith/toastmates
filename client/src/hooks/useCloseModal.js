@@ -5,6 +5,7 @@ const useCloseModal = () => {
 
   const closeModal = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     client.writeData({ data: { modal: null } });
   }
 

@@ -1,32 +1,58 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Button from './Button';
+import Flex from './Flex';
 import Typography from './Typography';
-import useQueryModal from '../../hooks/useQueryModal'; 
 import useControlledInput from '../../hooks/useControlledInput';
+import useQueryModal from '../../hooks/useQueryModal.js';
 
 const AuthForm = () => {
   const modalType = useQueryModal();
   const [email, updateEmail] = useControlledInput('');
   const [password, updatePassword] = useControlledInput('');
+  const [firstName, updateFirstName] = useControlledInput('');
+  const [lastName, updateLastName] = useControlledInput('');
 
-  const isReadyToContinue = (email.length > 0 && password.length > 0);
+  const dataToSubmit = [email, password];
+  if (modalType === 'signup') dataToSubmit.push(firstName, lastName);
 
-  // let authFormContent;
-  // switch (modalType) {
-  //   case 'login':
-      
-  //     break;
-  
-  //   default:
-  //     break;
-  // }
+  let isReadyToContinue = true;
+  for (let field of dataToSubmit) {
+    if (!field.length) isReadyToContinue = false;
+  }
+
+  let instructionsText = modalType === 'login'
+    ? 'Enter your email and password'
+    : 'Enter your name, email, and password'
+  ;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   return (
-    <StyledAuthForm>
+    <StyledAuthForm onSubmit={handleSubmit}>
       <StyledInstructions weight={400} size='18px'>
-        Enter your email and password
+        {instructionsText}
       </StyledInstructions>
+      <StyledFlex
+        parent
+        direction={['column', 'row']}
+        justify="space-between"
+        isHidden={modalType === 'login'}
+      >
+        <Input
+          placeholder="First Name"
+          value={firstName}
+          onChange={updateFirstName}
+          />
+        <Input
+          placeholder="Last Name"
+          value={lastName}
+          onChange={updateLastName}
+          
+        />
+      </StyledFlex>
       <Input
         placeholder="Email"
         value={email}
@@ -88,4 +114,8 @@ const Input = styled.input`
 
 const StyledButton = styled(Button)`
   margin-top: 30px;
+`;
+
+const StyledFlex = styled(Flex)`
+  display: ${props => props.isHidden ? 'none' : 'initial' }
 `;

@@ -14,6 +14,7 @@ const StyledOrderNowButton = styled.button`
   letter-spacing: .8px;
   background-color: ${props => props.theme.palette.common.white};
   box-shadow: 2px 8px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
 `;
 
 function OrderNowButton() {

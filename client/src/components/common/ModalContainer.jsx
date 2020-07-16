@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import ModalContent from './ModalContent';
 import AuthModalContent from './AuthModalContent';
+import useCloseModal from '../../hooks/useCloseModal';
 
 const StyledModalContainer = styled.div`
     position: absolute;
@@ -16,11 +17,12 @@ const StyledModalContainer = styled.div`
 `;
 
 const ModalContainer = ({ isOpen }) => {
+    const closeModal = useCloseModal();
+    
     if (!isOpen) return null; 
-
     return (
-        <StyledModalContainer>
-            <ModalContent>
+        <StyledModalContainer onClick={closeModal}>
+            <ModalContent onClick={e => e.stopPropagation()}>
                 <AuthModalContent />
             </ModalContent>
         </StyledModalContainer>

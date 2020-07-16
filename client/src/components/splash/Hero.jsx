@@ -31,6 +31,10 @@ const Header = styled(Typography)`
   font-weight: 700;
   margin-bottom: 9px;
   text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 56px;
+  }
 `;
 
 const SubHeader = styled(Typography)`

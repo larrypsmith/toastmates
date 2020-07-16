@@ -1,10 +1,19 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 import NavigationButton from './NavigationButton';
 
 const LogInButton = () => (
-  <NavigationButton modal='login'>
+  <StyledLoginButton modal='login'>
     Log In
-  </NavigationButton>
+  </StyledLoginButton>
 );
+
+const StyledLoginButton = styled(NavigationButton)`
+  transition: background-color 0.1s ease-in-out;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+`;
 
 export default LogInButton;

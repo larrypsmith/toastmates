@@ -14,6 +14,7 @@ const StyledNavigationButton = styled.button`
   font-weight: 700;
   letter-spacing: .5px;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const NavigationButton = ({ children, modal, className }) => {

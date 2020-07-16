@@ -80,13 +80,15 @@ const StyledNavigationButton = styled(NavigationButton)`
 `;
 
 const AuthFormContainer = styled(Container)`
+  box-sizing: border-box;
+
   @media screen and (max-width: 1059px) {
     overflow-y: visible;
     padding-left: 42px;
     padding-right: 42px;
     max-width: 420px;
     min-width: 310px;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 
   @media screen and (min-width: 1060px) {
