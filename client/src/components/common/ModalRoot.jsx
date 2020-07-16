@@ -1,21 +1,14 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-
-const MODAL = gql`
-  query modal {
-    modal @client
-  }
-`;
+import styled from 'styled-components/macro';
+import useQueryModal from '../../hooks/useQueryModal';
 
 const ModalRoot = ({ children }) => {
-  const { data } = useQuery(MODAL);
-  const isOpen = Boolean(data.modal);
+  const modalType = useQueryModal();
+  const isOpen = Boolean(modalType);
 
   return (
     <StyledModalRoot isOpen={isOpen}>
-      {children}
+      {isOpen ? children : null}
     </StyledModalRoot>
   );
 };
