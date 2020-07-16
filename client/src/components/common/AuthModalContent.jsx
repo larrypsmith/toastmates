@@ -1,10 +1,9 @@
 import styled from 'styled-components/macro'
 import React from 'react';
 import Container from './Container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavigationButton from './NavigationButton';
-import useCloseModal from '../../hooks/useCloseModal';
+import ExitModalButton from './ExitModalButton';
+
 import useQueryModal from '../../hooks/useQueryModal';
 
 const AuthModalContent = () => {
@@ -40,7 +39,7 @@ const AuthModalContent = () => {
     <div>
       <HeaderContainer>
         <Header>{content.headerText}</Header>
-        <ExitButton />
+        <ExitModalButton />
         <StyledNavigationButton modal={content.alternateModal}>
           {content.alternateButtonText}
         </StyledNavigationButton>
@@ -68,33 +67,6 @@ const Header = styled.div`
   line-height: normal;
   text-align: center;
 `;
-
-const ExitButtonContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 16px;
-  display: flex;
-  height: 24px;
-  width: 24px;
-  margin-right: 14px;
-  cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    top: 28px;
-    left: initial;
-    right: 12px;
-  }
-`;
-
-const ExitButton = () => {
-  const closeModal = useCloseModal();
-
-  return (
-    <ExitButtonContainer onClick={closeModal}>
-      <FontAwesomeIcon icon={faTimes} size="lg" />
-    </ExitButtonContainer>
-  );
-}
 
 const StyledNavigationButton = styled(NavigationButton)`
   position: absolute;
