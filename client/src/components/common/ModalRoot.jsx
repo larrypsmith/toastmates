@@ -10,7 +10,7 @@ const ModalRoot = () => {
   return (
     <StyledModalRoot isOpen={isOpen}>
       <div>
-        <ModalContainer isOpen={isOpen} />
+        {isOpen ? <ModalContainer modalType={modalType} /> : null}
       </div>
     </StyledModalRoot>
   );

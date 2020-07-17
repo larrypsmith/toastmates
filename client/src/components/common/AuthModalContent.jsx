@@ -1,16 +1,13 @@
 import styled from 'styled-components/macro'
-import React from 'react';
-import AuthForm from './AuthForm';
+import React, { useEffect } from 'react';
 import Container from './Container';
 import ExitModalButton from './ExitModalButton';
 import LoginForm from './LoginForm';
 import NavigationButton from './NavigationButton';
 import SignUpForm from './SignUpForm';
-import useQueryModal from '../../hooks/useQueryModal';
+// import useQueryModal from '../../hooks/useQueryModal';
 
-const AuthModalContent = () => {
-  const modalType = useQueryModal();
-  
+const AuthModalContent = ({ modalType }) => {
   const authContent = {
     login: {
       headerText: 'Log In',
@@ -40,6 +37,7 @@ const AuthModalContent = () => {
       break;
   };
 
+  if (!modalType) return null;
   return (
     <div>
       <HeaderContainer>
