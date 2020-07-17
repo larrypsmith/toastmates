@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+import useCloseModal from './useCloseModal';
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -23,15 +24,19 @@ const useLogin = () => {
     })
   };
 
+  const closeModal = useCloseModal();
+
   const [loginUser, { data }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: (data) => {
         const { token } = data.login;
         localStorage.setItem('auth-token', token);
-        console.log('auth token:', localStorage.getItem('auth-token'))
+        console.log('auth token:', localStorage.getItem('auth-token'));
+        closeModal();
       },
-      update: (client, data) => updateCache(client, data)
+      update: (client, data) => updateCache(client, data),
+      onError: (err) => (console.log(err))
     }
   );
   

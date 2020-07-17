@@ -17,7 +17,8 @@ const theme = {
       main: '#ffdf18',
       contrastText: '#2d1383'
     },
-    disabled: 'rgb(217, 219, 224)'
+    disabled: 'rgb(217, 219, 224)',
+    error: 'rgb(221, 51, 0)'
   },
   breakpoints: {
     sm: 767,

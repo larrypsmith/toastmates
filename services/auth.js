@@ -89,6 +89,7 @@ exports.login = async data => {
       password: null
     }
   } catch(err) {
+    debugger
     throw err;
   }
 };

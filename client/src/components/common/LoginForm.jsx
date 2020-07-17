@@ -1,20 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 import AuthFormContinueButton from './AuthFormContinueButton';
 import AuthFormContainer from './AuthFormContainer';
+import AuthFormError from './AuthFormError';
 import AuthFormInput from './AuthFormInput';
 import AuthFormInstructions from './AuthFormInstructions';
 import DemoUserButton from './DemoUserButton';
 import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
-import useLogin from '../../hooks/useLogin';
+// import useLogin from '../../hooks/useLogin';
 import useCloseModal from '../../hooks/useCloseModal';
 
+const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      id
+      name {
+        first
+        last
+      }
+      email
+      loggedIn
+      token
+    }
+  }
+`;
+
+  // return (email, password) => {
+  //   loginUser({
+  //     variables: {
+  //       email,
+  //       password
+  //     }
+  //   })
+  // };
 
 const LoginForm = () => {
   const [email, updateEmail] = useControlledInput('');
   const [password, updatePassword] = useControlledInput('');
-  const login = useLogin();
+  const [error, setError] = useState();
   const closeModal = useCloseModal();
+
+  const updateCache = (client, { data }) => {
+    client.writeData({
+      data: { isLoggedIn: data.login.loggedIn }
+    })
+  };
+
+  const [login, { data }] = useMutation(
+    LOGIN_USER,
+    {
+      onCompleted: (data) => {
+        const { token } = data.login;
+        localStorage.setItem('auth-token', token);
+        console.log('auth token:', localStorage.getItem('auth-token'));
+        closeModal();
+      },
+      update: (client, data) => updateCache(client, data),
+      onError: (err) => {debugger; setError(err.message)}
+    }
+  );
 
   let isFormReady = true;
   for (let field of [email, password]) {
@@ -23,8 +69,12 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
-    closeModal(); 
+    login({
+      variables: {
+        email,
+        password
+      }
+    });
   };
 
   return (
@@ -43,6 +93,7 @@ const LoginForm = () => {
         value={password}
         onChange={updatePassword}
       />
+      <AuthFormError error={error} />
       <AuthFormContinueButton type='submit' disabled={!isFormReady}>
         Continue
       </AuthFormContinueButton>
