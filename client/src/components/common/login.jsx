@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import React from 'react';
+import { useMutation, gql} from '@apollo/client';
 import useControlledInput from '../../hooks/useControlledInput';
 
 const LOGIN_USER = gql`

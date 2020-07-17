@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { InMemoryCache, ApolloClient, ApolloProvider } from '@apollo/client'
 import { VERIFY_USER } from './mutations';
 import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';

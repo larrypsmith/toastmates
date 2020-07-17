@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, gql } from '@apollo/client';
 import AuthFormContinueButton from './AuthFormContinueButton';
 import AuthFormContainer from './AuthFormContainer';
 import AuthFormError from './AuthFormError';

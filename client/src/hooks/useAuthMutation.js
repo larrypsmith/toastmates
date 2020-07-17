@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 
 function useAuthMutation(query, options) {
   function updateCache(client, { data }) {

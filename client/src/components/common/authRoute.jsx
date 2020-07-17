@@ -1,6 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, gql } from '@apollo/client';
 import { Route, Redirect } from 'react-router-dom';
 
 const IS_LOGGED_IN = gql`
