@@ -24,7 +24,7 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
-    closeModal();
+    closeModal(); 
   };
 
   return (

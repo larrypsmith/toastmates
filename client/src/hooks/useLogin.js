@@ -16,15 +16,13 @@ const LOGIN_USER = gql`
   }
 `;
 
-// return a function that takes an email and pw and logs in
-
 const useLogin = () => {
   const updateCache = (client, { data }) => {
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn }
     })
   };
-  
+
   const [loginUser, { data }] = useMutation(
     LOGIN_USER,
     {
@@ -44,7 +42,7 @@ const useLogin = () => {
         password
       }
     })
-  }
+  };
 };
 
 export default useLogin;
