@@ -4,8 +4,10 @@ const useCloseModal = () => {
   const client = useApolloClient();
 
   const closeModal = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     client.writeData({ data: { modal: null } });
   }
 
