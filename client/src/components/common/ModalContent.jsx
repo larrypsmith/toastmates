@@ -16,7 +16,6 @@ const ModalContent = styled.div`
         overflow: visible;
         height: auto;
         visibility: visible;
-        max-height: 640px;
     }
 `;
 

@@ -5,7 +5,6 @@ import ExitModalButton from './ExitModalButton';
 import LoginForm from './LoginForm';
 import NavigationButton from './NavigationButton';
 import SignUpForm from './SignUpForm';
-// import useQueryModal from '../../hooks/useQueryModal';
 
 const AuthModalContent = ({ modalType }) => {
   const authContent = {

@@ -4,6 +4,7 @@ import AuthFormContainer from './AuthFormContainer';
 import AuthFormInput from './AuthFormInput';
 import AuthFormInstructions from './AuthFormInstructions';
 import DemoUserButton from './DemoUserButton';
+import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
 import useLogin from '../../hooks/useLogin';
 import useCloseModal from '../../hooks/useCloseModal';
@@ -46,6 +47,7 @@ const LoginForm = () => {
         Continue
       </AuthFormContinueButton>
       <DemoUserButton />
+      <SignUpFormLink />
     </AuthFormContainer>
   )
 };

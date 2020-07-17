@@ -5,6 +5,7 @@ import AuthFormInput from './AuthFormInput';
 import AuthFormInstructions from './AuthFormInstructions';
 import DemoUserButton from './DemoUserButton';
 import Flex from './Flex';
+import LoginFormLink from './LoginFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
 import useRegister from '../../hooks/useRegister';
 import useCloseModal from '../../hooks/useCloseModal';
@@ -66,6 +67,7 @@ const SignUpForm = () => {
         Continue
       </AuthFormContinueButton>
       <DemoUserButton />
+      <LoginFormLink />
     </AuthFormContainer>
   )
 };
