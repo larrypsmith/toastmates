@@ -42,8 +42,7 @@ const LoginForm = () => {
         isLoggedInVar(data.login.loggedIn);
         closeModal();
       },
-      // update: (client, data) => updateCache(client, data),
-      onError: (err) => {setError(err.message)}
+      onError: (err) => setError(err.message)
     }
   );
 

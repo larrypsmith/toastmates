@@ -1,23 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
+import { isLoggedInVar } from '../../index';
 import AuthFormContainer from './AuthFormContainer';
 import AuthFormContinueButton from './AuthFormContinueButton';
+import AuthFormError from './AuthFormError';
 import AuthFormInput from './AuthFormInput';
 import AuthFormInstructions from './AuthFormInstructions';
 import DemoUserButton from './DemoUserButton';
 import Flex from './Flex';
 import LoginFormLink from './LoginFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
-import useRegister from '../../hooks/useRegister';
+// import useRegister from '../../hooks/useRegister';
 import useCloseModal from '../../hooks/useCloseModal';
 
+const REGISTER_USER = gql`
+  mutation register($email: String!, $password: String!, $fname: String!, $lname: String!) {
+    register(email: $email, password: $password, fname: $fname, lname: $lname) {
+      email
+      token
+      loggedIn
+    }
+  }
+`;
 
 const SignUpForm = () => {
   const [email, updateEmail] = useControlledInput('');
   const [password, updatePassword] = useControlledInput('');
   const [firstName, updateFirstName] = useControlledInput('');
   const [lastName, updateLastName] = useControlledInput('');
-  const register = useRegister();
+  const [error, setError] = useState();
   const closeModal = useCloseModal();
+
+  const [registerUser, { data }] = useMutation(
+    REGISTER_USER,
+    {
+      onCompleted: (data) => {
+        const { token } = data.register;
+        localStorage.setItem('auth-token', token);
+        console.log('localStorage: ', localStorage.getItem('auth-token'));
+        isLoggedInVar(data.register.loggedIn);
+        closeModal();
+      },
+      onError: err => setError(err.message)
+    }
+  );
 
   let isFormReady = true;
   for (let field of [email, password, firstName, lastName]) {
@@ -26,8 +52,14 @@ const SignUpForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(email, password, firstName, lastName);
-    closeModal();
+    registerUser({
+      variables: {
+        email,
+        password,
+        fname: firstName,
+        lname: lastName
+      }
+    });
   };
 
   return (
@@ -63,6 +95,7 @@ const SignUpForm = () => {
         value={password}
         onChange={updatePassword}
       />
+      <AuthFormError error={error} />
       <AuthFormContinueButton type='submit' disabled={!isFormReady}>
         Continue
       </AuthFormContinueButton>

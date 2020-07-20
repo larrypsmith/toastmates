@@ -1,6 +1,6 @@
 import { useMutation, gql } from '@apollo/client';
 import useCloseModal from './useCloseModal';
-import { isLoggedInVar } from '../reactiveVariables';
+import { isLoggedInVar, errorVar } from '../index';
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -30,8 +30,7 @@ const useLogin = () => {
         isLoggedInVar(data.login.loggedIn);
         closeModal();
       },
-      // update: (client, data) => updateCache(client, data),
-      onError: (err) => (console.log(err))
+      onError: (err) => (errorVar(err.message))
     }
   );
   

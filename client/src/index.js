@@ -12,6 +12,7 @@ import { makeVar } from "@apollo/client";
 
 export const isLoggedInVar = makeVar(false);
 export const modalVar = makeVar(null);
+export const errorVar = makeVar('');
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -26,6 +27,11 @@ const cache = new InMemoryCache({
           read() {
             return modalVar();
           }
+        },
+        error: {
+          read() {
+            return errorVar();
+          }
         }
       }
 
@@ -35,10 +41,6 @@ const cache = new InMemoryCache({
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log('graphQLErrors', graphQLErrors);
-    console.log('networkErrors', networkError);
-  },
   cache,
   headers: {
     authorization: localStorage.getItem('auth-token')
