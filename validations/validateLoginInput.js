@@ -5,19 +5,9 @@ module.exports = function validateLogin(data) {
   data.email = validText(data.email) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
 
-  debugger
-
   if (!validator.isEmail(data.email)) {
     return { message: "Please enter a valid email address.", isValid: false };
   }
-
-  // if (validator.isEmpty(data.email)) {
-  //   return { message: "Email field is required", isValid: false };
-  // }
-
-  // if (validator.isEmpty(data.password)) {
-  //   return { message: "Password field is required", isValid: false };
-  // }
 
   return {
     message: "",
