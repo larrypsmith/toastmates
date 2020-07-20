@@ -13,12 +13,6 @@ const REGISTER_USER = gql`
 `;
 
 const useRegister = () => {
-  // const updateCache = (client, { data }) => {
-  //   client.writeData({
-  //     data: { isLoggedIn: data.register.loggedIn }
-  //   });
-  // }
-
   const [registerUser, { data }] = useMutation(
     REGISTER_USER,
     {
@@ -27,8 +21,7 @@ const useRegister = () => {
         localStorage.setItem('auth-token', token);
         console.log('localStorage: ', localStorage.getItem('auth-token'));
         isLoggedInVar(data.register.loggedIn)
-      },
-      // update: (client, data) => updateCache(client, data)
+      }
     }
   );
 

@@ -18,12 +18,6 @@ const LOGIN_USER = gql`
 `;
 
 const useLogin = () => {
-  // const updateCache = (client, { data }) => {
-  //   client.writeData({
-  //     data: { isLoggedIn: data.login.loggedIn }
-  //   })
-  // };
-
   const closeModal = useCloseModal();
 
   const [loginUser, { data }] = useMutation(

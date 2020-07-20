@@ -8,7 +8,6 @@ import AuthFormInstructions from './AuthFormInstructions';
 import DemoUserButton from './DemoUserButton';
 import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
-// import useLogin from '../../hooks/useLogin';
 import useCloseModal from '../../hooks/useCloseModal';
 import { isLoggedInVar } from '../../index';
 
@@ -27,32 +26,16 @@ const LOGIN_USER = gql`
   }
 `;
 
-  // return (email, password) => {
-  //   loginUser({
-  //     variables: {
-  //       email,
-  //       password
-  //     }
-  //   })
-  // };
-
 const LoginForm = () => {
   const [email, updateEmail] = useControlledInput('');
   const [password, updatePassword] = useControlledInput('');
   const [error, setError] = useState();
   const closeModal = useCloseModal();
 
-  // const updateCache = (client, { data }) => {
-  //   client.writeData({
-  //     data: { isLoggedIn: data.login.loggedIn }
-  //   })
-  // };
-
   const [login, { data }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: (data) => {
-        debugger
         const { token } = data.login;
         localStorage.setItem('auth-token', token);
         console.log('auth token:', localStorage.getItem('auth-token'));
@@ -60,7 +43,7 @@ const LoginForm = () => {
         closeModal();
       },
       // update: (client, data) => updateCache(client, data),
-      onError: (err) => {debugger; setError(err.message)}
+      onError: (err) => {setError(err.message)}
     }
   );
 

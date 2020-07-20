@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useOpenModal from '../../hooks/useOpenModal';
+import { modalVar } from '../../index';
 import Typography from './Typography';
 
 const StyledNavigationButton = styled.button`
@@ -18,10 +19,13 @@ const StyledNavigationButton = styled.button`
 `;
 
 const NavigationButton = ({ children, modal, className }) => {
-  const openModal = useOpenModal(modal);
+  const handleClick = (e) => {
+    e.preventDefault();
+    modalVar(modal);
+  };
 
   return (
-    <StyledNavigationButton className={className} onClick={openModal}>
+    <StyledNavigationButton className={className} onClick={handleClick}>
       <Typography size='12px' uppercase>
         {children}
       </Typography>
