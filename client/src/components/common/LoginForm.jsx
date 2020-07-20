@@ -10,6 +10,7 @@ import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
 // import useLogin from '../../hooks/useLogin';
 import useCloseModal from '../../hooks/useCloseModal';
+import { isLoggedInVar } from '../../index';
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -41,22 +42,24 @@ const LoginForm = () => {
   const [error, setError] = useState();
   const closeModal = useCloseModal();
 
-  const updateCache = (client, { data }) => {
-    client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
-    })
-  };
+  // const updateCache = (client, { data }) => {
+  //   client.writeData({
+  //     data: { isLoggedIn: data.login.loggedIn }
+  //   })
+  // };
 
   const [login, { data }] = useMutation(
     LOGIN_USER,
     {
       onCompleted: (data) => {
+        debugger
         const { token } = data.login;
         localStorage.setItem('auth-token', token);
         console.log('auth token:', localStorage.getItem('auth-token'));
+        isLoggedInVar(data.login.loggedIn);
         closeModal();
       },
-      update: (client, data) => updateCache(client, data),
+      // update: (client, data) => updateCache(client, data),
       onError: (err) => {debugger; setError(err.message)}
     }
   );

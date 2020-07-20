@@ -1,14 +1,12 @@
-import { useApolloClient } from '@apollo/client';
+import { modalVar } from '../index';
 
 const useCloseModal = () => {
-  const client = useApolloClient();
-
   const closeModal = (e) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
-    client.writeData({ data: { modal: null } });
+    modalVar(null);
   }
 
   return closeModal;

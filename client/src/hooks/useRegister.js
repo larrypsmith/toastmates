@@ -1,4 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
+import { isLoggedInVar } from '../reactiveVariables';
 
 
 const REGISTER_USER = gql`
@@ -12,11 +13,11 @@ const REGISTER_USER = gql`
 `;
 
 const useRegister = () => {
-  const updateCache = (client, { data }) => {
-    client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
-    });
-  }
+  // const updateCache = (client, { data }) => {
+  //   client.writeData({
+  //     data: { isLoggedIn: data.register.loggedIn }
+  //   });
+  // }
 
   const [registerUser, { data }] = useMutation(
     REGISTER_USER,
@@ -25,8 +26,9 @@ const useRegister = () => {
         const { token } = data.register;
         localStorage.setItem('auth-token', token);
         console.log('localStorage: ', localStorage.getItem('auth-token'));
+        isLoggedInVar(data.register.loggedIn)
       },
-      update: (client, data) => updateCache(client, data)
+      // update: (client, data) => updateCache(client, data)
     }
   );
 

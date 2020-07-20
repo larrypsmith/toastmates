@@ -1,11 +1,9 @@
-import { useApolloClient } from '@apollo/client';
+import { modalVar } from '../index';
 
 const useOpenModal = (modal) => {
-  const client = useApolloClient();
-
   const openModal = (e) => {
     e.preventDefault();
-    client.writeData({ data: { modal } })
+    modalVar(modal);
   };
 
   return openModal;

@@ -1,12 +1,13 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Route, Redirect } from 'react-router-dom';
+import { isLoggedIn } from '../../reactiveVariables';
 
-const IS_LOGGED_IN = gql`
-  {
-    isLoggedIn @client
-  }
-`;
+// const IS_LOGGED_IN = gql`
+//   {
+//     isLoggedIn @client
+//   }
+// `;
 
 function AuthRoute({
   component,
@@ -15,7 +16,7 @@ function AuthRoute({
   routeType,
   ...rest
 }) {
-  const { loading, error, data } = useQuery(IS_LOGGED_IN);
+  // const { loading, error, data } = useQuery(IS_LOGGED_IN);
 
   if (routeType === 'auth') {
     return (
@@ -23,7 +24,7 @@ function AuthRoute({
         path={path}
         exact={exact}
         render={props => (
-          !data.isLoggedIn ? <Component {...props} /> : <Redirect to="/" />
+          !isLoggedInVar() ? <Component {...props} /> : <Redirect to="/" />
         )}
       />
     );
@@ -32,7 +33,7 @@ function AuthRoute({
       <Route 
         {...rest}
         render = {props => (
-          data.isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
+          isLoggedInVar() ? <Component {...props} /> : <Redirect to="/login" />
         )}
       />
     )

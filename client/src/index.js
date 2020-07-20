@@ -8,19 +8,41 @@ import { VERIFY_USER } from './mutations';
 import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';
 import theme from './theme';
+import { makeVar } from "@apollo/client";
+
+// const cache = new InMemoryCache({
+//   dataIdFromObject: object => object.id || null
+// });
+
+export const isLoggedInVar = makeVar(false);
+export const modalVar = makeVar(null);
 
 const cache = new InMemoryCache({
-  dataIdFromObject: object => object.id || null
-});
+  typePolicies: {
+    Query: {
+      fields: {
+        isLoggedIn: {
+          read() {
+            return isLoggedInVar();
+          }
+        },
+        modal: {
+          read() {
+            return modalVar();
+          }
+        }
+      }
 
-const token = localStorage.getItem('auth-token');
-
-cache.writeData({
-  data: {
-    isLoggedIn: false,
-    modal: null
+    }
   }
 });
+
+// cache.writeData({
+//   data: {
+//     isLoggedIn: false,
+//     modal: null
+//   }
+// });
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -34,17 +56,17 @@ const client = new ApolloClient({
   }
 });
 
+const token = localStorage.getItem("auth-token");
+
 if (token) {
+  debugger
   client.mutate({
     mutation: VERIFY_USER,
     variables: { token }
   })
     .then(({ data }) => {
-      cache.writeData({
-        data: {
-          isLoggedIn: data.verifyUser.loggedIn
-        }
-      })
+      debugger
+      isLoggedInVar(data.verifyUser.loggedIn)
     })
 }
 
