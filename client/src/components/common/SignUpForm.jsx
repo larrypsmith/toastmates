@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { isLoggedInVar } from '../../index';
+import { isLoggedInVar } from '../../cache';
 import AuthFormContainer from './AuthFormContainer';
 import AuthFormContinueButton from './AuthFormContinueButton';
 import AuthFormError from './AuthFormError';

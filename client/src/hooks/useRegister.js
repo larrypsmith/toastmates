@@ -1,5 +1,5 @@
 import { useMutation, gql } from '@apollo/client';
-import { isLoggedInVar, errorVar } from '../index';
+import { isLoggedInVar, errorVar } from '../cache';
 
 
 const REGISTER_USER = gql`

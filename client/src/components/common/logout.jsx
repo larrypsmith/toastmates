@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
-import { isLoggedIn } from '../../index';
+import { isLoggedIn } from '../../cache';
 
 function logout() {
   const handleClick = (e, client) => {

@@ -1,4 +1,4 @@
-import { modalVar } from '../index';
+import { modalVar } from '../cache';
 
 const useOpenModal = (modal) => {
   const openModal = (e) => {

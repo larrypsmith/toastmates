@@ -3,41 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { InMemoryCache, ApolloClient, ApolloProvider } from '@apollo/client'
+import { ApolloClient, ApolloProvider } from '@apollo/client'
 import { VERIFY_USER } from './mutations';
 import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';
 import theme from './theme';
-import { makeVar } from "@apollo/client";
-
-export const isLoggedInVar = makeVar(false);
-export const modalVar = makeVar(null);
-export const errorVar = makeVar('');
-
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        isLoggedIn: {
-          read() {
-            return isLoggedInVar();
-          }
-        },
-        modal: {
-          read() {
-            return modalVar();
-          }
-        },
-        error: {
-          read() {
-            return errorVar();
-          }
-        }
-      }
-
-    }
-  }
-});
+import cache, { isLoggedInVar } from './cache';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',

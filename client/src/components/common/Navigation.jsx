@@ -1,27 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Container from './Container';
-import FlexContainer from './FlexContainer';
-import FlexChild from './FlexChild';
+import Flex from './Flex';
 import LogInButton from './LogInButton';
-import Typography from './Typography';
 import SignUpButton from './SignUpButton';
-
-const StyledNavigation = styled.nav`
-  background-color: ${props => props.theme.palette.secondary.main};
-  width: 100vw;
-`;
-
-const NavFlexContainer = styled(FlexContainer)`
-  min-height: 72px;
-`;
+import Typography from './Typography';
+import UserIcon from './UserIcon';
 
 function Navigation() {
   return (
     <StyledNavigation>
-      <Container maxWidth='1024px' padding={[25, 54, 36]}>
-        <NavFlexContainer justifyContent='space-between' alignItems='center'>
-          <FlexChild>
+      <Container padding={[25, 54, 36]}>
+        <StyledFlex parent>
+          <StyledFlexChildLeft child>
             <Typography
               weight='500'
               size='20px'
@@ -29,15 +20,44 @@ function Navigation() {
             >
               Toastmates
             </Typography>
-          </FlexChild>
-          <FlexChild>
+          </StyledFlexChildLeft>
+          <StyledFlexChildRight child>
             <LogInButton />
             <SignUpButton />
-          </FlexChild>
-        </NavFlexContainer>
+            <UserIcon />
+          </StyledFlexChildRight>
+        </StyledFlex>
       </Container>
     </StyledNavigation>
   );
 };
 
 export default Navigation;
+
+const StyledNavigation = styled.nav`
+  background-color: ${props => props.theme.palette.secondary.main};
+  width: 100vw;
+`;
+
+const StyledFlex = styled(Flex)`
+  min-height: 72px;
+  transition: min-height 0.2s ease-in-out;
+  width: 100%;
+`;
+
+const StyledFlexChildLeft = styled(Flex)`
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+`;
+
+const StyledFlexChildRight = styled(Flex)`
+  width: auto;
+  display: flex;
+  flex: auto;
+  justify-content: flex-end;
+  align-items: center;
+`;
+

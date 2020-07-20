@@ -1,12 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import NavigationButton from './NavigationButton';
+import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 
-const LogInButton = () => (
-  <StyledLoginButton modal='login'>
-    Log In
-  </StyledLoginButton>
-);
+
+const LogInButton = () => {
+  const isLoggedIn = useQueryIsLoggedIn();
+
+  if (isLoggedIn) return null;
+  return (
+    <StyledLoginButton modal='login'>
+      Log In
+    </StyledLoginButton>
+  )
+};
 
 const StyledLoginButton = styled(NavigationButton)`
   transition: background-color 0.1s ease-in-out;

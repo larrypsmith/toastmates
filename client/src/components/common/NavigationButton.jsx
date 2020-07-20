@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import useOpenModal from '../../hooks/useOpenModal';
-import { modalVar } from '../../index';
+import { modalVar } from '../../cache';
 import Typography from './Typography';
 
 const StyledNavigationButton = styled.button`

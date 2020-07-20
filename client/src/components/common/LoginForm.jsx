@@ -9,7 +9,7 @@ import DemoUserButton from './DemoUserButton';
 import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
 import useCloseModal from '../../hooks/useCloseModal';
-import { isLoggedInVar } from '../../index';
+import { isLoggedInVar } from '../../cache';
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
