@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Container from '../common/Container';
 import Header from './Header';
@@ -30,7 +31,9 @@ const SplashPageMain = () => (
                 />
                 <ImagePadding width={1328} height={900} />
               </StyledImageContainer1>
-              <OrderNowButton>Order Now</OrderNowButton>
+              <StyledLink to='/feed'>
+                <OrderNowButton>Order Now</OrderNowButton>
+              </StyledLink>
             </Grid1>
           </MainSectionContent1>
         </Container>
@@ -46,7 +49,9 @@ const SplashPageMain = () => (
                 and watch in real-time
                 as your Postmate brings you all the things you love.
               </Paragraph>
-              <OrderNowButton>Order Now</OrderNowButton>
+              <StyledLink to='/feed'>
+                <OrderNowButton>Order Now</OrderNowButton>
+              </StyledLink>
               <StyledImageContainer2>
                 <BackgroundImage
                   src={itemsGrid}
@@ -223,4 +228,8 @@ const OrderNowButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 165px;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

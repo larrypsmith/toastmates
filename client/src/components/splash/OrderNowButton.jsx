@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 const StyledOrderNowButton = styled.button`
@@ -17,12 +18,12 @@ const StyledOrderNowButton = styled.button`
   cursor: pointer;
 `;
 
-function OrderNowButton() {
-  return( 
+const OrderNowButton = () => (
+  <Link to='/feed'>
     <StyledOrderNowButton>
       Order Now
     </StyledOrderNowButton>
-  );
-};
+  </Link>
+);
 
 export default OrderNowButton;
