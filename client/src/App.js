@@ -1,27 +1,40 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import AuthModalContent from './components/common/AuthModalContent';
+import styled from 'styled-components/macro';
 import FeedPage from './components/feed/FeedPage';
 import GlobalStyle from './components/common/GlobalStyle';
-import ModalContainer from './components/common/ModalContainer';
-import ModalContent from './components/common/ModalContent';
 import ModalRoot from './components/common/ModalRoot';
 import Navigation from './components/common/Navigation';
 import SplashPage from './components/splash/SplashPage';
 
-function App() {
-  return (
-    <React.Fragment>
-      <GlobalStyle />
-      <Navigation />
+const App = () => (
+  <StyledApp>
+    <GlobalStyle />
+    <Navigation />
+    <MainContainer>
       <Switch>
         <Route path='/feed'><FeedPage /></Route>
-        <Route path='/'><SplashPage /></Route>
-        <Redirect to='/' />
+        <Route exact path='/'><SplashPage /></Route>
+        <Redirect to='/feed' />
       </Switch>
-      <ModalRoot />
-    </React.Fragment>
-  );
-}
+    </MainContainer>
+    <ModalRoot />
+  </StyledApp>
+);
 
 export default App;
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+`;
+
+const MainContainer = styled.div`
+  position: relative;
+  flex-grow: 1;
+`;

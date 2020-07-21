@@ -1,5 +1,4 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
@@ -24,9 +23,7 @@ function Navigation() {
           </StyledFlexChildLeft>
           <StyledFlexChildRight child>
             <LogInButton />
-            <Route exact path='/'>
-              <SignUpButton />
-            </Route>
+            <SignUpButton />
             <UserIcon />
           </StyledFlexChildRight>
         </StyledFlex>
