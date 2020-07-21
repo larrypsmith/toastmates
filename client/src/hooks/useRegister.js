@@ -1,6 +1,5 @@
-import gql from 'graphql-tag';
-import React from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, gql } from '@apollo/client';
+import { isLoggedInVar, errorVar } from '../cache';
 
 
 const REGISTER_USER = gql`
@@ -13,12 +12,7 @@ const REGISTER_USER = gql`
   }
 `;
 
-function Register() {
-  const updateCache = (client, { data }) => {
-    client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
-    });
-  }
+const useRegister = () => {
   const [registerUser, { data }] = useMutation(
     REGISTER_USER,
     {
@@ -26,26 +20,22 @@ function Register() {
         const { token } = data.register;
         localStorage.setItem('auth-token', token);
         console.log('localStorage: ', localStorage.getItem('auth-token'));
+        isLoggedInVar(data.register.loggedIn)
       },
-      update: (client, data) => updateCache(client, data)
+      onError: err => errorVar(err.message)
     }
   );
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  return (email, password, fname, lname) => {
     registerUser({
       variables: {
-        fname: 'user',
-        lname: 'user',
-        email: 'user@user.com',
-        password: 'user'
+        fname,
+        lname,
+        email,
+        password
       }
     })
   }
-
-  return (
-    <button onClick={handleClick}>CLICK ME TO REGISTER A NEW USER</button>
-  )
 };
 
-export default Register;
+export default useRegister;

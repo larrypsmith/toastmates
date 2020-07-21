@@ -3,35 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, ApolloProvider } from '@apollo/client'
 import { VERIFY_USER } from './mutations';
 import { HashRouter } from 'react-router-dom';
-
-const cache = new InMemoryCache({
-  dataIdFromObject: object => object.id || null
-});
-
-const token = localStorage.getItem('auth-token');
-
-cache.writeData({
-  data: {
-    isLoggedIn: false
-  }
-})
+import { ThemeProvider } from 'styled-components/macro';
+import theme from './theme';
+import cache, { isLoggedInVar } from './cache';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log('graphQLErrors', graphQLErrors);
-    console.log('networkErrors', networkError);
-  },
   cache,
   headers: {
     authorization: localStorage.getItem('auth-token')
   }
 });
+
+const token = localStorage.getItem("auth-token");
 
 if (token) {
   client.mutate({
@@ -39,20 +26,18 @@ if (token) {
     variables: { token }
   })
     .then(({ data }) => {
-      cache.writeData({
-        data: {
-          isLoggedIn: data.verifyUser.loggedIn
-        }
-      })
+      isLoggedInVar(data.verifyUser.loggedIn)
     })
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      <ThemeProvider theme={theme}>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -23,7 +23,7 @@ exports.register = async data => {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      throw new Error('This email has already been taken');
+      throw new Error('This email has already been taken.');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,7 +58,6 @@ exports.login = async data => {
   try {
     const { message, isValid } = validateLoginInput(data);
 
-    debugger
     
     if (!isValid) {
       throw new Error(message);
@@ -69,13 +68,13 @@ exports.login = async data => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new Error('This email has not been registered');
+      throw new Error('This email has not been registered.');
     }
 
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new Error('Password is incorrect');
+      throw new Error('Password is incorrect.');
     }
 
     const token = jwt.sign({ id: user.id }, secretOrKey);

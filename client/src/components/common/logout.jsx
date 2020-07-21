@@ -1,5 +1,6 @@
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
+import { isLoggedIn } from '../../cache';
 
 function logout() {
   const handleClick = (e, client) => {
@@ -7,11 +8,7 @@ function logout() {
     e.preventDefault();
 
     localStorage.removeItem("auth-token");
-    client.writeData({
-      data: {
-        isLoggedIn: false
-      }
-    })
+    isLoggedInVar(false);
   }
 
   return (
