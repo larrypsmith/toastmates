@@ -57,7 +57,6 @@ exports.register = async data => {
 exports.login = async data => {
   try {
     const { message, isValid } = validateLoginInput(data);
-
     
     if (!isValid) {
       throw new Error(message);

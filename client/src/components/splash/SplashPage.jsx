@@ -13,7 +13,7 @@ const StyledSplashPage = styled.div`
 function SplashPage() {
   return (
     <StyledSplashPage>
-      <Navigation />
+      {/* <Navigation /> */}
       <Hero />
       <SplashPageMain />
       <Footer />

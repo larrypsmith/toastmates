@@ -1,7 +1,10 @@
 import React from 'react';
+import Navigation from '../common/Navigation';
 
 const FeedPage = () => (
-  <div>This is the Feed Page</div>
+  <React.Fragment>
+    {/* <Navigation /> */}
+  </React.Fragment>
 );
 
 export default FeedPage;

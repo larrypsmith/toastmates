@@ -30,7 +30,7 @@ const useLogin = () => {
         isLoggedInVar(data.login.loggedIn);
         closeModal();
       },
-      // onError: (err) => (errorVar(err.message))
+      // onError: (err) => {debugger; errorVar(err.message)}
     }
   );
   
