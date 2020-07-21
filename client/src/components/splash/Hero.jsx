@@ -3,9 +3,43 @@ import React, { useState, useEffect } from 'react';
 import Container from '../common/Container';
 import FlexContainer from '../common/FlexContainer';
 import FoodBackgroundImage from './FoodBackgroundImage';
+import HeroDesktopHeader from './HeroDesktopHeader';
+import HeroMobileHeader from './HeroMobileHeader';
 import OrderNowButton from './OrderNowButton';
 import TableBackgroundImage from '../common/TableBackgroundImage';
 import Typography from '../common/Typography';
+
+const Hero = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, []);
+
+  const Header = windowWidth < 768 ? HeroMobileHeader : HeroDesktopHeader;
+
+  return (
+    <StyledHero>
+      <StyledContainer>
+        <Container maxWidth='1024px' padding={[25, 54, 36]}>
+          <HeroContent flexDirection='column' alignItems='center'>
+            <Header />
+            <SubHeader color="black">
+              Food, drinks, groceries, and more available for delivery and pickup.
+            </SubHeader>
+            <OrderNowButton />
+          </HeroContent>
+        </Container>
+      </StyledContainer>
+      <TableBackgroundImage />
+      <FoodBackgroundImage />
+    </StyledHero>
+  )
+};
+
+export default Hero;
 
 const StyledHero = styled.header`
   position: relative;
@@ -25,18 +59,6 @@ const StyledContainer = styled(Container)`
   }
 `;
 
-const Header = styled(Typography)`
-  display: block;
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 9px;
-  text-align: center;
-
-  @media screen and (min-width: 768px) {
-    font-size: 56px;
-  }
-`;
-
 const SubHeader = styled(Typography)`
   font-size: 18px;
   padding-bottom: 26px;
@@ -53,37 +75,3 @@ const HeroContent = styled(FlexContainer)`
     padding-top: 116px;
   }
 `
-
-function Hero() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, []);
-
-  const headerText = windowWidth < 768 ? 'You want it. We get it.' : 'Something else.';
-
-  return (
-    <StyledHero>
-      <StyledContainer>
-        <Container maxWidth='1024px' padding={[25, 54, 36]}>
-          <HeroContent flexDirection='column' alignItems='center'>
-            <Header color="black">
-              {headerText}
-            </Header>
-            <SubHeader color="black">
-              Food, drinks, groceries, and more available for delivery and pickup.
-            </SubHeader>
-            <OrderNowButton />
-          </HeroContent>
-        </Container>
-      </StyledContainer>
-      <TableBackgroundImage />
-      <FoodBackgroundImage />
-    </StyledHero>
-  )
-};
-
-export default Hero;
