@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro'
+import Typography from '../common/Typography';
 import food from '../../images/feed-page-header-food.png';
 
 const FeedPageHeader = () => (
@@ -15,6 +16,17 @@ const FeedPageHeader = () => (
           <BackgroundImageDiv />
         </div>
       </BackgroundImageContainer>
+      <HeaderTextContainer>
+        <HeaderText
+          color='black'
+          weight={600}
+          size='40px'
+        >
+          You crave.
+          <br/>
+          We get it.
+        </HeaderText>
+      </HeaderTextContainer>
     </Container>
   </StyledFeedPageHeader>
 );
@@ -62,4 +74,50 @@ const BackgroundImageDiv = styled.div`
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
+`;
+
+const HeaderTextContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: 768px) {
+    top: auto;
+    bottom: 70px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media screen and (min-width: 1060px) {
+    bottom: 87px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+`;
+
+const HeaderText = styled(Typography)`
+  margin-top: 6px;
+  margin-bottom: 12px;
+  margin: 0.67em 0px;
+  line-height: 1.13;
+  letter-spacing: -.8px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    font-size: 56px;
+    line-height: 1.04;
+    letter-spacing: -1.3px;
+  }
+
+  @media screen and (min-width: 1060px) {
+    font-size: 64px;
+    line-height: 0.97;
+    letter-spacing: -2.0px;
+  }
 `;
