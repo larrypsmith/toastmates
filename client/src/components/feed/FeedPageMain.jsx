@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import DesktopDeliveryAddressBar from './DesktopDeliveryAddressBar';
+import MerchantList from './MerchantList';
 import MobileDeliveryAddressBar from './MobileDeliveryAddressBar';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth';
 
@@ -15,6 +16,7 @@ const FeedPageMain = () => {
           <MobileDeliveryAddressBar
             isHidden={windowWidth >= 768}
           />
+          <MerchantList title='Nearby' />
         </MainContentMargins>
       </MainContainer>
     </MainParent>
