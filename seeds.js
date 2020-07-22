@@ -13,6 +13,7 @@ const { uploadSeedImage, emptySeedsBucket } = require('./services/s3');
   try {
     await mongoose.connect(db, { useNewUrlParser: true });
     await deleteAllCollections();
+    await emptySeedsBucket();
     await saveAllCollections();
     await mongoose.connection.close();
     console.log('DB seeded successfully!');
@@ -51,13 +52,16 @@ const pizza = new Cuisine({
   name: 'Pizza'
 })
 
+
 const giosPizza = new Merchant({
   name: `Gio's Pizza`,
   cuisine: pizza.id,
   address: '3601 Lyon Street',
   deliveryFee: 3.99,
-  deliveryTimeLower: 25,
-  deliveryTimeUpper: 45,
+  deliveryTime: {
+    low: 25,
+    high: 45
+  }
 });
 
 const giosPizzaPizza = new Menu({

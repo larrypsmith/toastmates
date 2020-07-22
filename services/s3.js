@@ -1,14 +1,13 @@
 const AWS = require("aws-sdk");
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
 
 AWS.config.loadFromPath('config/aws.json');
 AWS.config.update({ region: 'us-west-1' })
 
 const s3 = new AWS.S3();
 
-exports.uploadSeedImage = (filePath) => {
+exports.uploadSeedImage = async (filePath) => {
   const uploadParams = {
     Bucket: 'toastmates-seeds',
     Key: '',
@@ -24,37 +23,48 @@ exports.uploadSeedImage = (filePath) => {
   uploadParams.Body = fileStream;
   uploadParams.Key = path.basename(filePath);
 
-  s3.upload(uploadParams, function (err, data) {
-    if (err) {
-      console.log("Error", err);
-    } if (data) {
-      console.log("Upload Success", data.Location);
-      location = data.location;
-    }
-  });  
+  try {
+    console.log('Uploading image:', uploadParams.Key);
+    const data = await s3.upload(uploadParams).promise();
+    console.log("Upload Success", data.Location);
+    return data.Location;
+  } catch(err) {
+    console.log("Error: ", err);
+  }
 };
 
-exports.emptySeedsBucket = () => {
+const getSeedObjectKeys = async () => {
   const params = {
     Bucket: 'toastmates-seeds',
   };
 
-  s3.listObjectsV2(params, (err, data) => {
-    if (err) {
-      console.log(err, err.stack);
-    } else {
-      console.log('Data: ', data);
+  try {
+    const data = await s3.listObjectsV2(params).promise();
+    const keys = data.Contents.map(obj => obj.Key);
+    return keys;
+  } catch(err) {
+    console.log(err);
+  }
+}
 
-      params.Delete = {};
-      params.Delete.Objects = data.Contents.map((obj) => ({ Key: obj.Key }));
-
-      s3.deleteObjects(params, (err, data) => {
-        if (err) {
-          console.log('Error: ', err);
-        } else {
-          console.log('Data: ', data);
-        }
-      });
+exports.emptySeedsBucket = async () => {
+  const params = {
+    Bucket: 'toastmates-seeds',
+    Delete: {
+      Objects: []
     }
-  });
+  };
+
+  try {
+    const keys = await getSeedObjectKeys();
+    params.Delete.Objects = keys.map((key) => ({ Key: key }));
+    console.log('Empyting bucket...');
+    const data = await s3.deleteObjects(params).promise();
+    console.log('Success!', data);
+  } catch(err) {
+    console.log(err);
+  }
 };
+
+// exports.uploadSeedImage('services/hero-food.png');
+// exports.emptySeedsBucket();
