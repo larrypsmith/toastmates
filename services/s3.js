@@ -1,40 +1,60 @@
 const AWS = require("aws-sdk");
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
 
 AWS.config.loadFromPath('config/aws.json');
-AWS.config.update({ region: 'us-west-1'})
+AWS.config.update({ region: 'us-west-1' })
 
 const s3 = new AWS.S3();
 
-// console.log(s3.listBuckets((err, data) => {
-//   if (err) {
-//     console.log("Error", err);
-//   } else {
-//     console.log("Success", data.Buckets);
-//   }
-// }));
+exports.uploadSeedImage = (filePath) => {
+  const uploadParams = {
+    Bucket: 'toastmates-seeds',
+    Key: '',
+    Body: ''
+  };
 
-const uploadParams = {Bucket: 'toastmates-seeds', Key: '', Body: ''};
-const file = 'services/takeout-boxes.png';
+  const fileStream = fs.createReadStream(filePath);
 
-// Configure the file stream and obtain the upload parameters
-const fs = require('fs');
-const fileStream = fs.createReadStream(file);
+  fileStream.on('error', function(err) {
+    console.log('File Error', err);
+  });
 
-fileStream.on('error', function(err) {
-  console.log('File Error', err);
-});
+  uploadParams.Body = fileStream;
+  uploadParams.Key = path.basename(filePath);
 
-uploadParams.Body = fileStream;
+  s3.upload(uploadParams, function (err, data) {
+    if (err) {
+      console.log("Error", err);
+    } if (data) {
+      console.log("Upload Success", data.Location);
+      location = data.location;
+    }
+  });  
+};
 
-const path = require('path');
+exports.emptySeedsBucket = () => {
+  const params = {
+    Bucket: 'toastmates-seeds',
+  };
 
-uploadParams.Key = path.basename(file);
+  s3.listObjectsV2(params, (err, data) => {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      console.log('Data: ', data);
 
-// call S3 to retrieve upload file to specified bucket
-s3.upload (uploadParams, function (err, data) {
-  if (err) {
-    console.log("Error", err);
-  } if (data) {
-    console.log("Upload Success", data.Location);
-  }
-});
+      params.Delete = {};
+      params.Delete.Objects = data.Contents.map((obj) => ({ Key: obj.Key }));
+
+      s3.deleteObjects(params, (err, data) => {
+        if (err) {
+          console.log('Error: ', err);
+        } else {
+          console.log('Data: ', data);
+        }
+      });
+    }
+  });
+};

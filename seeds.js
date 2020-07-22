@@ -6,8 +6,8 @@ const Menu = require('./models/Menu');
 const Merchant = require('./models/Merchant');
 const Order = require('./models/Order');
 const User = require('./models/User');
-const { register } = require('./services/auth');
 const bcrypt = require('bcryptjs');
+const { uploadSeedImage, emptySeedsBucket } = require('./services/s3');
 
 (async function() {
   try {
