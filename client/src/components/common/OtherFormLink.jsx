@@ -36,7 +36,6 @@ const StyledOtherFormLink = styled.div`
 `;
 
 const Question = styled(Typography)`
-  letter-spacing: 0.14px;
   line-height: normal;
   margin-bottom: 10px;
 `;
@@ -50,7 +49,6 @@ const LinkToOtherForm = ({ children, ...props }) => {
 }
 
 const StyledLinkToOtherForm = styled(Typography)`
-  letter-spacing: initial;
   text-transform: uppercase;
   line-height: normal;
   color: rgb(0, 204, 153);

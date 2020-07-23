@@ -2,7 +2,6 @@ import styled from 'styled-components/macro';
 
 const AuthFormInput = styled.input`
   font-size: 16px;
-  letter-spacing: 0.14px;
   font-weight: 400;
   line-height: normal;
   width: 100%;

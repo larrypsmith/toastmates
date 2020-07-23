@@ -24,7 +24,6 @@ const StyledMobileDeliveryAddressBar = styled.div`
   font-weight: 600;
   text-transform: uppercase;
   line-height: normal;
-  letter-spacing: 0.8px;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -56,7 +55,6 @@ const AddressTypography = styled(Typography)`
   font-weight: 600;
   line-height: normal;
   color: rgba(0, 0, 0, 0.3);
-  letter-spacing: -1.2px;
   text-transform: none;
   margin-top: 11px;
 `;

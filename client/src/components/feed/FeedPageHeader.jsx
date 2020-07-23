@@ -106,18 +106,15 @@ const HeaderText = styled(Typography)`
   margin-bottom: 12px;
   margin: 0.67em 0px;
   line-height: 1.13;
-  letter-spacing: -.8px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 20px;
     font-size: 56px;
     line-height: 1.04;
-    letter-spacing: -1.3px;
   }
 
   @media screen and (min-width: 1060px) {
     font-size: 64px;
     line-height: 0.97;
-    letter-spacing: -2.0px;
   }
 `;

@@ -222,7 +222,6 @@ const OrderNowButton = styled.button`
   align-items: center;
   width: 265px;
   height: 48px; 
-  letter-spacing: 0.8px;
   grid-area: button;
 
   @media screen and (min-width: 768px) {

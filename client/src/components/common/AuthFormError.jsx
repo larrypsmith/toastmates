@@ -19,7 +19,6 @@ export default AuthFormError;
 
 const StyledAuthFormError = styled(Typography)`
   color: ${props => props.theme.palette.error};
-  letter-spacing: -0.1px;
   line-height: normal;
   margin-top: 15px;
   margin-bottom: 15px;

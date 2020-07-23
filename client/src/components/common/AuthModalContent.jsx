@@ -64,7 +64,6 @@ const HeaderContainer = styled(Container)`
 
 const Header = styled.div`
   font-size: 24px;
-  letter-spacing: -0.5px;
   font-weight: 600;
   line-height: normal;
   text-align: center;

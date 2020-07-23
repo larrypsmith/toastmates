@@ -75,7 +75,6 @@ const DeliveryMethod = styled.div`
 `;
 
 const DeliveryMethodTypography = styled(Typography)`
-  letter-spacing: 0.3px;
   font-weight: 500;
   line-height: normal;
   color: rgba(0, 0, 0, 0.4);
@@ -163,7 +162,6 @@ const StyledAddressText = styled.div`
 `;
 
 const AddressTextTypography = styled(Typography)`
-  letter-spacing: 0.30px;
   line-height: normal;
   margin: 0px;
   color: rgba(0, 0, 0, 0.4);

@@ -34,7 +34,6 @@ const ListTitleUnderline = styled.div`
 `;
 
 const ListTitleText = styled(Typography)`
-  letter-spacing: -0.5px;
   opacity: 0.9;
   line-height: normal;
 `;
