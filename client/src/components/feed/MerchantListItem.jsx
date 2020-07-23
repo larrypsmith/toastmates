@@ -158,7 +158,7 @@ const CheckmarkIcon = () => (
     <SVG
       width='14'
       height='14'
-      viewBox='0 0 14'
+      viewBox='0 0 14 14'
     >
       <g
         fill='none'
@@ -169,11 +169,11 @@ const CheckmarkIcon = () => (
           width='14'
           height='14'
           rx='7'
-        />
+        ></rect>
         <path
           fill='#FFF'
-          path='M3 7l3 3 4.5-4.5-1-1L6 8 4 6'
-        />
+          d='M3 7l3 3 4.5-4.5-1-1L6 8 4 6'
+        ></path>
       </g>
     </SVG>
   </CheckmarkIconContainer>
