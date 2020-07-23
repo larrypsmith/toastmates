@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const deliveryTimeSchema = require('./deliveryTimeSchema');
 
 const merchantSchema = new Schema({
   name: {
@@ -19,15 +20,8 @@ const merchantSchema = new Schema({
     type: Schema.Types.Number,
     required: true
   },
-  deliveryTimeLower: {
-    type: Number,
-    required: true
-  },
-  deliveryTimeUpper: {
-    type: Number,
-    required: true
-  },
-  photoUrl: String
+  deliveryTime: deliveryTimeSchema,
+  imgUrl: String
 });
 
 module.exports = mongoose.model('Merchant', merchantSchema);
