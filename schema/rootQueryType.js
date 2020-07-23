@@ -38,7 +38,7 @@ const RootQuery = new GraphQLObjectType({
           .populate('items');
       }
     },
-    merchants: {
+    allMerchants: {
       type: new GraphQLList(MerchantType),
       resolve() {
         return Merchant.find({})

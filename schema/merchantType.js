@@ -9,6 +9,7 @@ const {
 } = graphql;
 const MenuType = require('./menuType');
 const CuisineType = require('./cuisineType');
+const DeliveryTimeType = require('./deliveryTimeType');
 const mongoose = require('mongoose');
 const Menu = mongoose.model('Menu');
 
@@ -20,15 +21,14 @@ const MerchantType = new GraphQLObjectType({
     cuisine: { type: CuisineType },
     address: { type: GraphQLString },
     deliveryFee: { type: GraphQLFloat },
-    deliveryTimeLower: { type: GraphQLInt},
-    deliveryTimeUpper: { type: GraphQLInt},
-    photoUrl: { type: GraphQLString },
+    deliveryTime: { type: DeliveryTimeType },
     menus: {
       type: new GraphQLList(MenuType),
       resolve({ id }) {
         return Menu.find({ merchant: id })
       }
-    }
+    },
+    imgUrl: { type: GraphQLString }
   })
 });
 

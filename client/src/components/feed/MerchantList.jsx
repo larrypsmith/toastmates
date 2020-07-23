@@ -4,14 +4,15 @@ import MerchantListTitle from './MerchantListTitle';
 import MerchantListItem from './MerchantListItem';
 
 const MerchantList = ({ title, merchants }) => {
+  if (!merchants) return null;
   return(
     <div>
       <GutterTop />
       <MerchantListTitle>{title}</MerchantListTitle>
       <MerchantListItemsContainer>
-        {/* {merchants.map((merchant) => (
+        {merchants.map((merchant) => (
           <MerchantListItem merchant={merchant} key={merchant.id} />
-        ))} */}
+        ))}
       </MerchantListItemsContainer>
     </div>
   );

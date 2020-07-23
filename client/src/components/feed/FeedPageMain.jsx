@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
+import { useQuery, gql } from '@apollo/client';
 import DesktopDeliveryAddressBar from './DesktopDeliveryAddressBar';
 import MerchantList from './MerchantList';
 import MobileDeliveryAddressBar from './MobileDeliveryAddressBar';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth';
 
+const GET_ALL_MERCHANTS = gql`
+  query allMerchants {
+    allMerchants {
+      id
+      name
+      imgUrl
+    }
+  }
+`;
+
 const FeedPageMain = () => {
   const windowWidth = useResponsiveWindowWidth();
+  const { loading, error, data } = useQuery(GET_ALL_MERCHANTS);
 
   return (
     <MainParent>
@@ -16,7 +28,7 @@ const FeedPageMain = () => {
           <MobileDeliveryAddressBar
             isHidden={windowWidth >= 768}
           />
-          <MerchantList title='Nearby' />
+          <MerchantList title='Nearby' merchants={data && data.allMerchants} />
         </MainContentMargins>
       </MainContainer>
     </MainParent>

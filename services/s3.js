@@ -2,9 +2,6 @@ const AWS = require("aws-sdk");
 const fs = require('fs');
 const path = require('path');
 
-AWS.config.loadFromPath('config/aws.json');
-AWS.config.update({ region: 'us-west-1' })
-
 const s3 = new AWS.S3();
 
 exports.uploadSeedImage = async (filePath) => {
@@ -68,3 +65,10 @@ exports.emptySeedsBucket = async () => {
 
 // exports.uploadSeedImage('services/hero-food.png');
 // exports.emptySeedsBucket();
+s3.getBucketCors({ Bucket: 'toastmates-seeds'}, function(err, data) {
+  if (err) {
+    console.log("Error", err);
+  } else if (data) {
+    console.log("Success", JSON.stringify(data.CORSRules));
+  }
+});

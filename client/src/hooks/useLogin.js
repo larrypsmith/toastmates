@@ -29,8 +29,7 @@ const useLogin = () => {
         console.log('auth token:', localStorage.getItem('auth-token'));
         isLoggedInVar(data.login.loggedIn);
         closeModal();
-      },
-      // onError: (err) => {debugger; errorVar(err.message)}
+      }
     }
   );
   
