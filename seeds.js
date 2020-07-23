@@ -61,7 +61,7 @@ const seedAllDocuments = async () => {
       name: 'Pizza'
     })
     
-    const giosPizza = await seedModel(Merchant, {
+    const gios = await seedModel(Merchant, {
       name: `Gio's Pizza`,
       cuisine: pizza.id,
       address: '3601 Lyon Street',
@@ -73,38 +73,38 @@ const seedAllDocuments = async () => {
       imgUrl: 'services/hero-food.png'
     });
 
-    const giosPizzaPizza = await seedModel(Menu, {
+    const giosPizza = await seedModel(Menu, {
       name: 'Pizza',
-      merchant: giosPizza.id
+      merchant: gios.id
     });
     
-    const giosPizzaPasta = await seedModel(Menu, {
+    const giosPasta = await seedModel(Menu, {
       name: 'Pasta',
-      merchant: giosPizza.id
+      merchant: gios.id
     });
     
-    const giosPizzaPizzaPepperoni = await seedModel(Item, {
+    const giosPepperoni = await seedModel(Item, {
       name: 'Pepperoni Pizza',
       price: 17.99,
-      menu: giosPizzaPizza.id
+      menu: giosPizza.id
     })
     
-    const giosPizzaPizzaCheese = await seedModel(Item, {
+    const giosCheese = await seedModel(Item, {
       name: 'Cheese Pizza',
       price: 15.99,
-      menu: giosPizzaPizza.id
+      menu: giosPizza.id
     })
     
-    const giosPizzaPastaSpaghetti = await seedModel(Item, {
+    const giosSpaghetti = await seedModel(Item, {
       name: 'Spaghetti',
       price: 13.99,
-      menu: giosPizzaPasta.id
+      menu: giosPasta.id
     })
     
-    const giosPizzaPastaRigatoni = await seedModel(Item, {
+    const giosRigatoni = await seedModel(Item, {
       name: 'Rigatoni',
       price: 13.99,
-      menu: giosPizzaPasta.id
+      menu: giosPasta.id
     })
     
     const johnDoe = await seedModel(User, {
@@ -119,16 +119,11 @@ const seedAllDocuments = async () => {
     const order1 = await seedModel(Order, {
       user: johnDoe.id,
       items: [
-        giosPizzaPastaRigatoni.id,
-        giosPizzaPizzaCheese.id
+        giosRigatoni.id,
+        giosCheese.id
       ]
     });
-
-
   } catch(err) {
     console.log(err);
   }
 };
-
-// SEED ORDER: cuisine, merchant, menu, item, user, order
-
