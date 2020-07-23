@@ -21,7 +21,7 @@ const merchantSchema = new Schema({
     required: true
   },
   deliveryTime: deliveryTimeSchema,
-  photoUrl: String
+  imgUrl: String
 });
 
 module.exports = mongoose.model('Merchant', merchantSchema);

@@ -11,23 +11,26 @@ const { uploadSeedImage, emptySeedsBucket } = require('./services/s3');
 
 (async function() {
   try {
+    console.log('Connecting to DB...');
     await mongoose.connect(db, { useNewUrlParser: true });
+    console.log('Deleting existing collections...');
     await deleteAllCollections();
+    console.log('Emptying seeds bucket');
     await emptySeedsBucket();
-    await saveAllCollections();
-    await mongoose.connection.close();
+    console.log('Seeding documents...')
+    await seedAllDocuments();
     console.log('DB seeded successfully!');
+    await mongoose.connection.close();
   } catch(err) {
     console.log(err);
   }
 })();
 
-async function deleteAllCollections() {
+const deleteAllCollections = async () => {
   try {
     const models = [Cuisine, Item, Menu, Merchant, Order, User];
     
-    while (models.length) {
-      let model = models.shift();
+    for (let model of models) {
       await model.deleteMany({}).exec();
     };
   } catch(err) {
@@ -35,82 +38,97 @@ async function deleteAllCollections() {
   }
 }
 
-async function saveAllCollections() {
+// upload image, add image url to model params, save model
+const seedModel = async (Model, params) => {
   try {
-    const collections = [pizza, giosPizza, giosPizzaPizza, giosPizzaPasta, giosPizzaPizzaCheese, giosPizzaPizzaPepperoni, giosPizzaPastaRigatoni, giosPizzaPastaSpaghetti, johnDoe, order1];
-    
-    while (collections.length) {
-      let collection = collections.shift();
-      await collection.save();
+    if (params.imgUrl) {
+      params.imgUrl = await uploadSeedImage(params.imgUrl);
+      console.log('imgUrl: ', params.imgUrl);
     }
+
+    const model = new Model(params);
+    await model.save();
+    console.log('model: ', model);
+    return model;
   } catch(err) {
     console.log(err);
   }
-}
+};
 
-const pizza = new Cuisine({
-  name: 'Pizza'
-})
+const seedAllDocuments = async () => {
+  try {
+    const pizza = await seedModel(Cuisine, {
+      name: 'Pizza'
+    })
+    
+    const giosPizza = await seedModel(Merchant, {
+      name: `Gio's Pizza`,
+      cuisine: pizza.id,
+      address: '3601 Lyon Street',
+      deliveryFee: 3.99,
+      deliveryTime: {
+        low: 25,
+        high: 45
+      },
+      imgUrl: 'services/hero-food.png'
+    });
+
+    const giosPizzaPizza = await seedModel(Menu, {
+      name: 'Pizza',
+      merchant: giosPizza.id
+    });
+    
+    const giosPizzaPasta = await seedModel(Menu, {
+      name: 'Pasta',
+      merchant: giosPizza.id
+    });
+    
+    const giosPizzaPizzaPepperoni = await seedModel(Item, {
+      name: 'Pepperoni Pizza',
+      price: 17.99,
+      menu: giosPizzaPizza.id
+    })
+    
+    const giosPizzaPizzaCheese = await seedModel(Item, {
+      name: 'Cheese Pizza',
+      price: 15.99,
+      menu: giosPizzaPizza.id
+    })
+    
+    const giosPizzaPastaSpaghetti = await seedModel(Item, {
+      name: 'Spaghetti',
+      price: 13.99,
+      menu: giosPizzaPasta.id
+    })
+    
+    const giosPizzaPastaRigatoni = await seedModel(Item, {
+      name: 'Rigatoni',
+      price: 13.99,
+      menu: giosPizzaPasta.id
+    })
+    
+    const johnDoe = await seedModel(User, {
+      name: {
+        first: 'John',
+        last: 'Doe'
+      },
+      email: 'johndoe@mail.com',
+      password: bcrypt.hashSync('password', 10)
+    });
+    
+    const order1 = await seedModel(Order, {
+      user: johnDoe.id,
+      items: [
+        giosPizzaPastaRigatoni.id,
+        giosPizzaPizzaCheese.id
+      ]
+    });
 
 
-const giosPizza = new Merchant({
-  name: `Gio's Pizza`,
-  cuisine: pizza.id,
-  address: '3601 Lyon Street',
-  deliveryFee: 3.99,
-  deliveryTime: {
-    low: 25,
-    high: 45
+  } catch(err) {
+    console.log(err);
   }
-});
+};
 
-const giosPizzaPizza = new Menu({
-  name: 'Pizza',
-  merchant: giosPizza.id
-});
+// SEED ORDER: cuisine, merchant, menu, item, user, order
 
-const giosPizzaPasta = new Menu({
-  name: 'Pasta',
-  merchant: giosPizza.id
-});
-
-const giosPizzaPizzaPepperoni = new Item({
-  name: 'Pepperoni Pizza',
-  price: 17.99,
-  menu: giosPizzaPizza.id
-})
-
-const giosPizzaPizzaCheese = new Item({
-  name: 'Cheese Pizza',
-  price: 15.99,
-  menu: giosPizzaPizza.id
-})
-
-const giosPizzaPastaSpaghetti = new Item({
-  name: 'Spaghetti',
-  price: 13.99,
-  menu: giosPizzaPasta.id
-})
-
-const giosPizzaPastaRigatoni = new Item({
-  name: 'Rigatoni',
-  price: 13.99,
-  menu: giosPizzaPasta.id
-})
-
-const johnDoe = new User({
-  name: {
-    first: 'John',
-    last: 'Doe'
-  },
-  email: 'johndoe@mail.com',
-  password: bcrypt.hashSync('password', 10)
-});
-
-const order1 = new Order({
-  user: johnDoe.id,
-  items: [
-    giosPizzaPastaRigatoni.id,
-    giosPizzaPizzaCheese.id
-  ]
-});
