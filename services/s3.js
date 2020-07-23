@@ -62,13 +62,3 @@ exports.emptySeedsBucket = async () => {
     console.log(err);
   }
 };
-
-// exports.uploadSeedImage('services/hero-food.png');
-// exports.emptySeedsBucket();
-s3.getBucketCors({ Bucket: 'toastmates-seeds'}, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-  } else if (data) {
-    console.log("Success", JSON.stringify(data.CORSRules));
-  }
-});

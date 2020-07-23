@@ -5,16 +5,23 @@ import styled from 'styled-components/macro';
 const MerchantListItem = ({ merchant }) => {
   return(
   <StyledMerchantListItem>
-    <Link to={`/merchant/${merchant.id}`}>
+    <StyledLink to={`/merchant/${merchant.id}`}>
       <MerchantListItemImage url={merchant.imgUrl} />
-      {merchant.name}
-      {/* <MerchantListItemContent /> */}
-    </Link>
+      <MerchantListItemContent
+        name={merchant.name}
+        deliveryFee={merchant.deliveryFee}
+        deliveryTime={merchant.deliveryTime}
+      />
+    </StyledLink>
   </StyledMerchantListItem>
 );
   }
 
 export default MerchantListItem;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const StyledMerchantListItem = styled.div`
   position: relative;
@@ -110,4 +117,81 @@ const Other = styled.div`
   top: 10px;
   right: 12px;
   left: 0;
+`;
+
+const MerchantListItemContent = ({ name, deliveryFee, deliveryTime }) => (
+  <StyledMerchantListItemContent>
+    <MerchantName name={name} />
+  </StyledMerchantListItemContent>
+);
+
+const StyledMerchantListItemContent = styled.div`
+  position: relative;
+  padding-top: 16px;
+`;
+
+const MerchantName = ({ name }) => (
+  <StyledMerchantName>
+    <Text>
+      {name}
+      <CheckmarkIcon />
+    </Text>
+  </StyledMerchantName>
+)
+
+const StyledMerchantName = styled.h3`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  color: rgb(45, 49, 56);
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 4px;
+`;
+
+const Text = styled.span`
+  flex: 1 1 0%;
+`;
+
+const CheckmarkIcon = () => (
+  <CheckmarkIconContainer>
+    <SVG
+      width='14'
+      height='14'
+      viewBox='0 0 14'
+    >
+      <g
+        fill='none'
+        fillRule='evenodd'
+      >
+        <rect
+          fill='#0C9'
+          width='14'
+          height='14'
+          rx='7'
+        />
+        <path
+          fill='#FFF'
+          path='M3 7l3 3 4.5-4.5-1-1L6 8 4 6'
+        />
+      </g>
+    </SVG>
+  </CheckmarkIconContainer>
+);
+
+const CheckmarkIconContainer = styled.span`
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  align-self: center;
+  height: 14px;
+  width: 14px;
+  margin-left: 8px;
+  vertical-align: -2px;
+`;
+
+const SVG = styled.svg`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 `;
