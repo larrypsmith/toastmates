@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import MerchantDeliveryDetails from './MerchantDeliveryDetails';
 import MerchantName from './MerchantName';
 
 const MerchantListItemContent = ({ name, deliveryFee, deliveryTime }) => (
   <StyledMerchantListItemContent>
     <MerchantName name={name} />
-    {/* <MerchantDeliveryDetails
+    <MerchantDeliveryDetails
       deliveryFee={deliveryFee}
       deliveryTime={deliveryTime}
-    /> */}
+    />
   </StyledMerchantListItemContent>
 );
 

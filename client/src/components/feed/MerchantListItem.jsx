@@ -5,7 +5,8 @@ import MerchantListItemImage from './MerchantListItemImage';
 import MerchantListItemContent from './MerchantListItemContent';
 
 const MerchantListItem = ({ merchant }) => {
-  return(
+  if (!merchant) return null;
+  return (
   <StyledMerchantListItem>
     <StyledLink to={`/merchant/${merchant.id}`}>
       <MerchantListItemImage url={merchant.imgUrl} />
@@ -17,7 +18,7 @@ const MerchantListItem = ({ merchant }) => {
     </StyledLink>
   </StyledMerchantListItem>
 );
-  }
+}
 
 export default MerchantListItem;
 

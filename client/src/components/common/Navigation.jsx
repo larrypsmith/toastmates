@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { withRouter } from 'react-router-dom';
 import Container from './Container';
 import Flex from './Flex';
@@ -8,31 +8,28 @@ import SignUpButton from './SignUpButton';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
 
-const Navigation = (props) => {
-  debugger
-  return (
-    <StyledNavigation {...props}>
-      <Container padding={[25, 54, 36]}>
-        <StyledFlex parent>
-          <StyledFlexChildLeft child>
-            <Typography
-              weight='500'
-              size='20px'
-              color='black'
-            >
-              Toastmates
-            </Typography>
-          </StyledFlexChildLeft>
-          <StyledFlexChildRight child>
-            <LogInButton />
-            <SignUpButton />
-            <UserIcon />
-          </StyledFlexChildRight>
-        </StyledFlex>
-      </Container>
-    </StyledNavigation>
-  );
-};
+const Navigation = (props) => (
+  <StyledNavigation {...props}>
+    <Container padding={[25, 54, 36]}>
+      <StyledFlex parent>
+        <StyledFlexChildLeft child>
+          <Typography
+            weight='500'
+            size='20px'
+            color='black'
+          >
+            Toastmates
+          </Typography>
+        </StyledFlexChildLeft>
+        <StyledFlexChildRight child>
+          <LogInButton />
+          <SignUpButton />
+          <UserIcon />
+        </StyledFlexChildRight>
+      </StyledFlex>
+    </Container>
+  </StyledNavigation>
+);
 
 export default withRouter(Navigation);
 

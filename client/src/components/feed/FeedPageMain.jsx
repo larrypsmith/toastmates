@@ -12,6 +12,11 @@ const GET_ALL_MERCHANTS = gql`
       id
       name
       imgUrl
+      deliveryTime {
+        high
+        low
+      }
+      deliveryFee
     }
   }
 `;
