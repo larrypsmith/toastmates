@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import FeedPage from './components/feed/FeedPage';
 import Footer from './components/splash/Footer';
 import GlobalStyle from './components/common/GlobalStyle';
+import MerchantPage from './components/merchant/MerchantPage';
 import ModalRoot from './components/common/ModalRoot';
 import Navigation from './components/common/Navigation';
 import SplashPage from './components/splash/SplashPage';
@@ -15,6 +16,7 @@ const App = () => (
     <MainContainer>
       <Switch>
         <Route path='/feed'><FeedPage /></Route>
+        <Route path='/merchant/:id'><MerchantPage /></Route>
         <Route exact path='/'><SplashPage /></Route>
         <Redirect to='/feed' />
       </Switch>

@@ -52,6 +52,14 @@ const RootQuery = new GraphQLObjectType({
         return Merchant.find({ cuisine: id })
           .populate('cuisine');
       }
+    },
+    merchant: {
+      type: MerchantType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        debugger
+        return Merchant.findById(args.id)
+      }
     }
   }
 });
