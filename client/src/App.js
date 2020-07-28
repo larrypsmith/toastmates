@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import FeedPage from './components/feed/FeedPage';
+import Footer from './components/splash/Footer';
 import GlobalStyle from './components/common/GlobalStyle';
 import ModalRoot from './components/common/ModalRoot';
 import Navigation from './components/common/Navigation';
@@ -18,6 +19,7 @@ const App = () => (
         <Redirect to='/feed' />
       </Switch>
     </MainContainer>
+    <Footer />
     <ModalRoot />
   </StyledApp>
 );

@@ -1,9 +1,11 @@
 import React from 'react';
-import Navigation from '../common/Navigation';
+import FeedPageHeader from './FeedPageHeader.jsx';
+import FeedPageMain from './FeedPageMain.jsx';
 
 const FeedPage = () => (
   <React.Fragment>
-    {/* <Navigation /> */}
+    <FeedPageHeader />
+    <FeedPageMain />
   </React.Fragment>
 );
 

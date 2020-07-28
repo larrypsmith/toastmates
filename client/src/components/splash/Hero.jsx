@@ -8,17 +8,13 @@ import HeroMobileHeader from './HeroMobileHeader';
 import OrderNowButton from './OrderNowButton';
 import TableBackgroundImage from '../common/TableBackgroundImage';
 import Typography from '../common/Typography';
+import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth';
 
 const Hero = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, []);
-
-  const Header = windowWidth < 768 ? HeroMobileHeader : HeroDesktopHeader;
+  const windowWidth = useResponsiveWindowWidth();
+  const Header = windowWidth < 768
+    ? HeroMobileHeader
+    : HeroDesktopHeader;
 
   return (
     <StyledHero>
@@ -27,7 +23,8 @@ const Hero = () => {
           <HeroContent flexDirection='column' alignItems='center'>
             <Header />
             <SubHeader color="black">
-              Food, drinks, groceries, and more available for delivery and pickup.
+              Food, drinks, groceries, and more available for
+              delivery and pickup.
             </SubHeader>
             <OrderNowButton />
           </HeroContent>

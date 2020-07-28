@@ -7,7 +7,6 @@ const StyledButton = styled.button`
   background-color: ${props => props.theme.palette.primary.main};
   color: ${props => props.theme.palette.common.white};
   font-size: 14px;
-  letter-spacing: 0.75px;
   font-weight: 600;
   text-transform: uppercase;
   line-height: normal;

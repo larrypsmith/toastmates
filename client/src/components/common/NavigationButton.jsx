@@ -12,7 +12,6 @@ const StyledNavigationButton = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.15);
   min-width: 86px;
   font-weight: 700;
-  letter-spacing: .5px;
   overflow: hidden;
   cursor: pointer;
 `;

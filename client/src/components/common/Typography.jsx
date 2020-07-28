@@ -7,7 +7,6 @@ const StyledTypography = styled.div`
   font-style: ${props => props.italic ? 'italic' : 'normal'};
   font-size: ${props => props.size || '16px'};
   text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};
-  display: ${props => props.inline ? 'inline' : 'block'};
   
   ${({ color }) => (color &&
     css`
@@ -20,6 +19,9 @@ const StyledTypography = styled.div`
               break;
             case 'white':
               color = props.theme.palette.common.white;
+              break;
+            case 'primary':
+              color = props.theme.palette.primary.main;
               break;
             case 'secondary':
               color = props.theme.palette.text.secondary;
