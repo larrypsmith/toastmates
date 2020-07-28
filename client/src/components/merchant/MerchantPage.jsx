@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
-import { withRouter } from 'react-router-dom';
+import { useParams, useLocation, useRouteMatch } from 'react-router-dom';
+import HeaderImage from './HeaderImage';
 
 const GET_MERCHANT = gql`
   query GetMerchant($id: ID!) {
@@ -21,18 +22,20 @@ const GET_MERCHANT = gql`
   }
 `;
 
-const MerchantPage = ({ match }) => {
+const MerchantPage = () => {
+  const params = useParams();
+  
   const { data } = useQuery(GET_MERCHANT, {
-    variables: { id: match.params.id },
-    errorPolicy: 'all'
+    variables: { id: params.id }
   })
 
   if (!data) return null;
   return (
-    <div>
-      {data.merchant.name}
-    </div>
+    <React.Fragment>
+      <HeaderImage src={data.merchant.imgUrl} />
+    </React.Fragment>
   );
 };
 
-export default withRouter(MerchantPage);
+export default MerchantPage;
+

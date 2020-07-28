@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components/macro';
-import { withRouter } from 'react-router-dom';
+import { useLocation, useRouteMatch, useParams } from 'react-router-dom';
 import Container from './Container';
 import Flex from './Flex';
 import LogInButton from './LogInButton';
@@ -8,30 +8,36 @@ import SignUpButton from './SignUpButton';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
 
-const Navigation = (props) => (
-  <StyledNavigation {...props}>
-    <Container padding={[25, 54, 36]}>
-      <StyledFlex parent>
-        <StyledFlexChildLeft child>
-          <Typography
-            weight='500'
-            size='20px'
-            color='black'
-          >
-            Toastmates
-          </Typography>
-        </StyledFlexChildLeft>
-        <StyledFlexChildRight child>
-          <LogInButton />
-          <SignUpButton />
-          <UserIcon />
-        </StyledFlexChildRight>
-      </StyledFlex>
-    </Container>
-  </StyledNavigation>
-);
+const Navigation = (props) => {
+  const location = useLocation();
+  const match = useRouteMatch();
+  debugger
 
-export default withRouter(Navigation);
+  return (
+    <StyledNavigation location={location} {...props}>
+      <Container padding={[25, 54, 36]}>
+        <StyledFlex parent>
+          <StyledFlexChildLeft child>
+            <Typography
+              weight='500'
+              size='20px'
+              color='black'
+            >
+              Toastmates
+            </Typography>
+          </StyledFlexChildLeft>
+          <StyledFlexChildRight child>
+            <LogInButton />
+            <SignUpButton />
+            <UserIcon />
+          </StyledFlexChildRight>
+        </StyledFlex>
+      </Container>
+    </StyledNavigation>
+  );
+};
+
+export default Navigation;
 
 const StyledNavigation = styled.nav`
   ${({ location }) => {
