@@ -10,8 +10,6 @@ import UserIcon from './UserIcon';
 
 const Navigation = (props) => {
   const location = useLocation();
-  const match = useRouteMatch();
-  debugger
 
   return (
     <StyledNavigation location={location} {...props}>

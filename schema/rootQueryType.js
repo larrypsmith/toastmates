@@ -57,7 +57,6 @@ const RootQuery = new GraphQLObjectType({
       type: MerchantType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
-        debugger
         return Merchant.findById(args.id)
       }
     }

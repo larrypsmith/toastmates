@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
 import { useParams, useLocation, useRouteMatch } from 'react-router-dom';
 import HeaderImage from './HeaderImage';
+import MerchantPageContent from './MerchantPageContent';
 
 const GET_MERCHANT = gql`
   query GetMerchant($id: ID!) {
@@ -24,7 +25,7 @@ const GET_MERCHANT = gql`
 
 const MerchantPage = () => {
   const params = useParams();
-  
+
   const { data } = useQuery(GET_MERCHANT, {
     variables: { id: params.id }
   })
@@ -33,9 +34,9 @@ const MerchantPage = () => {
   return (
     <React.Fragment>
       <HeaderImage src={data.merchant.imgUrl} />
+      <MerchantPageContent merchant={data.merchant} />
     </React.Fragment>
   );
 };
 
 export default MerchantPage;
-

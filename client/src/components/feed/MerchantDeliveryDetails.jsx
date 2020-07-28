@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import Typography from '../common/Typography';
 
 const MerchantDeliveryDetails = ({ deliveryFee, deliveryTime }) => {
