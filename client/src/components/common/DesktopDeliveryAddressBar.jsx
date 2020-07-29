@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Typography from '../common/Typography';
+import Typography from './Typography';
 
 const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
   if (isHidden) return null;
