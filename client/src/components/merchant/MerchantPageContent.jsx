@@ -1,14 +1,28 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth.js';
+import { cartVar } from '../../cache';
+import DesktopDeliveryAddressBar from '../feed/DesktopDeliveryAddressBar';
 
-const MerchantPageContent = ({ merchant }) => (
-  <StyledMerchantPageContent>
-    <MobileMerchantActionBar address={merchant.address} />
-    <GutterBottom />
-    <ViewOrderButton />
-  </StyledMerchantPageContent>
-);
+const MerchantPageContent = ({ merchant }) => {
+  const windowWidth = useResponsiveWindowWidth();
+  
+  if (windowWidth <= 768) {
+    return (
+      <StyledMerchantPageContent>
+        <MobileMerchantActionBar address={merchant.address} />
+        <GutterBottom />
+        <ViewOrderButton numItemsInCart={cartVar().length} />
+      </StyledMerchantPageContent>
+    );
+  } else {
+    return (
+      <StyledMerchantPageContent>
+        <DesktopDeliveryAddressBar />
+      </StyledMerchantPageContent>
+    );
+  }
+};
 
 export default MerchantPageContent;
 
@@ -23,9 +37,6 @@ const StyledMerchantPageContent = styled.div`
 `;
 
 const MobileMerchantActionBar = ({ address, ...props }) => {
-  const windowWidth = useResponsiveWindowWidth();
-  
-  if (windowWidth > 768) return null;
   return (
     <StyledMobileMerchantActionBar {...props}>
       <StyledDeliveryTime>
@@ -40,7 +51,7 @@ const MobileMerchantActionBar = ({ address, ...props }) => {
         <span>ASAP</span>
       </StyledDeliveryTime>
       <StyledDeliveryAddress>
-        {address}, San Francisco, CA
+        3601 Lyon St, San Francisco, CA
       </StyledDeliveryAddress>
     </StyledMobileMerchantActionBar>
   );
@@ -69,6 +80,7 @@ const StyledSVG = styled.svg`
 const StyledDeliveryAddress = styled.div`
   font-size: 18px;
   font-weight: 600;
+  color: rgba(0, 0, 0, 0.4)
 `;
 
 const StyledGutterBottom = styled.div`
@@ -77,29 +89,29 @@ const StyledGutterBottom = styled.div`
 `;
 
 const GutterBottom = () => {
-  const windowWidth = useResponsiveWindowWidth();
-
-  if (windowWidth > 768) return null;
   return (
     <StyledGutterBottom />
   )
 }
 
-const ViewOrderButton = () => (
-  <Container>
-    <StyledButtonContainer>
-      <StyledButton>
-        <CartItemCount>
-          1
-        </CartItemCount>
-        <ViewOrderText>
-          View Order
-        </ViewOrderText>
-        <CartItemCount />
-      </StyledButton>
-    </StyledButtonContainer>
-  </Container>
-);
+const ViewOrderButton = ({ numItemsInCart }) => {
+  if (numItemsInCart === 0) return null;
+  return (
+    <Container>
+      <StyledButtonContainer>
+        <StyledButton>
+          <CartItemCount>
+            {numItemsInCart}
+          </CartItemCount>
+          <ViewOrderText>
+            View Order
+          </ViewOrderText>
+          <CartItemCount />
+        </StyledButton>
+      </StyledButtonContainer>
+    </Container>
+  );
+};
 
 const Container = styled.div`
   position: relative;
@@ -152,10 +164,6 @@ const CartItemCount = styled.span`
   color: rgb(255, 255, 255);
   text-align: left;
   flex: 1 1 0%;
-
-  &:first-child::before {
-    content: ${props => props.count};
-  }
 `;
 
 const ViewOrderText = styled.span`
