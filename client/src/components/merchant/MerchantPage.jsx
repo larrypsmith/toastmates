@@ -16,7 +16,14 @@ const GET_MERCHANT = gql`
         high
       }
       menus {
+        id
         name
+        items {
+          id
+          name
+          description
+          price
+        }
       }
       imgUrl
     }

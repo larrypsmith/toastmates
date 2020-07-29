@@ -59,6 +59,7 @@ const StyledNavigation = styled.nav`
           width: 100vw;
         `;
       default:
+        
         break;
     }
     return styles;

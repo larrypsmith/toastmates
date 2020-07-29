@@ -4,6 +4,7 @@ import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth.js';
 import { cartVar } from '../../cache';
 import DesktopDeliveryAddressBar from '../common/DesktopDeliveryAddressBar';
 import MerchantDetails from './MerchantDetails';
+import MenuList from './MenuList';
 import MobileMerchantActionBar from './MobileMerchantActionBar';
 import ViewOrderButton from './ViewOrderButton';
 
@@ -12,6 +13,7 @@ const MerchantPageContent = ({ merchant }) => {
     <StyledMerchantPageContent>
       <ResponsiveComponents merchant={merchant} />
       <MerchantDetails merchant={merchant} />
+      <MenuList menus={merchant.menus} />
     </StyledMerchantPageContent>
   );
 };
