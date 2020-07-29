@@ -21,7 +21,7 @@ const MerchantDetails = ({ merchant }) => (
           text={`${merchant.deliveryTime.low}-${merchant.deliveryTime.high} min`}
         />
         <IconChip
-          icon={ClockIcon}
+          icon={MapMarkerIcon}
           text={`${merchant.address}`}
         />
       </IconChipsContainer>
