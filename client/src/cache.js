@@ -3,6 +3,7 @@ import { makeVar } from "@apollo/client";
 
 export const isLoggedInVar = makeVar(false);
 export const modalVar = makeVar(null);
+export const cartVar = makeVar([]);
 
 const cache = new InMemoryCache({
   typePolicies: {
