@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
-import { useParams, useLocation, useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import HeaderImage from './HeaderImage';
+import MerchantNavigation from './MerchantNavigation';
 import MerchantPageContent from './MerchantPageContent';
 
 const GET_MERCHANT = gql`
@@ -40,6 +40,7 @@ const MerchantPage = () => {
   if (!data) return null;
   return (
     <React.Fragment>
+      <MerchantNavigation />
       <HeaderImage src={data.merchant.imgUrl} />
       <MerchantPageContent merchant={data.merchant} />
     </React.Fragment>

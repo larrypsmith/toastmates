@@ -12,7 +12,7 @@ import SplashPage from './components/splash/SplashPage';
 const App = () => (
   <StyledApp>
     <GlobalStyle />
-    <Navigation />
+    {/* <Navigation /> */}
     <MainContainer>
       <Switch>
         <Route path='/feed'><FeedPage /></Route>

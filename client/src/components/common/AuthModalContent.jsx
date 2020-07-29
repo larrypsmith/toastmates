@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import React, { useEffect } from 'react';
+import React from 'react';
 import Container from './Container';
 import ExitModalButton from './ExitModalButton';
 import LoginForm from './LoginForm';
@@ -73,6 +73,7 @@ const StyledNavigationButton = styled(NavigationButton)`
   position: absolute;
   top: 16px;
   right: 16px;
+  background-color: transparent;
 
   @media screen and (min-width: 768px) {
     display: none;

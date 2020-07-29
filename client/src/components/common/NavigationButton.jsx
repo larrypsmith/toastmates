@@ -7,8 +7,8 @@ const StyledNavigationButton = styled.button`
   height: 32px;
   padding: 0 16px;
   border-radius: 16px;
-  color: ${props => props.theme.palette.common.black};
-  background-color: transparent;
+  /* color: ${props => props.theme.palette.common.black}; */
+  /* background-color: transparent; */
   border: 1px solid rgba(0, 0, 0, 0.15);
   min-width: 86px;
   font-weight: 700;
@@ -16,19 +16,12 @@ const StyledNavigationButton = styled.button`
   cursor: pointer;
 `;
 
-const NavigationButton = ({ children, modal, className }) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    modalVar(modal);
-  };
-
-  return (
-    <StyledNavigationButton className={className} onClick={handleClick}>
+const NavigationButton = ({ children, ...props }) => (
+    <StyledNavigationButton {...props}>
       <Typography size='12px' uppercase>
         {children}
       </Typography>
     </StyledNavigationButton>
-  )
-};
+  );
 
 export default NavigationButton;

@@ -1,18 +1,19 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
-import { useLocation, useRouteMatch, useParams } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
-import LogInButton from './LogInButton';
-import SignUpButton from './SignUpButton';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
+import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 
-const Navigation = (props) => {
-  const location = useLocation();
-
+const Navigation = ({ container: ParentContainer , children, ...props }) => {
+  const isLoggedIn = useQueryIsLoggedIn();
+  const components = isLoggedIn
+    ? <UserIcon />
+    : children;
+  
   return (
-    <StyledNavigation location={location} {...props}>
+    <ParentContainer {...props}>
       <Container padding={[25, 54, 36]}>
         <StyledFlex parent>
           <StyledFlexChildLeft child>
@@ -25,46 +26,15 @@ const Navigation = (props) => {
             </Typography>
           </StyledFlexChildLeft>
           <StyledFlexChildRight child>
-            <LogInButton />
-            <SignUpButton />
-            <UserIcon />
+            {components}
           </StyledFlexChildRight>
         </StyledFlex>
       </Container>
-    </StyledNavigation>
+    </ParentContainer>
   );
 };
 
 export default Navigation;
-
-const StyledNavigation = styled.nav`
-  ${({ location }) => {
-    let styles;
-    switch (location.pathname) {
-      case '/feed':
-        styles = css`
-          position: sticky;
-          top: 0px;
-          right: 0px;
-          left: 0px;
-          z-index: 400;
-          background-color: rgb(254, 217, 40);
-          transition: background-color 0.2s ease-in-out 0s;
-        `;
-        break;
-      case '/':
-        styles = css`
-          position: relative;
-          background-color: ${props => props.theme.palette.secondary.main};
-          width: 100vw;
-        `;
-      default:
-        
-        break;
-    }
-    return styles;
-  }}
-`;
 
 const StyledFlex = styled(Flex)`
   min-height: 72px;
