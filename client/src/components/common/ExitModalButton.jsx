@@ -4,6 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import useCloseModal from '../../hooks/useCloseModal';
 
+const ExitModalButton = (props) => {
+  const closeModal = useCloseModal();
+  
+  return (
+    <ExitModalButtonContainer onClick={closeModal} {...props}>
+      <FontAwesomeIcon icon={faTimes} size="lg" />
+    </ExitModalButtonContainer>
+  );
+};
+
+export default ExitModalButton;
+
 const ExitModalButtonContainer = styled.div`
   position: absolute;
   top: 20px;
@@ -20,15 +32,3 @@ const ExitModalButtonContainer = styled.div`
     right: 12px;
   }
 `;
-
-const ExitModalButton = () => {
-  const closeModal = useCloseModal();
-
-  return (
-    <ExitModalButtonContainer onClick={closeModal}>
-      <FontAwesomeIcon icon={faTimes} size="lg" />
-    </ExitModalButtonContainer>
-  );
-};
-
-export default ExitModalButton;

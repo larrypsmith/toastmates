@@ -7,7 +7,6 @@ const LogInButton = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     modalVar(LoginModal);
-    debugger
   }
   
   return (

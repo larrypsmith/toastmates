@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import ModalContent from './ModalContent';
-import AuthModalContent from './AuthModalContent';
 import useCloseModal from '../../hooks/useCloseModal';
 
 const ModalContainer = ({ modalComponent: Component }) => {

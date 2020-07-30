@@ -3,10 +3,21 @@ import styled from 'styled-components/macro';
 import { modalVar } from '../../cache';
 import ItemImage from './ItemImage';
 import Typography from '../common/Typography';
+import AddItemToCartModal from './AddItemToCartModal';
 
 const Item = ({ item }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    const Component = () => (
+      <AddItemToCartModal item={item} />
+    );
+
+    modalVar(Component);
+  };
+  
   return (
-    <ItemContainer>
+    <ItemContainer onClick={handleClick}>
       <ItemContentContainer>
         <NameAndDescriptionContainer>
           <ItemName>{item.name}</ItemName>

@@ -34,4 +34,3 @@ const StyledModalRoot = styled.div`
   transition: background-color 100ms ease-in-out;
   z-index: 1000;
 `;
-
