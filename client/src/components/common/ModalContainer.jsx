@@ -4,14 +4,12 @@ import ModalContent from './ModalContent';
 import AuthModalContent from './AuthModalContent';
 import useCloseModal from '../../hooks/useCloseModal';
 
-const ModalContainer = ({ modalType }) => {
+const ModalContainer = ({ modalComponent: Component }) => {
     const closeModal = useCloseModal();
     
     return (
         <StyledModalContainer onClick={closeModal}>
-            <ModalContent onClick={e => e.stopPropagation()}>
-                <AuthModalContent modalType={modalType} />
-            </ModalContent>
+            <Component />
         </StyledModalContainer>
     )
 };

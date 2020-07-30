@@ -1,9 +1,9 @@
 import { modalVar } from '../cache';
 
-const useOpenModal = (modal) => {
+const useOpenModal = (modalComponent) => {
   const openModal = (e) => {
     e.preventDefault();
-    modalVar(modal);
+    modalVar(modalComponent);
   };
 
   return openModal;

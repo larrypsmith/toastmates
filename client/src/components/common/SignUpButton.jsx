@@ -1,11 +1,12 @@
 import React from 'react';
 import NavigationButton from './NavigationButton';
 import { modalVar } from '../../cache';
+import SignUpModal from '../common/SignUpModal';
 
 const SignUpButton = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
-    modalVar('signup');
+    modalVar(SignUpModal);
   };
   
   return (

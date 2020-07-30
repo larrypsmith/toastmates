@@ -10,12 +10,12 @@ const AuthModalContent = ({ modalType }) => {
   const authContent = {
     login: {
       headerText: 'Log In',
-      alternateModal: 'signup',
+      alternateModal: SignUpForm,
       alternateButtonText: 'Sign Up'
     },
     signup: {
       headerText: 'Sign Up',
-      alternateModal: 'login',
+      alternateModal: LoginForm,
       alternateButtonText: 'Log In'
     }
   };

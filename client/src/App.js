@@ -6,13 +6,11 @@ import Footer from './components/splash/Footer';
 import GlobalStyle from './components/common/GlobalStyle';
 import MerchantPage from './components/merchant/MerchantPage';
 import ModalRoot from './components/common/ModalRoot';
-import Navigation from './components/common/Navigation';
 import SplashPage from './components/splash/SplashPage';
 
 const App = () => (
   <StyledApp>
     <GlobalStyle />
-    {/* <Navigation /> */}
     <MainContainer>
       <Switch>
         <Route path='/feed'><FeedPage /></Route>
