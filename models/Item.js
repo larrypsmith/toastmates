@@ -15,7 +15,8 @@ const itemSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Menu',
     required: true
-  }
+  },
+  imgUrl: String
 });
 
 module.exports = mongoose.model('Item', itemSchema);

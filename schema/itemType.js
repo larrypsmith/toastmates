@@ -7,7 +7,8 @@ const ItemType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
-    price: { type: GraphQLFloat }
+    price: { type: GraphQLFloat },
+    imgUrl: { type: GraphQLString }
   })
 });
 
