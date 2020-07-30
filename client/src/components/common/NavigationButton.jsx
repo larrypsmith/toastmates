@@ -2,6 +2,14 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Typography from './Typography';
 
+const NavigationButton = ({ children, ...props }) => (
+  <StyledNavigationButton {...props}>
+    <Typography size='12px' uppercase>
+      {children}
+    </Typography>
+  </StyledNavigationButton>
+);
+
 const StyledNavigationButton = styled.button`
   height: 32px;
   padding: 0 16px;
@@ -12,13 +20,5 @@ const StyledNavigationButton = styled.button`
   overflow: hidden;
   cursor: pointer;
 `;
-
-const NavigationButton = ({ children, ...props }) => (
-    <StyledNavigationButton {...props}>
-      <Typography size='12px' uppercase>
-        {children}
-      </Typography>
-    </StyledNavigationButton>
-  );
 
 export default NavigationButton;

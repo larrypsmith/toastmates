@@ -23,6 +23,7 @@ const GET_MERCHANT = gql`
           name
           description
           price
+          imgUrl
         }
       }
       imgUrl

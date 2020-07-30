@@ -1,16 +1,29 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { modalVar } from '../../cache';
+import ItemImage from './ItemImage';
+import Typography from '../common/Typography';
 
-const Item = ({ item }) => (
-  <ItemContainer>
-    <ItemContentContainer>
-      <NameAndDescriptionContainer>
-        <ItemName>{item.name}</ItemName>
-      </NameAndDescriptionContainer>
-    </ItemContentContainer>
-    {/* <ItemImage src={item.imgUrl} /> */}
-  </ItemContainer>
-);
+const Item = ({ item }) => {
+  return (
+    <ItemContainer>
+      <ItemContentContainer>
+        <NameAndDescriptionContainer>
+          <ItemName>{item.name}</ItemName>
+          <ItemDescription>{item.description}</ItemDescription>
+        </NameAndDescriptionContainer>
+        <StyledTypography
+          size='13px'
+          color='primary'
+        >
+          ${item.price}
+        </StyledTypography>
+      </ItemContentContainer>
+      <ItemImage src={item.imgUrl} />
+      <Padding />
+    </ItemContainer>
+  );
+};
 
 export default Item;
 
@@ -42,7 +55,8 @@ const ItemContentContainer = styled.div`
 
   @media screen and (min-width: 1060px) {
     justify-content: space-between;
-    padding: 20px 20px 128px 15px;
+    padding-right: 128px;
+    padding: 20px 20px 15px;
   }
 `;
 
@@ -64,4 +78,29 @@ const ItemName = styled.h3`
   margin: 0 0 5px;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const StyledTypography = styled(Typography)`
+  line-height: 20px;
+`;
+
+const ItemDescription = styled.div`
+  font-size: 14px;
+  letter-spacing: 0.14px;
+  font-weight: 400;
+  color: rgba(143, 149, 163, 0.9);
+  margin-bottom: 5px;
+  overflow: hidden;
+`;
+
+const Padding = styled.div`
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  width: 128px;
+  transition: opacity 0.1s ease-in-out 0s;
+  padding: 16px;
 `;
