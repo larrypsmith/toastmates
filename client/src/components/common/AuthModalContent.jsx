@@ -41,7 +41,7 @@ const AuthModalContent = ({ modalType }) => {
     <div>
       <HeaderContainer>
         <Header>{content.headerText}</Header>
-        <ExitModalButton />
+        <StyledExitModalButton />
         <StyledNavigationButton modal={content.alternateModal}>
           {content.alternateButtonText}
         </StyledNavigationButton>
@@ -96,5 +96,22 @@ const AuthFormContainer = styled(Container)`
     max-width: initial;
     margin: initial;
     padding-bottom: 30px;
+  }
+`;
+
+const StyledExitModalButton = styled(ExitModalButton)`
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    top: 28px;
+    left: initial;
+    right: 12px;
   }
 `;
