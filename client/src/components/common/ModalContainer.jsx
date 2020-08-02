@@ -4,9 +4,15 @@ import useCloseModal from '../../hooks/useCloseModal';
 
 const ModalContainer = ({ modalComponent: Component }) => {
     const closeModal = useCloseModal();
+
+    const onClick = (e) => {
+        if (e.currentTarget === e.target) {
+            closeModal();
+        }
+    };
     
     return (
-        <StyledModalContainer onClick={closeModal}>
+        <StyledModalContainer onClick={onClick}>
             <Component />
         </StyledModalContainer>
     )
