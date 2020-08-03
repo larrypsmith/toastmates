@@ -1,37 +1,55 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components/macro';
+import { useRouteMatch } from 'react-router-dom';
 
-const GET_CART = gql`
-  query GetCart {
-    cart @client
+const GET_CART_ITEMS = gql`
+  query GetCartItems {
+    cartItems @client
   }
 `;
 
-const CartSizeChip = () => {
-  const { loading, error, data } = useQuery(GET_CART);
-  if (loading) return null;
-  if (error) {
-    console.log(error);
-    return null;
+const GET_CART_MERCHANT = gql`
+  query GetCartMerchant {
+    cartMerchant @client
+  }
+`;
+
+const CartSizeChip = (props) => {
+  const { loading: itemsLoading, error: itemsError, data: itemsData } = useQuery(GET_CART_ITEMS);
+  const { loading: merchantLoading, error: merchantError, data: merchantData } = useQuery(GET_CART_MERCHANT);
+  const { params: { id: merchantId } } = useRouteMatch();
+
+  if (itemsLoading) return null;
+  if (itemsError) {
+    throw new Error(itemsError.message);
   }
 
-  const numItemsInCart = Object.values(data.cart)
-    .reduce((total, n) => total + n, 0);
+  if (merchantLoading) return null;
+  if (merchantError) {
+    throw new Error(merchantError.message);
+  }
 
+  const isNotSameMerchant = merchantId !== merchantData.cartMerchant;
+  const numItemsInCart = isNotSameMerchant
+    ? '0'
+    : Object.values(itemsData.cartItems)
+        .reduce((total, itemQuantity) => total + itemQuantity, 0);
+    
   const isDisabled = numItemsInCart < 1;
+  
   const text = numItemsInCart === 1
     ? 'item'
     : 'items';
 
   return (
-    <CartSizeChipContainer>
+    <CartSizeChipContainer {...props}>
       <StyledCartSizeChip>
         <StyledButton isDisabled={isDisabled}>
           <span />
           <CartIcon isDisabled={isDisabled} />
           <StyledSpan isDisabled={isDisabled}>
-            {numItemsInCart} {text}
+            {isDisabled? 0 : numItemsInCart} {text}
           </StyledSpan>
         </StyledButton>
       </StyledCartSizeChip>

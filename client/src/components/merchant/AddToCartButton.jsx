@@ -1,23 +1,28 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { cartVar } from '../../cache';
+import { cartItemsVar, cartMerchantVar } from '../../cache';
+import { useRouteMatch } from 'react-router-dom';
 import useCloseModal from '../../hooks/useCloseModal';
 
 const AddToCartButton = ({ item: { id, price }, quantity, ...props }) => {
   const closeModal = useCloseModal();
-  
+  const match = useRouteMatch();
+
   const handleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const cart = {...cartVar()};
-    if (cart.hasOwnProperty(id)) {
-      cart[id] += quantity;
+    const cartItems = { ...cartItemsVar() };
+    if (cartItems.hasOwnProperty(id)) {
+      cartItems[id] += quantity;
     } else {
-      cart[id] = quantity;
+      cartItems[id] = quantity;
     }
     
-    cartVar(cart);
+    cartItemsVar(cartItems);
+    cartMerchantVar(match.params.id);
+    localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
+    localStorage.setItem('CART_MERCHANT', cartMerchantVar());
     closeModal();
   };
 

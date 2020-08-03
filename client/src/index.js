@@ -30,6 +30,15 @@ if (token) {
     })
 }
 
+// const cart = localStorage.getItem('CART');
+// debugger
+// if (!cart) {
+//   localStorage.setItem('CART', JSON.stringify({
+//     merchant: '',
+//     items: {}
+//   }));
+// }
+
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

@@ -28,7 +28,7 @@ const ResponsiveComponents = ({ merchant }) => {
       <React.Fragment>
         <MobileMerchantActionBar address={merchant.address} />
         <GutterBottom />
-        <ViewOrderButton numItemsInCart={cartVar().length} />
+        <ViewOrderButton numItemsInCart={localStorage.getItem('CART').length} />
       </React.Fragment>
     );
   } else {

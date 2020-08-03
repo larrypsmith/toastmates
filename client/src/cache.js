@@ -3,7 +3,10 @@ import { makeVar } from "@apollo/client";
 
 export const isLoggedInVar = makeVar(false);
 export const modalVar = makeVar(null);
-export const cartVar = makeVar({});
+
+const cartItems = JSON.parse(localStorage.getItem('CART_ITEMS'));
+export const cartItemsVar = makeVar(cartItems || {});
+export const cartMerchantVar = makeVar(localStorage.getItem('CART_MERCHANT') || '');
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -19,9 +22,14 @@ const cache = new InMemoryCache({
             return modalVar();
           }
         },
-        cart: { 
+        cartItems: { 
           read() {
-            return cartVar();
+            return cartItemsVar();
+          }
+        },
+        cartMerchant: {
+          read() {
+            return cartMerchantVar();
           }
         }
       }

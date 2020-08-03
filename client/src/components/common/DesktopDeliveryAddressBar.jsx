@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Route } from 'react-router-dom';
 import CartSizeChip from './CartSizeChip';
 import Typography from './Typography';
 
@@ -23,7 +24,9 @@ const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
             <Address />
           </TextContainer>
         </ContentContainer>
-        <CartSizeChip />
+        <Route path='/merchant/:id'>
+          <CartSizeChip />
+        </Route>
       </Container>
     </StyledDesktopDeliveryAddressBar>
   )

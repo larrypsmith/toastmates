@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
+import { Link } from 'react-router-dom';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
 import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
@@ -17,13 +18,15 @@ const Navigation = ({ container: ParentContainer , children, ...props }) => {
       <Container padding={[25, 54, 36]}>
         <StyledFlex parent>
           <StyledFlexChildLeft child>
-            <Typography
-              weight='500'
-              size='20px'
-              color='black'
-            >
-              Toastmates
-            </Typography>
+            <StyledLink to='/feed'>
+              <Typography
+                weight='500'
+                size='20px'
+                color='black'
+                >
+                Toastmates
+              </Typography>
+            </StyledLink>
           </StyledFlexChildLeft>
           <StyledFlexChildRight child>
             {components}
@@ -58,3 +61,7 @@ const StyledFlexChildRight = styled(Flex)`
   align-items: center;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
+`;

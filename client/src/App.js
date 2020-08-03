@@ -20,7 +20,10 @@ const App = () => (
       </Switch>
     </MainContainer>
     <Footer />
-    <ModalRoot />
+    <Route path={['/feed', '/merchant/:id', '/']}>
+      <ModalRoot />
+    </Route>
+      
   </StyledApp>
 );
 
