@@ -47,15 +47,10 @@ const StyledQuantitySelector = styled.div`
   max-width: 168px;
   height: 56px;
   color: rgb(45, 49, 56);
-  margin: 36px auto;
-  flex-shrink: 0;
   border: 1px solid rgba(217, 219, 224, 0.5);
-  border-image: initial;
   border-radius: 100px;
 
-  @media screen and (min-width: 1060px) {
-    display: none;
-  }
+
 `;
 
 const StyledTypography = styled(Typography)`

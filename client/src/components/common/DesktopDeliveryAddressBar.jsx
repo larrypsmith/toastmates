@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import CartSizeChip from './CartSizeChip';
 import Typography from './Typography';
 
 const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
@@ -22,6 +23,7 @@ const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
             <Address />
           </TextContainer>
         </ContentContainer>
+        <CartSizeChip />
       </Container>
     </StyledDesktopDeliveryAddressBar>
   )

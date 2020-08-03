@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import DesktopCartControls from './DesktopCartControls';
 import ItemDetails from './ItemDetails';
 
 const ModalItemContent = ({
@@ -15,11 +16,11 @@ const ModalItemContent = ({
       quantity={quantity}
       setQuantity={setQuantity}
     />
-    {/* <CartControls
+    <DesktopCartControls
       item={item}
       quantity={quantity}
       setQuantity={setQuantity}
-    /> */}
+    />
   </StyledModalItemContent>
 );
 

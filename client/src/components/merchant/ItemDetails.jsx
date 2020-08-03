@@ -13,7 +13,7 @@ const ItemDetails = ({
   <StyledItemDetails>
     <TopPaddingAndExitButton />
     <NameAndDescription itemName={itemName} description={description} />
-    <QuantitySelector
+    <StyledQuantitySelector
       quantity={quantity}
       setQuantity={setQuantity}
     />
@@ -30,5 +30,13 @@ const StyledItemDetails = styled.div`
     height: calc(100% - 88px);
     overflow-y: auto;
     border-bottom: 1px solid rgba(217, 219, 224, 0.5);
+  }
+`;
+
+const StyledQuantitySelector = styled(QuantitySelector)`
+  margin: 36px auto;
+
+  @media screen and (min-width: 1060px) {
+    display: none;
   }
 `;

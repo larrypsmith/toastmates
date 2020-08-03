@@ -2,13 +2,15 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import ExitModalButton from '../common/ExitModalButton';
 
-const ModalItemImage = ({ src }) => (
-  <StyledModalItemImage>
-    <ImageDiv src={src}/>
-    <PaddingDiv />
-    <StyledExitModalButton />
-  </StyledModalItemImage>
-);
+const ModalItemImage = ({ src }) => {
+  return (
+    <StyledModalItemImage hasImage={!!src}>
+      <ImageDiv src={src}/>
+      <PaddingDiv hasImage={!!src} />
+      <StyledExitModalButton />
+    </StyledModalItemImage>
+  );
+};
 
 export default ModalItemImage;
 
@@ -16,7 +18,7 @@ const StyledModalItemImage = styled.div`
   position: relative;
   background-color: transparent;
   height: auto;
-  width: 100%;
+  width: ${props => props.hasImage ? '100%' : 'auto'};
   flex-shrink: 0;
   overflow: hidden;
 
@@ -36,7 +38,7 @@ const ImageDiv = styled.div`
   left: 0px;
   transform: scale(1);
   height: 100%;
-  width: 100%;
+  width: ${props => props.src ? '100%' : 'auto'};
   background-position: center center;
   background-repeat: no-repeat;
   transition: opacity 0.4s linear 0s;
@@ -44,7 +46,7 @@ const ImageDiv = styled.div`
 
 const PaddingDiv = styled.div`
   height: auto;
-  padding-bottom: 100%;
+  padding-bottom: ${props => props.hasImage ? '100%' : 'auto'};
 `;
 
 const StyledExitModalButton = styled(ExitModalButton)`
