@@ -1,11 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { useRouteMatch } from 'react-router-dom';
-
-const GET_CART_ITEMS = gql`
-  query GetCartItems {
-    cartItems @client
-  }
-`;
+import useGetCartItems from './useGetCartItems';
 
 const GET_CART_MERCHANT = gql`
   query GetCartMerchant {
@@ -15,7 +10,7 @@ const GET_CART_MERCHANT = gql`
 
 const useNumItemsInCart = () => {
   const match = useRouteMatch();
-  const { loading: itemsLoading, error: itemsError, data: itemsData } = useQuery(GET_CART_ITEMS);
+  const { loading: itemsLoading, error: itemsError, data: itemsData } = useGetCartItems();
   const { loading: merchantLoading, error: merchantError, data: merchantData } = useQuery(GET_CART_MERCHANT);
   
   if (itemsLoading) return null;

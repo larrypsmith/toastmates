@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useNumItemsInCart from '../../hooks/useNumItemsInCart';
+import CartItemsList from '../merchant/CartItemsList';
+import Typography from './Typography';
 
 const CartSizeChip = (props) => {
   const numItemsInCart = useNumItemsInCart();
@@ -12,7 +14,7 @@ const CartSizeChip = (props) => {
 
   return (
     <CartSizeChipContainer {...props}>
-      <StyledCartSizeChip>
+      <StyledContainer>
         <StyledButton isDisabled={isDisabled}>
           <span />
           <CartIcon isDisabled={isDisabled} />
@@ -20,7 +22,18 @@ const CartSizeChip = (props) => {
             {numItemsInCart} {text}
           </StyledSpan>
         </StyledButton>
-      </StyledCartSizeChip>
+        <DropdownMenuContainer>
+          <div>
+            <Container>
+              <OrderTypography size='24px' weight='600'>
+                Order
+              </OrderTypography>
+            </Container>
+            <CartItemsList />
+            {/* <Subtotal /> */}
+          </div>
+        </DropdownMenuContainer>
+      </StyledContainer>
     </CartSizeChipContainer>
   )
 };
@@ -34,7 +47,7 @@ const CartSizeChipContainer = styled.div`
   justify-content: flex-end;
 `;
 
-const StyledCartSizeChip = styled.div`
+const StyledContainer = styled.div`
   position: relative;
   height: 45px;
 `;
@@ -98,4 +111,50 @@ const StyledSpan = styled.span`
   text-transform: uppercase;
   color: ${props => props.isDisabled ? 'rgb(143, 149, 163)' : 'white'};
   text-align: left;
+`;
+
+const DropdownMenuContainer = styled.div`
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(16, 25, 30, 0.08) 0px 1px 4px 0px;
+  position: absolute;
+  z-index: 1100;
+  width: 362px;
+  max-height: 550px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(242, 243, 243);
+  border-image: initial;
+
+  @media screen and (min-width: 768px) {
+    bottom: -13px;
+    left: calc(-50% + 62.5px + -100px);
+    transform: translate(calc(-50% + 62.5px + 0px), 100%);
+
+    &::before {
+      margin-left: -9px;
+      border-bottom-color: rgb(242, 243, 243) !important;
+      border-width: 9px !important;
+      position: absolute;
+      width: 0px;
+      height: 0px;
+      content: "";
+      bottom: 100%;
+      left: calc(50% - -100px);
+      border-style: solid;
+      border-color: transparent;
+      border-image: initial;
+    }
+  }
+`;
+
+const Container = styled.div`
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+const OrderTypography = styled(Typography)`
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 16px;
 `;

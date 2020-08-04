@@ -7,12 +7,14 @@ const {
   GraphQLString
 } = graphql;
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Order = mongoose.model('Order');
+const Item = mongoose.model('Item');
 const Merchant = mongoose.model('Merchant');
+const Order = mongoose.model('Order');
+const User = mongoose.model('User');
 const UserType = require('./userType');
 const OrderType = require('./orderType');
 const MerchantType = require('./merchantType');
+const ItemType = require('./itemType');
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -57,7 +59,14 @@ const RootQuery = new GraphQLObjectType({
       type: MerchantType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
-        return Merchant.findById(args.id)
+        return Merchant.findById(args.id);
+      }
+    },
+    item: {
+      type: ItemType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Item.findById(args.id);
       }
     }
   }
