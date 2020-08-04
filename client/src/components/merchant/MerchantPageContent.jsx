@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth.js';
-import { cartVar } from '../../cache';
+import { cartItemsVar } from '../../cache';
 import DesktopDeliveryAddressBar from '../common/DesktopDeliveryAddressBar';
 import MerchantDetails from './MerchantDetails';
 import MenuList from './MenuList';
 import MobileMerchantActionBar from './MobileMerchantActionBar';
 import ViewOrderButton from './ViewOrderButton';
+import useNumItemsInCart from '../../hooks/useNumItemsInCart';
 
 const MerchantPageContent = ({ merchant }) => {
   return (
@@ -22,13 +23,14 @@ export default MerchantPageContent;
 
 const ResponsiveComponents = ({ merchant }) => {
   const windowWidth = useResponsiveWindowWidth();
+  const numItemsInCart = useNumItemsInCart();
   
   if (windowWidth <= 768) {
     return (
       <React.Fragment>
         <MobileMerchantActionBar address={merchant.address} />
         <GutterBottom />
-        <ViewOrderButton numItemsInCart={localStorage.getItem('CART').length} />
+        <ViewOrderButton numItemsInCart={numItemsInCart} />
       </React.Fragment>
     );
   } else {

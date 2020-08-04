@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const ViewOrderButton = ({ numItemsInCart }) => {
-  if (numItemsInCart === 0) return null;
+  if (numItemsInCart === '0') return null;
   return (
     <Container>
       <StyledButtonContainer>
