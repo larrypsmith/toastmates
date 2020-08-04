@@ -29,7 +29,7 @@ const CartSizeChip = (props) => {
                 Order
               </OrderTypography>
             </Container>
-            <CartItemsList />
+            <CartItemsList hidden={isDisabled}/>
             {/* <Subtotal /> */}
           </div>
         </DropdownMenuContainer>

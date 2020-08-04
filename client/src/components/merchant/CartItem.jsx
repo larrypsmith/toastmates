@@ -1,39 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { gql, useQuery } from '@apollo/client';
 import RemoveItemFromCartButton from './RemoveItemFromCartButton';
 import Typography from '../common/Typography';
 
-const GET_ITEM = gql`
-  query GetItem($id: ID!) {
-    item(id: $id) {
-      id
-      name
-      price
-    }
-  }
-`;
-
-const CartItem = ({ id, qty, ...props }) => {
-  const { error, data } = useQuery(GET_ITEM, {
-    variables: { id }
-  });
-
-  if (error) throw new Error(error.message);
-  if (!data) return null;
-
+const CartItem = ({ item, quantity, ...props }) => {
   return (
     <StyledCartItem {...props}>
       <FlexContainer>
-        <Typography>{qty}</Typography>
+        <Typography>{quantity}</Typography>
         <Container>
           <NameTypography size='16px' weight='500'>
-            {data.item.name}
+            {item.name}
           </NameTypography>
         </Container>
-        <Typography size='14px' color='primary'>${data.item.price}</Typography>
+        <Typography size='14px' color='primary'>${item.price}</Typography>
       </FlexContainer>
-      <RemoveItemFromCartButton id={id} />
+      <RemoveItemFromCartButton id={item.id} />
     </StyledCartItem>
   );
 };

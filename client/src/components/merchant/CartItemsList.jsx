@@ -9,10 +9,11 @@ const CartItemsList = () => {
   if (error) throw new Error(error.message);
   if (!data) return null;
   
+  debugger
   return (
     <StyledCartItemsList>
-      {Object.entries(data.cartItems).map(([ id, qty ]) =>
-        <CartItem key={id} id={id} qty={qty} />
+      {Object.values(data.cartItems).map(({ item, quantity }) =>
+        <CartItem key={item.id} item={item} quantity={quantity} />
       )}
     </StyledCartItemsList>
   );

@@ -4,7 +4,7 @@ import { cartItemsVar, cartMerchantVar } from '../../cache';
 import { useRouteMatch } from 'react-router-dom';
 import useCloseModal from '../../hooks/useCloseModal';
 
-const AddToCartButton = ({ item: { id, price }, quantity, ...props }) => {
+const AddToCartButton = ({ item, quantity, ...props }) => {
   const closeModal = useCloseModal();
   const match = useRouteMatch();
 
@@ -13,10 +13,10 @@ const AddToCartButton = ({ item: { id, price }, quantity, ...props }) => {
     e.stopPropagation();
 
     const cartItems = { ...cartItemsVar() };
-    if (cartItems.hasOwnProperty(id)) {
-      cartItems[id] += quantity;
+    if (cartItems.hasOwnProperty(item.id)) {
+      (cartItems[item.id]).quantity += quantity;
     } else {
-      cartItems[id] = quantity;
+      cartItems[item.id] = { item, quantity };
     }
     
     cartItemsVar(cartItems);
@@ -30,7 +30,7 @@ const AddToCartButton = ({ item: { id, price }, quantity, ...props }) => {
     <StyledAddToCartButton {...props} onClick={handleClick}>
       <StyledSpan />
       <span>Add to cart</span>
-      <Total>${price * quantity}</Total>
+      <Total>${item.price * quantity}</Total>
     </StyledAddToCartButton>
   );
 };

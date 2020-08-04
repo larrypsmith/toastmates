@@ -28,7 +28,7 @@ const useNumItemsInCart = () => {
   const numItemsInCart = isNotSameMerchant
     ? '0'
     : Object.values(itemsData.cartItems)
-      .reduce((total, itemQuantity) => total + itemQuantity, 0);
+      .reduce((total, { quantity }) => total + quantity, 0);
 
   return numItemsInCart;
 };
