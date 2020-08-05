@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useCloseModal from '../../hooks/useCloseModal';
-import { cartItemsVar, cartMerchantVar } from '../../cache';
+import Cart from '../../Cart';
 
 const SoundsGoodButton = ({ item, quantity, merchantId }) => {
   const closeModal = useCloseModal();
@@ -10,12 +10,8 @@ const SoundsGoodButton = ({ item, quantity, merchantId }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    cartItemsVar({
-      [item.id]: { item, quantity }
-    });
-    localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
-    cartMerchantVar(merchantId);
-    localStorage.setItem('CART_MERCHANT', merchantId);
+    Cart.empty();
+    Cart.add(item.id, merchantId, quantity);
     closeModal();
   }
   

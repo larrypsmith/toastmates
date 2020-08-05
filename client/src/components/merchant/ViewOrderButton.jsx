@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { modalVar} from '../../cache';
-import useNumItemsInCart from '../../hooks/useNumItemsInCart';
+// import useNumItemsInCart from '../../hooks/useNumItemsInCart';
 import ViewOrderModal from './ViewOrderModal';
+import useGetCartItems from '../../hooks/useGetCartItems';
 
 const ViewOrderButton = () => {
-  const numItemsInCart = useNumItemsInCart();
+  const { loading, error, data } = useGetCartItems();
+  if (loading || error) return null;
+  const numItemsInCart = data.cartItems.length;
   
   const handleClick = (e) => {
     e.stopPropagation();

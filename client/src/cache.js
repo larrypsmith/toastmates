@@ -1,12 +1,13 @@
 import { InMemoryCache } from '@apollo/client';
 import { makeVar } from "@apollo/client";
+import Cart from './Cart';
 
 export const isLoggedInVar = makeVar(false);
 export const modalVar = makeVar(null);
 
-const cartItems = JSON.parse(localStorage.getItem('CART_ITEMS'));
-export const cartItemsVar = makeVar(cartItems || {});
-export const cartMerchantVar = makeVar(localStorage.getItem('CART_MERCHANT') || '');
+export const cartItemsVar = makeVar([]);
+debugger                                                                                      ;
+export const cartMerchantVar = makeVar('');
 
 export const redirectVar = makeVar('');
 
@@ -26,12 +27,13 @@ const cache = new InMemoryCache({
         },
         cartItems: { 
           read() {
-            return cartItemsVar();
+            debugger
+            return Cart.getItems();
           }
         },
         cartMerchant: {
           read() {
-            return cartMerchantVar();
+            return Cart.getMerchant();
           }
         }
       }

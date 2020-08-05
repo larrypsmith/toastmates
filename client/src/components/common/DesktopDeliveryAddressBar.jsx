@@ -24,9 +24,9 @@ const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
             <Address />
           </TextContainer>
         </ContentContainer>
-        <Route path='/merchant/:id'>
+        {/* <Route path='/merchant/:id'>
           <CartSizeChip />
-        </Route>
+        </Route> */}
       </Container>
     </StyledDesktopDeliveryAddressBar>
   )

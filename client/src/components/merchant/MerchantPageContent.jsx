@@ -27,7 +27,7 @@ const ResponsiveComponents = ({ merchant }) => {
       <React.Fragment>
         <MobileMerchantActionBar address={merchant.address} />
         <GutterBottom />
-        <ViewOrderButton />
+        {/* <ViewOrderButton /> */}
       </React.Fragment>
     );
   } else {

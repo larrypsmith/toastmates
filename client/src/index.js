@@ -9,6 +9,7 @@ import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components/macro';
 import theme from './theme';
 import cache, { isLoggedInVar } from './cache';
+import Cart from './Cart';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
@@ -29,6 +30,9 @@ if (token) {
       isLoggedInVar(data.verifyUser.loggedIn)
     })
 }
+
+window.addEventListener('load', Cart.writeFromStorage);
+window.addEventListener('beforeunload', Cart.writeToStorage);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -9,7 +9,7 @@ const FeedPage = () => (
     <FeedNavigation />
     <FeedPageHeader />
     <FeedPageMain />
-    <ViewOrderButton />
+    {/* <ViewOrderButton /> */}
   </React.Fragment>
 );
 

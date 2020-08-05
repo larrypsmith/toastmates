@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
-import { cartMerchantVar } from '../../cache';
 import { useRouteMatch } from 'react-router-dom';
 import ExitModalButton from '../common/ExitModalButton';
 import SoundsGoodButton from './SoundsGoodButton';
 import Typography from '../common/Typography';
+import Cart from '../../Cart';
 
 const GET_MERCHANT = gql`
   query GetMerchant($id: ID!) {
@@ -17,7 +17,7 @@ const GET_MERCHANT = gql`
 `;
 
 const ConfirmCartChangeModal = ({ item, quantity }) => {
-  const currentCartMerchantId = cartMerchantVar();
+  const currentCartMerchantId = Cart.getMerchant();
 
   const {
     loading: oldLoading,

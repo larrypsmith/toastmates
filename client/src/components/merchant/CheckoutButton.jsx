@@ -14,7 +14,6 @@ const CheckoutButton = () => {
     e.stopPropagation();
 
     if (!isLoggedIn) {
-      debugger
       modalVar(LoginModal);
       redirectVar(`${location.pathname}/checkout`);
     } else {

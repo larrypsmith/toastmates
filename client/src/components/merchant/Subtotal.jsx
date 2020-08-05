@@ -5,6 +5,7 @@ import useGetCartItems from '../../hooks/useGetCartItems';
 const Subtotal = () => {
   const { error, data } = useGetCartItems();
   if (error) throw new Error(error.message);
+  if (!data || !data.cartItems) return null;
 
   const subtotal = Object.values(data.cartItems)
     .reduce((total, { item, quantity }) => (

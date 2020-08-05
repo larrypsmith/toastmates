@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
-import { cartMerchantVar, modalVar } from '../../cache';
+import { modalVar } from '../../cache';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth';
 import CartItemsList from './CartItemsList';
 import CheckoutButton from './CheckoutButton';
 import Subtotal from './Subtotal';
+import Cart from '../../Cart';
 
 const GET_MERCHANT = gql`
   query GetMerchant($id: ID!) {
@@ -18,7 +19,7 @@ const GET_MERCHANT = gql`
 
 const ViewOrderModalContent = () => {
   const windowWidth = useResponsiveWindowWidth();
-  const merchantId = cartMerchantVar();
+  const merchantId = Cart.getMerchant();
   
   const { error, data } = useQuery(GET_MERCHANT, {
     variables: {

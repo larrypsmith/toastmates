@@ -3,16 +3,11 @@ import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
 import { Link } from 'react-router-dom';
+import NavigationCartControls from './NavigationCartControls';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
-import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 
 const Navigation = ({ container: ParentContainer , children, ...props }) => {
-  const isLoggedIn = useQueryIsLoggedIn();
-  const components = isLoggedIn
-    ? <UserIcon />
-    : children;
-  
   return (
     <ParentContainer {...props}>
       <Container padding={[25, 54, 36]}>
@@ -29,7 +24,9 @@ const Navigation = ({ container: ParentContainer , children, ...props }) => {
             </StyledLink>
           </StyledFlexChildLeft>
           <StyledFlexChildRight child>
-            {components}
+            {children}
+            <UserIcon />
+            <NavigationCartControls />
           </StyledFlexChildRight>
         </StyledFlex>
       </Container>
