@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import AuthFormContinueButton from './AuthFormContinueButton';
 import AuthFormContainer from './AuthFormContainer';
 import AuthFormError from './AuthFormError';
@@ -9,7 +10,7 @@ import DemoUserButton from './DemoUserButton';
 import SignUpFormLink from './SignUpFormLink';
 import useControlledInput from '../../hooks/useControlledInput';
 import useCloseModal from '../../hooks/useCloseModal';
-import { isLoggedInVar } from '../../cache';
+import { isLoggedInVar, redirectVar } from '../../cache';
 
 const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -31,6 +32,7 @@ const LoginForm = () => {
   const [password, updatePassword] = useControlledInput('');
   const [error, setError] = useState();
   const closeModal = useCloseModal();
+  const history = useHistory();
 
   const [login, { data }] = useMutation(
     LOGIN_USER,
@@ -40,6 +42,11 @@ const LoginForm = () => {
         localStorage.setItem('auth-token', token);
         console.log('auth token:', localStorage.getItem('auth-token'));
         isLoggedInVar(data.login.loggedIn);
+
+        if (redirectVar()) {
+          history.push(redirectVar());
+          redirectVar('');
+        }
         closeModal();
       },
       onError: (err) => setError(err.message),

@@ -3,14 +3,21 @@ import styled from 'styled-components/macro';
 import Button from './Button';
 import useLogin from '../../hooks/useLogin';
 import useCloseModal from '../../hooks/useCloseModal';
+import { useHistory } from 'react-router-dom';
+import { redirectVar } from '../../cache';
 
 const DemoUserButton = () => {
   const login = useLogin();
   const closeModal = useCloseModal();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login('johndoe@mail.com', 'password');
+    if (redirectVar()) {
+      history.push(redirectVar());
+      redirectVar('');
+    }
     closeModal();
   };
 

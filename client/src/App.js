@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import CheckoutPage from './components/checkout/CheckoutPage';
 import FeedPage from './components/feed/FeedPage';
 import Footer from './components/splash/Footer';
 import GlobalStyle from './components/common/GlobalStyle';
@@ -13,14 +14,15 @@ const App = () => (
     <GlobalStyle />
     <MainContainer>
       <Switch>
-        <Route path='/feed'><FeedPage /></Route>
-        <Route path='/merchant/:id'><MerchantPage /></Route>
+        <Route exact path='/feed'><FeedPage /></Route>
+        <Route exact path='/merchant/:id'><MerchantPage /></Route>
+        <Route exact path='/merchant/:id/checkout'><CheckoutPage /></Route>
         <Route exact path='/'><SplashPage /></Route>
         <Redirect to='/feed' />
       </Switch>
     </MainContainer>
     <Footer />
-    <Route path={['/feed', '/merchant/:id', '/']}>
+    <Route path={['/feed', '/merchant/:id', 'merchant/:id/checkout', '/']}>
       <ModalRoot />
     </Route>
       

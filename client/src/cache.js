@@ -8,6 +8,8 @@ const cartItems = JSON.parse(localStorage.getItem('CART_ITEMS'));
 export const cartItemsVar = makeVar(cartItems || {});
 export const cartMerchantVar = makeVar(localStorage.getItem('CART_MERCHANT') || '');
 
+export const redirectVar = makeVar('');
+
 const cache = new InMemoryCache({
   typePolicies: {
     Query: {
