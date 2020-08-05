@@ -4,11 +4,13 @@ import useGetCartItems from '../../hooks/useGetCartItems';
 import CartItem from './CartItem';
 
 const CartItemsList = () => {
-  const { data, error } = useGetCartItems();
+  const { data, error, loading } = useGetCartItems();
   
+
   if (error) throw new Error(error.message);
-  if (!data) return null;
-  
+  if (loading) return null;
+  if (!data || !data.cartItems) return null;
+  debugger
   return (
     <StyledCartItemsList>
       {Object.values(data.cartItems).map(({ item, quantity }) =>

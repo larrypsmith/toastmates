@@ -20,6 +20,8 @@ const CartSizeChip = (props) => {
     if (numItemsInCart > 0) {
       setIsDropdownHidden(false);
     }
+
+    return () => {setIsDropdownHidden(true)};
   }, [numItemsInCart]);
 
   // useEffect(() => {

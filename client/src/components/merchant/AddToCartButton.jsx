@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { cartItemsVar, cartMerchantVar } from '../../cache';
+import { cartItemsVar, cartMerchantVar, modalVar } from '../../cache';
 import { useRouteMatch } from 'react-router-dom';
 import useCloseModal from '../../hooks/useCloseModal';
+import ConfirmCartChangeModal from './ConfirmCartChangeModal';
 
 const AddToCartButton = ({ item, quantity, ...props }) => {
   const closeModal = useCloseModal();
@@ -15,7 +16,7 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
     const cartMerchant = cartMerchantVar();
 
     let cartItems;
-    if (cartMerchant === match.params.id) {
+    if (cartMerchant === match.params.id || cartMerchant === '') {
       cartItems = JSON.parse(JSON.stringify(cartItemsVar()));
 
       if (cartItems.hasOwnProperty(item.id)) {
@@ -23,19 +24,24 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
       } else {
         cartItems[item.id] = { item, quantity };
       }
+
+      cartItemsVar(cartItems);
+      localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
+      
+      cartMerchantVar(match.params.id);
+      localStorage.setItem('CART_MERCHANT', cartMerchantVar());
+    
+      closeModal();
     } else {
-      cartItems = {
-        [item.id]: { item, quantity }
-      };
+      // cartItems = {
+      //   [item.id]: { item, quantity }
+      // };
+      const Component = () => (
+        <ConfirmCartChangeModal item={item} quantity={quantity} />
+      )
+
+      modalVar(Component);
     }
-    
-    cartItemsVar(cartItems);
-    localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
-    
-    cartMerchantVar(match.params.id);
-    localStorage.setItem('CART_MERCHANT', cartMerchantVar());
-    
-    closeModal();
   };
 
   return (
