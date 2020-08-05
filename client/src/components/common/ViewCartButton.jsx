@@ -35,6 +35,17 @@ const StyledButton = styled.button`
     width: auto;
     height: auto;
     border-radius: initial;
+
+    &::after {
+      content: "";
+      background-image: url(https://buyer-static-gcp.postmates.com/dist/prod/a01e25bb225965bce72e54491e552755.svg);
+      display: block;
+      width: 4px;
+      height: 7px;
+      margin-left: 11px;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
   }
 
   cursor: pointer;
