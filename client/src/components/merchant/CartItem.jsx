@@ -13,7 +13,7 @@ const CartItem = ({ item, quantity, ...props }) => {
             {item.name}
           </NameTypography>
         </Container>
-        <Typography size='14px' color='primary'>${item.price}</Typography>
+        <Typography size='14px' color='primary'>${Math.round(item.price * quantity * 100) / 100}</Typography>
       </FlexContainer>
       <RemoveItemFromCartButton id={item.id} />
     </StyledCartItem>

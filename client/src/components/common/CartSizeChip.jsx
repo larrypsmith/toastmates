@@ -1,36 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import useNumItemsInCart from '../../hooks/useNumItemsInCart';
 import CartItemsList from '../merchant/CartItemsList';
+import CheckoutButton from '../merchant/CheckoutButton';
+import Subtotal from '../merchant/Subtotal';
 import Typography from './Typography';
 
 const CartSizeChip = (props) => {
   const numItemsInCart = useNumItemsInCart();
+  const [isDropdownHidden, setIsDropdownHidden] = useState(true);
 
+  // const hideDropdown = (e) => {
+  //   debugger
+  //   e.stopPropagation();
+  //   setIsDropdownHidden(true);
+  // };
+
+  useEffect(() => {
+    if (numItemsInCart > 0) {
+      setIsDropdownHidden(false);
+    }
+  }, [numItemsInCart]);
+
+  // useEffect(() => {
+  //   window.addEventListener('load', hideDropdown);
+  //   return () => {
+  //     window.removeEventListener('load', hideDropdown)
+  //   };
+  // }, [hideDropdown]);
+  
   const isDisabled = numItemsInCart < 1;
   const text = numItemsInCart === 1
     ? 'item'
     : 'items';
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDropdownHidden(!isDropdownHidden);
+  };
+
   return (
     <CartSizeChipContainer {...props}>
       <StyledContainer>
-        <StyledButton isDisabled={isDisabled}>
+        <StyledButton disabled={isDisabled} onClick={handleClick}>
           <span />
           <CartIcon isDisabled={isDisabled} />
           <StyledSpan isDisabled={isDisabled}>
             {numItemsInCart} {text}
           </StyledSpan>
         </StyledButton>
-        <DropdownMenuContainer>
+        <DropdownMenuContainer hidden={isDropdownHidden}>
           <div>
             <Container>
               <OrderTypography size='24px' weight='600'>
                 Order
               </OrderTypography>
             </Container>
-            <CartItemsList hidden={isDisabled}/>
-            {/* <Subtotal /> */}
+            <CartItemsList hidden={isDisabled} />
+            <Subtotal />
+            <CheckoutButton />
           </div>
         </DropdownMenuContainer>
       </StyledContainer>
@@ -45,6 +74,10 @@ const CartSizeChipContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  @media screen and (max-width: 1059px) {
+    display: none;
+  }
 `;
 
 const StyledContainer = styled.div`
@@ -53,8 +86,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-  color: ${props => props.isDisabled ? 'rgb(45, 49, 56)' : 'white'};
-  background-color: ${props => props.isDisabled
+  color: ${props => props.disabled ? 'rgb(45, 49, 56)' : 'white'};
+  background-color: ${props => props.disabled
     ? 'rgb(255, 255, 255)'
     : props.theme.palette.primary.main
   };

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth.js';
-import { cartItemsVar } from '../../cache';
 import DesktopDeliveryAddressBar from '../common/DesktopDeliveryAddressBar';
 import MerchantDetails from './MerchantDetails';
 import MenuList from './MenuList';
@@ -25,7 +24,7 @@ const ResponsiveComponents = ({ merchant }) => {
   const windowWidth = useResponsiveWindowWidth();
   const numItemsInCart = useNumItemsInCart();
   
-  if (windowWidth <= 768) {
+  if (windowWidth <= 1059) {
     return (
       <React.Fragment>
         <MobileMerchantActionBar address={merchant.address} />

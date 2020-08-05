@@ -1,10 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { modalVar} from '../../cache';
+import ViewOrderModal from './ViewOrderModal';
 
 const ViewOrderButton = ({ numItemsInCart }) => {
+  const handleClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    modalVar(ViewOrderModal);
+  }
+  
   if (numItemsInCart === '0') return null;
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <StyledButtonContainer>
         <StyledButton>
           <CartItemCount>

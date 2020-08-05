@@ -12,17 +12,29 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const cartItems = { ...cartItemsVar() };
-    if (cartItems.hasOwnProperty(item.id)) {
-      (cartItems[item.id]).quantity += quantity;
+    const cartMerchant = cartMerchantVar();
+
+    let cartItems;
+    if (cartMerchant === match.params.id) {
+      cartItems = JSON.parse(JSON.stringify(cartItemsVar()));
+
+      if (cartItems.hasOwnProperty(item.id)) {
+        (cartItems[item.id]).quantity += quantity;
+      } else {
+        cartItems[item.id] = { item, quantity };
+      }
     } else {
-      cartItems[item.id] = { item, quantity };
+      cartItems = {
+        [item.id]: { item, quantity }
+      };
     }
     
     cartItemsVar(cartItems);
-    cartMerchantVar(match.params.id);
     localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
+    
+    cartMerchantVar(match.params.id);
     localStorage.setItem('CART_MERCHANT', cartMerchantVar());
+    
     closeModal();
   };
 
