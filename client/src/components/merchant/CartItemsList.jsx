@@ -10,7 +10,7 @@ const CartItemsList = () => {
   if (error) throw new Error(error.message);
   if (loading) return null;
   if (!data || !data.cartItems) return null;
-  debugger
+
   return (
     <StyledCartItemsList>
       {Object.values(data.cartItems).map(({ item, quantity }) =>

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { gql, useQuery } from '@apollo/client';
-import { cartMerchantVar, cartItemsVar } from '../../cache';
+import { cartMerchantVar } from '../../cache';
 import { useRouteMatch } from 'react-router-dom';
-import useCloseModal from '../../hooks/useCloseModal';
 import ExitModalButton from '../common/ExitModalButton';
+import SoundsGoodButton from './SoundsGoodButton';
 import Typography from '../common/Typography';
 
 const GET_MERCHANT = gql`
@@ -53,7 +53,7 @@ const ConfirmCartChangeModal = ({ item, quantity }) => {
         Start a new cart?
       </StyledHeader>
       <StyledParagraph size='14px' color='secondary'>
-        You currently have items in your cart from
+        You currently have items in your cart from&nbsp;
         {oldData.merchant.name}. Would you like to clear the
         cart and add new items from {newData.merchant.name}?
       </StyledParagraph>
@@ -107,54 +107,4 @@ const StyledParagraph = styled(Typography)`
   line-height: 22px;
   text-align: center;
   margin: 0px 20px 24px;
-`;
-
-const SoundsGoodButton = ({ item, quantity, merchantId }) => {
-  const closeModal = useCloseModal();
-  
-  const handleClick = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    cartItemsVar({
-      [item.id]: { item, quantity }
-    });
-    localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
-    cartMerchantVar(merchantId);
-    localStorage.setItem('CART_MERCHANT', merchantId);
-    closeModal();
-  }
-  
-  return (
-    <StyledSoundsGoodButton onClick={handleClick}>
-      Sounds Good
-    </StyledSoundsGoodButton>
-  )
-};
-
-const StyledSoundsGoodButton = styled.button`
-  width: 100%;
-  letter-spacing: 1px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  font-size: 12px;
-  line-height: 12px;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 500;
-  cursor: pointer;
-  background-color: rgb(0, 204, 153);
-  color: rgb(255, 255, 255);
-  margin: 0px;
-  border-width: initial;
-  border-style: none;
-  border-color: initial;
-  border-image: initial;
-  outline: none;
-  border-radius: 32px;
-  padding: 0px 24px;
-  transition: all 0.2s ease-out 0s;
 `;

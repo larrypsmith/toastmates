@@ -39,7 +39,6 @@ const StyledCheckoutButton = styled.button`
   position: fixed;
   bottom: 0px;
   left: 0px;
-  /* width: 100%; */
   width: calc(100% - 32px);
   display: flex;
   justify-content: center;
@@ -56,13 +55,11 @@ const StyledCheckoutButton = styled.button`
   border-radius: 28px;
 
   @media screen and (max-width: 1059px) {
-    /* width: calc(100% - 32px); */
     margin: 16px 16px 36px;
   }
 
   @media screen and (min-width: 1060px) {
     position: static;
-    /* width: calc(100% - 32px); */
     margin: 0px 16px 16px;
   }
 `;

@@ -33,13 +33,9 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
     
       closeModal();
     } else {
-      // cartItems = {
-      //   [item.id]: { item, quantity }
-      // };
       const Component = () => (
         <ConfirmCartChangeModal item={item} quantity={quantity} />
-      )
-
+      );
       modalVar(Component);
     }
   };

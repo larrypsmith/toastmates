@@ -4,7 +4,6 @@ const {
   GraphQLList,
   GraphQLNonNull,
   GraphQLID,
-  GraphQLString
 } = graphql;
 const mongoose = require('mongoose');
 const Item = mongoose.model('Item');

@@ -10,12 +10,6 @@ const CartSizeChip = (props) => {
   const numItemsInCart = useNumItemsInCart();
   const [isDropdownHidden, setIsDropdownHidden] = useState(true);
 
-  // const hideDropdown = (e) => {
-  //   debugger
-  //   e.stopPropagation();
-  //   setIsDropdownHidden(true);
-  // };
-
   useEffect(() => {
     if (numItemsInCart > 0) {
       setIsDropdownHidden(false);
@@ -24,13 +18,6 @@ const CartSizeChip = (props) => {
     return () => {setIsDropdownHidden(true)};
   }, [numItemsInCart]);
 
-  // useEffect(() => {
-  //   window.addEventListener('load', hideDropdown);
-  //   return () => {
-  //     window.removeEventListener('load', hideDropdown)
-  //   };
-  // }, [hideDropdown]);
-  
   const isDisabled = numItemsInCart < 1;
   const text = numItemsInCart === 1
     ? 'item'
