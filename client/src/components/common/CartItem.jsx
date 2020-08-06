@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { useApolloClient, gql } from '@apollo/client';
-import useGetItem from '../../hooks/useGetItem';
 import RemoveItemFromCartButton from './RemoveItemFromCartButton';
 
 const CartItem = ({ item, quantity }) => {
@@ -15,7 +13,7 @@ const CartItem = ({ item, quantity }) => {
           <CartQuantity>{quantity}</CartQuantity>
           <ItemNameAndPriceContainer>
             <NameText>{name}</NameText>
-            <PriceText>{price}</PriceText>
+            <PriceText>${price}</PriceText>
           </ItemNameAndPriceContainer>
         </Container2>
       </Container>

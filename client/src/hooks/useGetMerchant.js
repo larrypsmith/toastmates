@@ -5,6 +5,7 @@ const GET_MERCHANT = gql`
     merchant(id: $id) {
       id
       name
+      deliveryFee
     }
   }
 `;
