@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import CartShow from './CartShow';
 import ViewCartButton from './ViewCartButton';
 
 const NavigationCartControls = () => {
+  const [isCartShowHidden, setCartShowHidden] = useState(true);
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setCartShowHidden(!isCartShowHidden);
+  }
+  
   return (
     <StyledSpan>
       <FlexParent>
         <Pipe />
-        <ViewCartButton />
+        <ViewCartButton onClick={handleClick} />
       </FlexParent>
+      <CartShow isHidden={isCartShowHidden} setIsHidden={setCartShowHidden} />
     </StyledSpan>
   )
 };

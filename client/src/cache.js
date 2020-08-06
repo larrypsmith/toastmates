@@ -6,7 +6,6 @@ export const isLoggedInVar = makeVar(false);
 export const modalVar = makeVar(null);
 
 export const cartItemsVar = makeVar([]);
-debugger                                                                                      ;
 export const cartMerchantVar = makeVar('');
 
 export const redirectVar = makeVar('');
@@ -27,7 +26,6 @@ const cache = new InMemoryCache({
         },
         cartItems: { 
           read() {
-            debugger
             return Cart.getItems();
           }
         },

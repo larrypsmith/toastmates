@@ -1,20 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { gql, useQuery } from '@apollo/client';
 import { useRouteMatch } from 'react-router-dom';
 import ExitModalButton from '../common/ExitModalButton';
 import SoundsGoodButton from './SoundsGoodButton';
 import Typography from '../common/Typography';
 import Cart from '../../Cart';
-
-const GET_MERCHANT = gql`
-  query GetMerchant($id: ID!) {
-    merchant(id: $id) {
-      id
-      name
-    }
-  }
-`;
+import useGetMerchant from '../../hooks/useGetMerchant';
 
 const ConfirmCartChangeModal = ({ item, quantity }) => {
   const currentCartMerchantId = Cart.getMerchant();
@@ -23,11 +14,7 @@ const ConfirmCartChangeModal = ({ item, quantity }) => {
     loading: oldLoading,
     error: oldError,
     data: oldData
-  } = useQuery(GET_MERCHANT, {
-    variables: {
-      id: currentCartMerchantId
-    }
-  });
+  } = useGetMerchant(currentCartMerchantId);
 
   const match = useRouteMatch();
   const newCartMerchantId = match.params.id;
@@ -36,11 +23,7 @@ const ConfirmCartChangeModal = ({ item, quantity }) => {
     loading: newLoading,
     error: newError,
     data: newData
-  } = useQuery(GET_MERCHANT, {
-    variables: {
-      id: newCartMerchantId
-    }
-  });
+  } = useGetMerchant(newCartMerchantId);
 
   if (oldError) throw new Error(oldError.message);
   if (newError) throw new Error(newError.message);

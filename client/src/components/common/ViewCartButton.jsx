@@ -2,17 +2,16 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import useGetCartItems from '../../hooks/useGetCartItems';
 
-const ViewCartButton = () => {
+const ViewCartButton = ({ onClick }) => {
   const { loading, error, data } = useGetCartItems();
   if (error) throw new Error(error.message);
   if (loading) return null;
 
   const numItemsInCart = data.cartItems && data.cartItems.length;
-  debugger
   const isDisabled = numItemsInCart === 0;
 
   return (
-    <StyledButton disabled={isDisabled}>
+    <StyledButton disabled={isDisabled} onClick={onClick}>
       <CartSize disabled={isDisabled}>{numItemsInCart}</CartSize>
       <StyledSpan>Cart</StyledSpan>
       <StyledSpan2>View Cart</StyledSpan2>

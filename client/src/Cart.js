@@ -7,7 +7,6 @@ class Cart {
   }
 
   static getItems() {
-    debugger
     return cartItemsVar();
   }
   
@@ -33,7 +32,7 @@ class Cart {
       newItems.push(itemId);
     }
 
-    const newCart = [...items, ...newItems]
+    const newCart = [...items, ...newItems];
     this.setItems(newCart);
   }
 
