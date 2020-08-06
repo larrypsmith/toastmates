@@ -8,6 +8,7 @@ import MerchantPageContent from './MerchantPageContent';
 const GET_MERCHANT = gql`
   query GetMerchant($id: ID!) {
     merchant(id: $id) {
+      id,
       name,
       address,
       deliveryFee,

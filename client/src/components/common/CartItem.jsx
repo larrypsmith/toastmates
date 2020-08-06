@@ -1,17 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useApolloClient, gql } from '@apollo/client';
 import useGetItem from '../../hooks/useGetItem';
 import RemoveItemFromCartButton from './RemoveItemFromCartButton';
 
-const CartItem = ({ id, quantity }) => {
-  const { loading, error, data } = useGetItem(id);
-  
-  if (loading) return null;
-  if (error) {
-    throw new Error(error);
-  }
-  
-  const { name, price } = data.item;
+const CartItem = ({ item, quantity }) => {
+  const { id, name, price } = item;
 
   return (
     <li>

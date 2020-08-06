@@ -6,14 +6,14 @@ const GET_ITEM = gql`
       id
       name
       price
+      isInCart @client
     }
   }
 `;
 
 const useGetItem = (id) => {
   return useQuery(GET_ITEM, {
-    variables: { id },
-    errorPolicy: 'all'
+    variables: { id }
   })
 };
 

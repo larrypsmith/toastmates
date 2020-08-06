@@ -15,7 +15,7 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
     e.stopPropagation();
 
     if (Cart.isSameMerchant(match.params.id) || Cart.isEmpty()) {
-      Cart.add(item.id, match.params.id, quantity);
+      Cart.add(item, match.params.id, quantity);
       closeModal();
     } else {
       const Component = () => (

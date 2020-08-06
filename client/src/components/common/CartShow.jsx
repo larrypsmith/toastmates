@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
+import { gql } from '@apollo/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import useGetCartMerchant from '../../hooks/useGetCartMerchant';
 import useGetMerchant from '../../hooks/useGetMerchant';
 import CartItemsList from './CartItemsList';
+import PriceInformation from './PriceInformation';
 
 const CartShow = ({ isHidden, setIsHidden }) => {
   const { loading, error, data } = useGetCartMerchant();
@@ -16,7 +18,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
 
   if (loading || error) return null;
   if (merchantLoading || merchantError) return null;
-  
+
   const handleClick = (e) => {
     e.stopPropagation();
     setIsHidden(true);
@@ -40,6 +42,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
               </RelativeHeader>
               <CartDetails>
                 <CartItemsList />
+                <PriceInformation />
               </CartDetails>
             </CartDetailsSection>
           </PaddingBottomContainer>

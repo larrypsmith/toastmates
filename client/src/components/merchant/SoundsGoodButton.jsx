@@ -11,7 +11,7 @@ const SoundsGoodButton = ({ item, quantity, merchantId }) => {
     e.stopPropagation();
 
     Cart.empty();
-    Cart.add(item.id, merchantId, quantity);
+    Cart.add(item, merchantId, quantity);
     closeModal();
   }
   

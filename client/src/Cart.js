@@ -22,23 +22,23 @@ class Cart {
     cartMerchantVar(id);
   }
 
-  static add(itemId, merchantId, quantity = 1) {
+  static add(item, merchantId, quantity = 1) {
     if (this.isEmpty()) this.setMerchant(merchantId);
     
-    const items = this.getItems();
+    const items = { ...this.getItems() };
 
-    const newItems = [];
-    for (let i = 1; i <= quantity; i++) {
-      newItems.push(itemId);
+    if (items.hasOwnProperty(item.id)) {
+      (items[item.id]).quantity += quantity;
+    } else {
+      items[item.id] = { item, quantity };
     }
 
-    const newCart = [...items, ...newItems];
-    this.setItems(newCart);
+    this.setItems(items);
   }
 
   static remove(itemId) {
     const items = this.getItems();
-    const newCart = items.filter(id => itemId !== id);
+    const newCart = items.filter(item => item.id !== itemId);
     this.setItems(newCart);
 
     if (this.isEmpty()) {
@@ -50,7 +50,7 @@ class Cart {
     const items = this.getItems();
 
     return items.reduce((sum, item) => {
-      if (item === itemId) return sum++;
+      if (item.id === itemId) return sum++;
       return sum;
     }, 0)
   }

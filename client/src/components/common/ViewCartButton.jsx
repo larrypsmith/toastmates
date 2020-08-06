@@ -7,7 +7,7 @@ const ViewCartButton = ({ onClick }) => {
   if (error) throw new Error(error.message);
   if (loading) return null;
 
-  const numItemsInCart = data.cartItems && data.cartItems.length;
+  const numItemsInCart = Object.values(data.cartItems).length;
   const isDisabled = numItemsInCart === 0;
 
   return (

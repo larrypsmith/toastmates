@@ -61,6 +61,12 @@ const RootQuery = new GraphQLObjectType({
         return Merchant.findById(args.id);
       }
     },
+    allItems: {
+      type: new GraphQLList(ItemType),
+      resolve() {
+        return Item.find({})
+      }
+    },
     item: {
       type: ItemType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },

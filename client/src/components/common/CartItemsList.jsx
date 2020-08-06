@@ -7,21 +7,15 @@ const CartItemsList = () => {
   const { loading, error, data } = useGetCartItems();
   if (loading || error) return null;
 
-  const items = {};
-  for (let itemId of data.cartItems) {
-    if (data.cartItems.hasOwnProperty(itemId)) {
-      items[itemId]++;
-    } else {
-      items[itemId] = 1;
-    }
-  }
-
   return (
     <StyledCartItemsList>
       {Object
-        .entries(items)
-        .map(([itemId, quantity]) => (
-          <CartItem id={itemId} quantity={quantity} key={itemId} />
+        .values(data.cartItems)
+        .map(({ item, quantity }) => (
+          <CartItem
+            item={item}
+            quantity={quantity}
+            key={item.id} />
         ))
       }
     </StyledCartItemsList>

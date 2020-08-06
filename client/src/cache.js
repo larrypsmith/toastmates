@@ -35,6 +35,15 @@ const cache = new InMemoryCache({
           }
         }
       }
+    },
+    ItemType: {
+      fields: {
+        isInCart: {
+          read(_, options) {
+            return Cart.getItems().includes(options.variables.id);
+          }
+        }
+      }
     }
   }
 });
