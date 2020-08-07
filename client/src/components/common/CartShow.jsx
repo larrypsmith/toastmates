@@ -49,7 +49,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
         </CartContentsContainer>
         <CheckoutButtonContainer>
           <RelativeDiv>
-            <CheckoutButton merchantId={data.cartMerchant} />
+            <CheckoutButton />
           </RelativeDiv>
         </CheckoutButtonContainer>
       </Container>

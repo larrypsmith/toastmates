@@ -1,14 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
+import LoginModal from './LogInModal';
+import { modalVar, redirectVar } from '../../cache';
 
-const CheckoutButton = ({ merchantId }) => {
+const CheckoutButton = () => {
+  const isLoggedIn = useQueryIsLoggedIn();
+  const location = useLocation();
+  const history = useHistory();
+  
+  const handleClick = (e) => {
+    e.stopPropagation();
+
+    if (!isLoggedIn) {
+      modalVar(LoginModal);
+      redirectVar(`${location.pathname}/checkout`);
+    } else {
+      history.push(`${location.pathname}/checkout`);
+    }
+  }
+  
   return (
-    <Link to={`/merchant/${merchantId}/checkout`}>
-      <StyledCheckoutButton>
-        <span>Checkout</span>
-      </StyledCheckoutButton>
-    </Link>
+    <StyledCheckoutButton onClick={handleClick}>
+      <span>Checkout</span>
+    </StyledCheckoutButton>
   );
 };
 
