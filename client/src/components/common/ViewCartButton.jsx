@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import useGetCartItems from '../../hooks/useGetCartItems';
 
 const ViewCartButton = ({ onClick }) => {
   const { loading, error, data } = useGetCartItems();
-  if (error) throw new Error(error.message);
-  if (loading) return null;
-
+  
   const numItemsInCart = Object.values(data.cartItems)
     .reduce((sum, { quantity }) => sum + quantity, 0);
 
   const isDisabled = numItemsInCart === 0;
 
+  if (error) throw new Error(error.message);
+  if (loading) return null;
   return (
     <StyledButton disabled={isDisabled} onClick={onClick}>
       <CartSize disabled={isDisabled}>{numItemsInCart}</CartSize>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components/macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
     error: merchantError,
     data: merchantData
   } = useGetMerchant(data.cartMerchant);
-
+  
   if (loading || error) return null;
   if (merchantLoading || merchantError) return null;
 
