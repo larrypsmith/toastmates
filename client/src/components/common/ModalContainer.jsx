@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import ModalContent from './ModalContent';
-import AuthModalContent from './AuthModalContent';
 import useCloseModal from '../../hooks/useCloseModal';
 
-const ModalContainer = ({ modalType }) => {
+const ModalContainer = ({ modalComponent: Component }) => {
     const closeModal = useCloseModal();
+
+    const onClick = (e) => {
+        if (e.currentTarget === e.target) {
+            closeModal();
+        }
+    };
     
     return (
-        <StyledModalContainer onClick={closeModal}>
-            <ModalContent onClick={e => e.stopPropagation()}>
-                <AuthModalContent modalType={modalType} />
-            </ModalContent>
+        <StyledModalContainer onClick={onClick}>
+            <Component />
         </StyledModalContainer>
     )
 };

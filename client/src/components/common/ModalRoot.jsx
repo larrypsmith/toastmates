@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import useQueryModal from '../../hooks/useQueryModal';
 import ModalContainer from './ModalContainer';
+import useQueryModal from '../../hooks/useQueryModal';
 
 const ModalRoot = () => {
-  const modalType = useQueryModal();
-  const isOpen = Boolean(modalType);
+  const modalComponent = useQueryModal();
+  const isOpen = Boolean(modalComponent);
 
+  if (!isOpen) return null;
   return (
     <StyledModalRoot isOpen={isOpen}>
       <div>
-        {isOpen ? <ModalContainer modalType={modalType} /> : null}
+        <ModalContainer modalComponent={modalComponent} />
       </div>
     </StyledModalRoot>
   );
@@ -33,4 +34,3 @@ const StyledModalRoot = styled.div`
   transition: background-color 100ms ease-in-out;
   z-index: 1000;
 `;
-

@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import React, { useEffect } from 'react';
+import React from 'react';
 import Container from './Container';
 import ExitModalButton from './ExitModalButton';
 import LoginForm from './LoginForm';
@@ -10,12 +10,12 @@ const AuthModalContent = ({ modalType }) => {
   const authContent = {
     login: {
       headerText: 'Log In',
-      alternateModal: 'signup',
+      alternateModal: SignUpForm,
       alternateButtonText: 'Sign Up'
     },
     signup: {
       headerText: 'Sign Up',
-      alternateModal: 'login',
+      alternateModal: LoginForm,
       alternateButtonText: 'Log In'
     }
   };
@@ -41,7 +41,7 @@ const AuthModalContent = ({ modalType }) => {
     <div>
       <HeaderContainer>
         <Header>{content.headerText}</Header>
-        <ExitModalButton />
+        <StyledExitModalButton />
         <StyledNavigationButton modal={content.alternateModal}>
           {content.alternateButtonText}
         </StyledNavigationButton>
@@ -73,6 +73,7 @@ const StyledNavigationButton = styled(NavigationButton)`
   position: absolute;
   top: 16px;
   right: 16px;
+  background-color: transparent;
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -95,5 +96,22 @@ const AuthFormContainer = styled(Container)`
     max-width: initial;
     margin: initial;
     padding-bottom: 30px;
+  }
+`;
+
+const StyledExitModalButton = styled(ExitModalButton)`
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    top: 28px;
+    left: initial;
+    right: 12px;
   }
 `;

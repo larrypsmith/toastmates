@@ -1,26 +1,23 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import NavigationButton from './NavigationButton';
+import { modalVar } from '../../cache';
+import LoginModal from '../common/LogInModal';
 import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 
-
-const LogInButton = () => {
+const LogInButton = (props) => {
   const isLoggedIn = useQueryIsLoggedIn();
-
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    modalVar(LoginModal);
+  }
+  
   if (isLoggedIn) return null;
   return (
-    <StyledLoginButton modal='login'>
+    <NavigationButton onClick={handleClick} {...props}>
       Log In
-    </StyledLoginButton>
+    </NavigationButton>
   )
 };
-
-const StyledLoginButton = styled(NavigationButton)`
-  transition: background-color 0.1s ease-in-out;
-  
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.03);
-  }
-`;
 
 export default LogInButton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { useQuery, gql } from '@apollo/client';
-import DesktopDeliveryAddressBar from './DesktopDeliveryAddressBar';
+import DesktopDeliveryAddressBar from '../common/DesktopDeliveryAddressBar';
 import MerchantList from './MerchantList';
 import MobileDeliveryAddressBar from './MobileDeliveryAddressBar';
 import useResponsiveWindowWidth from '../../hooks/useResponsiveWindowWidth';

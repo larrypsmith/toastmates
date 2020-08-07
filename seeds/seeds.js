@@ -70,7 +70,7 @@ const seedAllDocuments = async () => {
     });
     
     const roma = await seedModel(Merchant, {
-      name: `Roma Pizza`,
+      name: `Roma`,
       cuisine: pizza.id,
       address: '3242 Scott St',
       deliveryFee: 3.99,
@@ -113,22 +113,26 @@ const seedAllDocuments = async () => {
       merchant: shakeStop.id
     })
 
-    const romaPepperoni = await seedModel(Item, {
-      name: 'Pepperoni Pizza',
+    const romaSalsiccia = await seedModel(Item, {
+      name: 'Salsiccia Pizza',
       price: 17.99,
-      menu: romaPizza.id
+      menu: romaPizza.id,
+      description: 'Mozzarella, Italian sausage, mushroom, onion & tomato sauce.'
     })
     
-    const romaCheese = await seedModel(Item, {
-      name: 'Cheese Pizza',
+    const romaMargherita = await seedModel(Item, {
+      name: 'Margherita Pizza',
       price: 15.99,
-      menu: romaPizza.id
+      menu: romaPizza.id,
+      description: 'Fresh basil, tomato sauce, Fior di latte & EVOO. Vegetarian.',
+      imgUrl: 'seeds/margherita.png'
     })
     
-    const romaSpaghetti = await seedModel(Item, {
-      name: 'Spaghetti',
+    const romaCarbonara = await seedModel(Item, {
+      name: 'Carbonara',
       price: 13.99,
-      menu: romaPasta.id
+      menu: romaPasta.id,
+      description: 'Mezze maniche smoked guanciale in creamy yolk sauce & pecorino. Pasta served al dente.'
     })
     
     const romaRigatoni = await seedModel(Item, {
@@ -173,8 +177,8 @@ const seedAllDocuments = async () => {
     const order1 = await seedModel(Order, {
       user: johnDoe.id,
       items: [
-        romaRigatoni.id,
-        romaCheese.id
+        romaCarbonara.id,
+        romaSalsiccia.id
       ]
     });
 

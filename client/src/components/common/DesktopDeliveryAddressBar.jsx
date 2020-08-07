@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import Typography from '../common/Typography';
+import { Route } from 'react-router-dom';
+import CartSizeChip from './CartSizeChip';
+import Typography from './Typography';
 
 const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
   if (isHidden) return null;
@@ -22,6 +24,9 @@ const DesktopDeliveryAddressBar = ({ isHidden, ...props}) => {
             <Address />
           </TextContainer>
         </ContentContainer>
+        {/* <Route path='/merchant/:id'>
+          <CartSizeChip />
+        </Route> */}
       </Container>
     </StyledDesktopDeliveryAddressBar>
   )
@@ -35,7 +40,7 @@ const StyledDesktopDeliveryAddressBar = styled.div`
   width: 100%;
   height: 70px;
   background-color: rgb(255, 255, 255);
-  z-index: 300;
+  z-index: 200;
   border-bottom: 1px solid rgba(217, 219, 224, 0.5);
 
   @media screen and (max-width: 1059px) and (min-width: 768px) {

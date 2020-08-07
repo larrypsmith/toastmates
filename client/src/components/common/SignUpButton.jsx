@@ -1,23 +1,23 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import NavigationButton from './NavigationButton';
+import { modalVar } from '../../cache';
+import SignUpModal from '../common/SignUpModal';
 import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 
-const StyledNavigationButton = styled(NavigationButton)`
-  color: ${props => props.theme.palette.secondary.main};
-  background-color: ${props => props.theme.palette.common.black};
-  margin-left: 10px;
-`;
-
-const SignUpButton = () => {
+const SignUpButton = (props) => {
   const isLoggedIn = useQueryIsLoggedIn();
-
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    modalVar(SignUpModal);
+  };
+  
   if (isLoggedIn) return null;
   return (
-    <StyledNavigationButton modal="signup">
+    <NavigationButton onClick={handleClick} {...props}>
       Sign Up
-    </StyledNavigationButton>
+    </NavigationButton>  
   )
-};
+}
 
 export default SignUpButton;

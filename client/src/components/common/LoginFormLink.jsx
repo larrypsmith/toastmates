@@ -1,9 +1,10 @@
 import React from 'react';
 import OtherFormLink from './OtherFormLink';
 import useOpenModal from '../../hooks/useOpenModal.js';
+import LogInModal from '../common/LogInModal';
 
 const SignUpFormLink = () => {
-  const openLoginForm = useOpenModal('login');
+  const openLoginForm = useOpenModal(LogInModal);
   
   return(
     <OtherFormLink

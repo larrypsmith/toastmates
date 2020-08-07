@@ -1,65 +1,40 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
-import { withRouter } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
-import LogInButton from './LogInButton';
-import SignUpButton from './SignUpButton';
+import { Link } from 'react-router-dom';
+import NavigationCartControls from './NavigationCartControls';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
 
-const Navigation = (props) => (
-  <StyledNavigation {...props}>
-    <Container padding={[25, 54, 36]}>
-      <StyledFlex parent>
-        <StyledFlexChildLeft child>
-          <Typography
-            weight='500'
-            size='20px'
-            color='black'
-          >
-            Toastmates
-          </Typography>
-        </StyledFlexChildLeft>
-        <StyledFlexChildRight child>
-          <LogInButton />
-          <SignUpButton />
-          <UserIcon />
-        </StyledFlexChildRight>
-      </StyledFlex>
-    </Container>
-  </StyledNavigation>
-);
+const Navigation = ({ container: ParentContainer , children, ...props }) => {
+  return (
+    <ParentContainer {...props}>
+      <Container padding={[25, 54, 36]}>
+        <StyledFlex parent>
+          <StyledFlexChildLeft child>
+            <StyledLink to='/feed'>
+              <Typography
+                weight='500'
+                size='20px'
+                color='black'
+                >
+                Toastmates
+              </Typography>
+            </StyledLink>
+          </StyledFlexChildLeft>
+          <StyledFlexChildRight child>
+            {children}
+            <UserIcon />
+            <NavigationCartControls />
+          </StyledFlexChildRight>
+        </StyledFlex>
+      </Container>
+    </ParentContainer>
+  );
+};
 
-export default withRouter(Navigation);
-
-const StyledNavigation = styled.nav`
-  ${({ location }) => {
-    let styles;
-    switch (location.pathname) {
-      case '/feed':
-        styles = css`
-          position: sticky;
-          top: 0px;
-          right: 0px;
-          left: 0px;
-          z-index: 400;
-          background-color: rgb(254, 217, 40);
-          transition: background-color 0.2s ease-in-out 0s;
-        `;
-        break;
-      case '/':
-        styles = css`
-          position: relative;
-          background-color: ${props => props.theme.palette.secondary.main};
-          width: 100vw;
-        `;
-      default:
-        break;
-    }
-    return styles;
-  }}
-`;
+export default Navigation;
 
 const StyledFlex = styled(Flex)`
   min-height: 72px;
@@ -83,3 +58,7 @@ const StyledFlexChildRight = styled(Flex)`
   align-items: center;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  cursor: pointer;
+`;
