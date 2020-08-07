@@ -12,13 +12,23 @@ const CartItemsList = ({ setIsHidden }) => {
 
   const cartSizeOnLoad = useRef(numItemsInCart);
   const cartMerchantOnLoad = useRef(data.cartMerchant);
+  const openedYet = useRef(false);
+
+  console.log('merchant on load: ', cartMerchantOnLoad.current);
+  console.log('current merchant: ', data.cartMerchant);
 
   useEffect(() => {
-    if (
-      numItemsInCart > cartSizeOnLoad.current ||
-      data.cartMerchant !== cartMerchantOnLoad.current
+    if (data.cartMerchant !== cartMerchantOnLoad.current) {
+      setIsHidden(false);
+      openedYet.current = true;
+      cartMerchantOnLoad.current = data.cartMerchant;
+      cartSizeOnLoad.current = numItemsInCart;
+    } else if (
+      numItemsInCart - cartSizeOnLoad.current === 1 &&
+      !openedYet.current
     ) {
       setIsHidden(false);
+      openedYet.current = true;
     }
   }, [numItemsInCart])
   

@@ -16,14 +16,14 @@ const CartShow = ({ isHidden, setIsHidden }) => {
     data: merchantData
   } = useGetMerchant(data.cartMerchant);
   
-  if (loading || error) return null;
-  if (merchantLoading || merchantError) return null;
-
+  
   const handleClick = (e) => {
     e.stopPropagation();
     setIsHidden(true);
   }
   
+  if (loading || error) return null;
+  // if (merchantLoading || merchantError) return null;
   return (
     <StyledSection isHidden={isHidden}>
       <Container>
@@ -37,7 +37,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
                   onClick={handleClick}
                 />
                 <CartHeaderText>
-                  Cart - {merchantData.merchant.name}
+                  Cart - {merchantData && merchantData.merchant.name}
                 </CartHeaderText>
               </RelativeHeader>
               <CartDetails>

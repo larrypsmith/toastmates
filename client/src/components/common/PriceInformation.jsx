@@ -21,7 +21,7 @@ const PriceInformation = () => {
     .reduce((total, { item, quantity }) => (total + item.price * quantity), 0);
 
   const tax = Math.round(subtotal * .13 * 100) / 100;
-  const total = subtotal + tax + merchantData.merchant.deliveryFee;
+  const total = Math.round((subtotal + tax + merchantData.merchant.deliveryFee) * 100) / 100;
 
   return (
     <StyledPriceInformation>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import CartShow from './CartShow';
+import Overlay from './Overlay';
 import ViewCartButton from './ViewCartButton';
 
 const NavigationCartControls = () => {
@@ -18,6 +19,10 @@ const NavigationCartControls = () => {
         <ViewCartButton onClick={handleClick} />
       </FlexParent>
       <CartShow isHidden={isCartShowHidden} setIsHidden={setCartShowHidden} />
+      <Overlay
+        hidden={isCartShowHidden}
+        onClick={() => setCartShowHidden(true)}
+      />
     </StyledSpan>
   )
 };
