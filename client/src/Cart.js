@@ -79,6 +79,12 @@ class Cart {
   static deepDup(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
+
+  static numItemsInStorage() {
+    const cartItems = JSON.parse(localStorage.getItem('CART_ITEMS'));
+    return Object.values(cartItems)
+      .reduce((total, { quantity }) => total + quantity, 0)
+  }
 };
 
 export default Cart;

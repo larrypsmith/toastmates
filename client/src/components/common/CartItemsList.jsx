@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/macro';
 import useGetCart from '../../hooks/useGetCart.js';
 import CartItem from './CartItem';
+import Cart from '../../Cart';
 
 const CartItemsList = ({ setIsHidden }) => {
   const { loading, error, data } = useGetCart();
@@ -10,26 +11,28 @@ const CartItemsList = ({ setIsHidden }) => {
     .values(data.cartItems)
     .reduce((total, { quantity }) => total + quantity, 0);
 
-  const cartSizeOnLoad = useRef(numItemsInCart);
-  const cartMerchantOnLoad = useRef(data.cartMerchant);
-  const openedYet = useRef(false);
-
-  console.log('merchant on load: ', cartMerchantOnLoad.current);
-  console.log('current merchant: ', data.cartMerchant);
+  const shownSinceRefresh = useRef(false);
+  const prevNumItemsInCart = useRef(numItemsInCart);
+  const prevMerchant = useRef(data.cartMerchant);
+  const numItemsInStorage = useRef(Cart.numItemsInStorage());
 
   useEffect(() => {
-    if (data.cartMerchant !== cartMerchantOnLoad.current) {
+    console.log('Running useEffect when numItemsInCart = ', numItemsInCart);
+
+    debugger
+    if (numItemsInCart === 0) {
+      setIsHidden(true);
+    } else if (!shownSinceRefresh.current && (numItemsInCart > numItemsInStorage.current)) {
       setIsHidden(false);
-      openedYet.current = true;
-      cartMerchantOnLoad.current = data.cartMerchant;
-      cartSizeOnLoad.current = numItemsInCart;
-    } else if (
-      numItemsInCart - cartSizeOnLoad.current === 1 &&
-      !openedYet.current
-    ) {
-      setIsHidden(false);
-      openedYet.current = true;
+      shownSinceRefresh.current = true;
+    } else {
+      if (data.cartMerchant !== prevMerchant.current) {
+        setIsHidden(false);
+      } 
     }
+
+    prevMerchant.current = data.cartMerchant;
+    prevNumItemsInCart.current = numItemsInCart;
   }, [numItemsInCart])
   
   if (loading || error) return null;
