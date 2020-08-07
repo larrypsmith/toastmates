@@ -2,7 +2,7 @@ import { cartItemsVar, cartMerchantVar } from './cache';
 
 class Cart {
   static empty() {
-    cartItemsVar([])
+    cartItemsVar({});
     cartMerchantVar('');
   }
 
@@ -25,7 +25,7 @@ class Cart {
   static add(item, merchantId, quantity = 1) {
     if (this.isEmpty()) this.setMerchant(merchantId);
     
-    const items = { ...this.getItems() };
+    const items = this.deepDup(this.getItems());
 
     if (items.hasOwnProperty(item.id)) {
       (items[item.id]).quantity += quantity;
@@ -37,9 +37,9 @@ class Cart {
   }
 
   static remove(itemId) {
-    const items = this.getItems();
-    const newCart = items.filter(item => item.id !== itemId);
-    this.setItems(newCart);
+    const items = this.deepDup(this.getItems());
+    delete items[itemId];
+    this.setItems(items);
 
     if (this.isEmpty()) {
       this.setMerchant('');
@@ -49,10 +49,11 @@ class Cart {
   static getItemQuantity(itemId) {
     const items = this.getItems();
 
-    return items.reduce((sum, item) => {
-      if (item.id === itemId) return sum++;
-      return sum;
-    }, 0)
+    return Object.values(items)
+      .reduce((sum, { item, quantity }) => {
+        if (item.id === itemId) return sum + quantity;
+        return sum;
+      }, 0)
   }
 
   static isSameMerchant(id) {
@@ -60,7 +61,7 @@ class Cart {
   }
 
   static isEmpty() {
-    return this.getItems().length === 0;
+    return Object.values(this.getItems()).length === 0;
   }
 
   static writeToStorage() {
@@ -70,9 +71,13 @@ class Cart {
   }
 
   static writeFromStorage() {
-    cartItemsVar(JSON.parse(localStorage.getItem('CART_ITEMS')) || []);
+    cartItemsVar(JSON.parse(localStorage.getItem('CART_ITEMS')) || {});
     cartMerchantVar(localStorage.getItem('CART_MERCHANT') || '');
-    localStorage.clear();
+    // localStorage.clear();
+  }
+
+  static deepDup(obj) {
+    return JSON.parse(JSON.stringify(obj));
   }
 };
 

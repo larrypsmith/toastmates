@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import CartShow from './CartShow';
 import ViewCartButton from './ViewCartButton';

@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/macro';
 import useGetCartItems from '../../hooks/useGetCartItems.js';
 import CartItem from './CartItem';
 
-const CartItemsList = () => {
+const CartItemsList = ({ setIsHidden }) => {
   const { loading, error, data } = useGetCartItems();
-  if (loading || error) return null;
 
+  const numItemsInCart = Object
+    .values(data.cartItems)
+    .reduce((total, { quantity }) => total + quantity, 0);
+
+  const cartSizeOnLoad = useRef(numItemsInCart);
+
+  useEffect(() => {
+    if (numItemsInCart > cartSizeOnLoad.current) {
+      setIsHidden(false);
+    }
+  }, [numItemsInCart])
+  
+  if (loading || error) return null;
   return (
     <StyledCartItemsList>
       {Object
@@ -19,7 +31,7 @@ const CartItemsList = () => {
         ))
       }
     </StyledCartItemsList>
-    )
+  );
 };
 
 export default CartItemsList;

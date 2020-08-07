@@ -41,7 +41,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
                 </CartHeaderText>
               </RelativeHeader>
               <CartDetails>
-                <CartItemsList />
+                <CartItemsList setIsHidden={setIsHidden} />
                 <PriceInformation />
               </CartDetails>
             </CartDetailsSection>
