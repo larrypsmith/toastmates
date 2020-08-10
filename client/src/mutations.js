@@ -7,3 +7,13 @@ export const VERIFY_USER = gql`
     }
   }
 `;
+
+export const CREATE_ORDER = gql`
+  mutation CreateOrder($items: [Item]!) {
+    createOrder(items: $items) {
+      id
+      user
+      data
+    }
+  }
+`;

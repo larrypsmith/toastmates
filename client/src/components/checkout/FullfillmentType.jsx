@@ -2,14 +2,18 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Typography from '../common/Typography';
 
-const FullfillmentType = ({ text, disabled, ...props
- }) => (
+const FullfillmentType = ({
+  text,
+  disabled,
+  deliveryFee,
+  ...props
+}) => (
   <StyledLI disabled={disabled} {...props}>
     <StyledInput />
     <StyledTypography disabled={disabled} weight='600'>
       {text}
-      <Typography hidden={!disabled} size='11px' weight='400'>
-        Unavailable
+      <Typography size='11px' weight='400'>
+        {disabled ? 'Unavailable' : `$${deliveryFee}`}
       </Typography>
     </StyledTypography>
   </StyledLI>

@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { modalVar } from '../../cache';
+import ReviewOrderModal from './ReviewOrderModal';
 
-const ContinueButton = () => {
+const ContinueButton = ({ items, merchantName }) => {
   const handleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    console.log('clicked');
+    const component = () => (
+      <ReviewOrderModal items={items} merchantName={merchantName} />
+    )
+
+    modalVar(component);
   }
   
   return (

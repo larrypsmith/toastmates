@@ -9,20 +9,21 @@ import FulfillmentType from './FullfillmentType';
 import PriceInformation from '../common/PriceInformation';
 import useGetCart from '../../hooks/useGetCart';
 import useGetMerchant from '../../hooks/useGetMerchant';
+import Typography from '../common/Typography';
 
 const CheckoutMainContent = () => {
-  const { data: { cartMerchant } } = useGetCart();
+  const { data: { cartMerchant, cartItems } } = useGetCart();
   const { data: merchantData } = useGetMerchant(cartMerchant);
 
   
   if (!merchantData) return null;
-  const { merchant: { deliveryTime, name, id } } = merchantData;
+  const { merchant: { deliveryTime, name, id, deliveryFee } } = merchantData;
   return (
     <FlexParent>
       <StyledSection1>
         <MarginBottomDiv>
           <StyledUL>
-            <FulfillmentType text='DELIVERY' />
+            <FulfillmentType text='DELIVERY' deliveryFee={deliveryFee} />
             <FulfillmentType text='PICKUP' disabled />
           </StyledUL>
           <DeliveryInfoSection headerText='Delivery Address'>
@@ -38,7 +39,7 @@ const CheckoutMainContent = () => {
           </DeliveryInfoSection>
         </MarginBottomDiv>
         <StyledMarginBottomDiv>
-          <ContinueButton />
+          <ContinueButton items={cartItems} />
         </StyledMarginBottomDiv>
       </StyledSection1>
       <StyledSection2>
@@ -59,7 +60,7 @@ const CheckoutMainContent = () => {
           </Container>
         </CartInfoContainer>
         <StyledFlexContainer>
-          <ContinueButton />
+          <ContinueButton items={cartItems} merchantName={name}/>
         </StyledFlexContainer>
       </StyledSection2>
     </FlexParent>
