@@ -3,7 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 import LoginModal from './LogInModal';
-import { modalVar, redirectVar } from '../../cache';
+import { modalVar, redirectVar, hideCartVar } from '../../cache';
 
 const CheckoutButton = () => {
   const isLoggedIn = useQueryIsLoggedIn();
@@ -15,10 +15,12 @@ const CheckoutButton = () => {
 
     if (!isLoggedIn) {
       modalVar(LoginModal);
-      redirectVar(`${location.pathname}/checkout`);
+      redirectVar('/checkout');
     } else {
-      history.push(`${location.pathname}/checkout`);
+      history.push('/checkout');
     }
+    
+    hideCartVar(true);
   }
   
   return (

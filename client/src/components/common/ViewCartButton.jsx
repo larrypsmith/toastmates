@@ -8,6 +8,8 @@ const ViewCartButton = ({ onClick }) => {
   const numItemsInCart = Object.values(data.cartItems)
     .reduce((sum, { quantity }) => sum + quantity, 0);
 
+  debugger
+
   const isDisabled = numItemsInCart === 0;
 
   if (error) throw new Error(error.message);
@@ -46,6 +48,10 @@ const StyledButton = styled.button`
       margin-left: 11px;
       background-repeat: no-repeat;
       background-position: center center;
+    }
+
+    &:disabled {
+      cursor: initial;
     }
   }
 
