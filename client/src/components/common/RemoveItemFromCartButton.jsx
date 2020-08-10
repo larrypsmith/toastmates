@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Cart from '../../Cart';
+import { hideCartVar } from '../../cache';
 
 const RemoveItemFromCartButton = ({ id }) => {
   const handleClick = (e) => {
     e.stopPropagation();
     Cart.remove(id);
+    if (Cart.isEmpty()) hideCartVar(true);
   };
   
   return (

@@ -9,6 +9,7 @@ export const cartItemsVar = makeVar([]);
 export const cartMerchantVar = makeVar('');
 
 export const redirectVar = makeVar('');
+export const hideCartVar = makeVar(true);
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -32,6 +33,11 @@ const cache = new InMemoryCache({
         cartMerchant: {
           read() {
             return Cart.getMerchant();
+          }
+        },
+        hideCart: {
+          read() {
+            return hideCartVar();
           }
         }
       }

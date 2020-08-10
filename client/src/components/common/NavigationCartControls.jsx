@@ -3,13 +3,15 @@ import styled from 'styled-components/macro';
 import CartShow from './CartShow';
 import Overlay from './Overlay';
 import ViewCartButton from './ViewCartButton';
+import { hideCartVar } from '../../cache';
+import useGetHideCart from '../../hooks/useGetHideCart';
 
 const NavigationCartControls = () => {
-  const [isCartShowHidden, setCartShowHidden] = useState(true);
+  const { data } = useGetHideCart();
 
   const handleClick = (e) => {
     e.stopPropagation();
-    setCartShowHidden(!isCartShowHidden);
+    hideCartVar(false);
   }
   
   return (
@@ -18,10 +20,10 @@ const NavigationCartControls = () => {
         <Pipe />
         <ViewCartButton onClick={handleClick} />
       </FlexParent>
-      <CartShow isHidden={isCartShowHidden} setIsHidden={setCartShowHidden} />
+      <CartShow isHidden={data.hideCart} />
       <Overlay
-        hidden={isCartShowHidden}
-        onClick={() => setCartShowHidden(true)}
+        hidden={data.hideCart}
+        onClick={() => hideCartVar(true)}
       />
     </StyledSpan>
   )

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,9 @@ import useGetMerchant from '../../hooks/useGetMerchant';
 import CartItemsList from './CartItemsList';
 import CheckoutButton from './CheckoutButton';
 import PriceInformation from './PriceInformation';
+import { hideCartVar } from '../../cache';
 
-const CartShow = ({ isHidden, setIsHidden }) => {
+const CartShow = ({ isHidden }) => {
   const { loading, error, data } = useGetCartMerchant();
   const {
     loading: merchantLoading,
@@ -19,11 +20,12 @@ const CartShow = ({ isHidden, setIsHidden }) => {
   
   const handleClick = (e) => {
     e.stopPropagation();
-    setIsHidden(true);
+    hideCartVar(true);
   }
   
   if (loading || error) return null;
-  // if (merchantLoading || merchantError) return null;
+  if (merchantLoading || merchantError) return null;
+  debugger
   return (
     <StyledSection isHidden={isHidden}>
       <Container>
@@ -41,7 +43,7 @@ const CartShow = ({ isHidden, setIsHidden }) => {
                 </CartHeaderText>
               </RelativeHeader>
               <CartDetails>
-                <CartItemsList setIsHidden={setIsHidden} />
+                <CartItemsList />
                 <PriceInformation />
               </CartDetails>
             </CartDetailsSection>

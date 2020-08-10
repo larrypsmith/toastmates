@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { cartItemsVar, cartMerchantVar, modalVar } from '../../cache';
+import { modalVar, hideCartVar } from '../../cache';
 import { useRouteMatch } from 'react-router-dom';
 import useCloseModal from '../../hooks/useCloseModal';
 import ConfirmCartChangeModal from './ConfirmCartChangeModal';
@@ -14,9 +14,13 @@ const AddToCartButton = ({ item, quantity, ...props }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (Cart.isSameMerchant(match.params.id) || Cart.isEmpty()) {
+    if (Cart.isSameMerchant(match.params.id)) {
       Cart.add(item, match.params.id, quantity);
       closeModal();
+    } else if (Cart.isEmpty()) {
+      Cart.add(item, match.params.id, quantity);
+      closeModal();
+      hideCartVar(false);
     } else {
       const Component = () => (
         <ConfirmCartChangeModal item={item} quantity={quantity} />

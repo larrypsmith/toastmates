@@ -67,23 +67,15 @@ class Cart {
   static writeToStorage() {
     localStorage.setItem('CART_ITEMS', JSON.stringify(cartItemsVar()));
     localStorage.setItem('CART_MERCHANT', cartMerchantVar());
-    console.log(localStorage);
   }
 
   static writeFromStorage() {
     cartItemsVar(JSON.parse(localStorage.getItem('CART_ITEMS')) || {});
     cartMerchantVar(localStorage.getItem('CART_MERCHANT') || '');
-    // localStorage.clear();
   }
 
   static deepDup(obj) {
     return JSON.parse(JSON.stringify(obj));
-  }
-
-  static numItemsInStorage() {
-    const cartItems = JSON.parse(localStorage.getItem('CART_ITEMS'));
-    return Object.values(cartItems)
-      .reduce((total, { quantity }) => total + quantity, 0)
   }
 };
 

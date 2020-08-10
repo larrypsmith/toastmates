@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import useCloseModal from '../../hooks/useCloseModal';
 import Cart from '../../Cart';
+import { hideCartVar } from '../../cache';
 
 const SoundsGoodButton = ({ item, quantity, merchantId }) => {
   const closeModal = useCloseModal();
@@ -12,6 +13,8 @@ const SoundsGoodButton = ({ item, quantity, merchantId }) => {
 
     Cart.empty();
     Cart.add(item, merchantId, quantity);
+    hideCartVar(false);
+
     closeModal();
   }
   
