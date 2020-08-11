@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require('../config/keys').mongoURI;
+const db = require('../config/keys').MONGO_URI;
 const Cuisine = require('../models/Cuisine');
 const Item = require('../models/Item');
 const Menu = require('../models/Menu');

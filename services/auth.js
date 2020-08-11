@@ -2,7 +2,7 @@ const validateRegisterInput = require('../validations/validateRegisterInput');
 const validateLoginInput = require('../validations/validateLoginInput');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { secretOrKey } = require('../config/keys');
+const { SECRET_OR_KEY } = require('../config/keys');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
@@ -39,7 +39,7 @@ exports.register = async data => {
 
     user.save();
 
-    const token = jwt.sign({ id: user.id }, secretOrKey);
+    const token = jwt.sign({ id: user.id }, SECRET_OR_KEY);
 
     return {
       token,
@@ -76,7 +76,7 @@ exports.login = async data => {
       throw new Error('Password is incorrect.');
     }
 
-    const token = jwt.sign({ id: user.id }, secretOrKey);
+    const token = jwt.sign({ id: user.id }, SECRET_OR_KEY);
 
     return {
       token,
@@ -95,7 +95,7 @@ exports.verifyUser = async data => {
   try {
     const { token } = data;
 
-    const decoded = jwt.verify(token, secretOrKey);
+    const decoded = jwt.verify(token, SECRET_OR_KEY);
     const { id } = decoded;
 
     const loggedIn = await User.findById(id).then(user => {
@@ -110,7 +110,7 @@ exports.verifyUser = async data => {
 
 exports.getCurrentUserId = async (token) => {
   try {
-    const decoded = jwt.verify(token, secretOrKey);
+    const decoded = jwt.verify(token, SECRET_OR_KEY);
     const { id } = decoded;
 
     const loggedIn = await User.findById(id).then(user => {
