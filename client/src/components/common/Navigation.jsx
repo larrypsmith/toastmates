@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Container from './Container';
 import Flex from './Flex';
@@ -7,7 +8,7 @@ import NavigationCartControls from './NavigationCartControls';
 import Typography from './Typography';
 import UserIcon from './UserIcon';
 
-const Navigation = ({ container: ParentContainer , children, ...props }) => {
+const Navigation = ({ container: ParentContainer , children, hideCart, ...props }) => {
   return (
     <ParentContainer {...props}>
       <Container padding={[25, 54, 36]}>
@@ -18,7 +19,7 @@ const Navigation = ({ container: ParentContainer , children, ...props }) => {
                 weight='500'
                 size='20px'
                 color='black'
-                >
+              >
                 Toastmates
               </Typography>
             </StyledLink>
@@ -26,7 +27,9 @@ const Navigation = ({ container: ParentContainer , children, ...props }) => {
           <StyledFlexChildRight child>
             {children}
             <UserIcon />
-            <NavigationCartControls />
+            <Route exact path={['/', '/feed', '/merchant/:id']}>
+              <NavigationCartControls />
+            </Route>
           </StyledFlexChildRight>
         </StyledFlex>
       </Container>

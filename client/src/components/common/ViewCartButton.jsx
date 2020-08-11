@@ -47,6 +47,10 @@ const StyledButton = styled.button`
       background-repeat: no-repeat;
       background-position: center center;
     }
+
+    &:disabled {
+      cursor: initial;
+    }
   }
 
   cursor: pointer;

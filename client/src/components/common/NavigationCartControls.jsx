@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import CartShow from './CartShow';
 import Overlay from './Overlay';
@@ -6,7 +6,7 @@ import ViewCartButton from './ViewCartButton';
 import { hideCartVar } from '../../cache';
 import useGetHideCart from '../../hooks/useGetHideCart';
 
-const NavigationCartControls = () => {
+const NavigationCartControls = (props) => {
   const { data } = useGetHideCart();
 
   const handleClick = (e) => {
@@ -15,7 +15,7 @@ const NavigationCartControls = () => {
   }
   
   return (
-    <StyledSpan>
+    <StyledSpan {...props}>
       <FlexParent>
         <Pipe />
         <ViewCartButton onClick={handleClick} />

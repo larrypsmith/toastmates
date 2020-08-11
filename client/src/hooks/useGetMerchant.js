@@ -6,6 +6,11 @@ const GET_MERCHANT = gql`
       id
       name
       deliveryFee
+      deliveryTime {
+        id
+        low
+        high
+      }
     }
   }
 `;
