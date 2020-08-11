@@ -11,11 +11,18 @@ import theme from './theme';
 import cache, { isLoggedInVar } from './cache';
 import Cart from './Cart';
 
+let uri;
+if (process.env.NODE_ENV === "production") {
+  uri = `/graphql`;
+} else {
+  uri = "http://localhost:5000/graphql";
+}
+
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri,
   cache,
   headers: {
-    authorization: localStorage.getItem('auth-token')
+    authorization: localStorage.getItem('auth-token') || ""
   }
 });
 

@@ -1,3 +1,4 @@
 node_modules
-config
+config/keysDev.js
+config/aws.json
 .vscode
