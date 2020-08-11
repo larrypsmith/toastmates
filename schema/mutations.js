@@ -65,7 +65,6 @@ const mutation = new GraphQLObjectType({
 
         await order.save();
 
-        debugger
         return {
           id: order.id,
           user: {

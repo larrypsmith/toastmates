@@ -11,10 +11,13 @@ import {
 import useCloseModal from '../../hooks/useCloseModal';
 import { CREATE_ORDER } from '../../mutations';
 import { useMutation } from '@apollo/client';
+import Cart from '../../Cart';
+import { modalVar } from '../../cache';
+import OrderPlacedModal from './OrderPlacedModal'
 
 const ReviewOrderModal = ({ items, merchantName, ...props }) => {
   const closeModal = useCloseModal();
-  const [createOrder] = useMutation(CREATE_ORDER);
+  const [createOrder, { data }] = useMutation(CREATE_ORDER);
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
@@ -25,15 +28,15 @@ const ReviewOrderModal = ({ items, merchantName, ...props }) => {
         items: Object.values(items)
           .reduce((arr, { item, quantity }) => {
             const items = new Array(quantity).fill(item.id);
-            debugger
             return [...arr, ...items];
           }, [])
       }
     });
 
-    closeModal();
+    modalVar(OrderPlacedModal);
+    Cart.empty();
   }
-  
+
   return (
     <StyledReviewOrderModal {...props}>
       <Padding>

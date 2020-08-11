@@ -9,7 +9,6 @@ import FulfillmentType from './FullfillmentType';
 import PriceInformation from '../common/PriceInformation';
 import useGetCart from '../../hooks/useGetCart';
 import useGetMerchant from '../../hooks/useGetMerchant';
-import Typography from '../common/Typography';
 
 const CheckoutMainContent = () => {
   const { data: { cartMerchant, cartItems } } = useGetCart();
@@ -39,7 +38,10 @@ const CheckoutMainContent = () => {
           </DeliveryInfoSection>
         </MarginBottomDiv>
         <StyledMarginBottomDiv>
-          <ContinueButton items={cartItems} />
+          <ContinueButton
+            items={cartItems}
+            merchantName={merchantData.merchant.name}
+          />
         </StyledMarginBottomDiv>
       </StyledSection1>
       <StyledSection2>
