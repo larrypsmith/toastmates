@@ -99,11 +99,26 @@ exports.verifyUser = async data => {
     const { id } = decoded;
 
     const loggedIn = await User.findById(id).then(user => {
-      return user ? true : false;
+      return !!user;
     });
 
     return { loggedIn };
   } catch(err) {
     return { loggedIn: false }
+  }
+};
+
+exports.getCurrentUserId = async (token) => {
+  try {
+    const decoded = jwt.verify(token, secretOrKey);
+    const { id } = decoded;
+
+    const loggedIn = await User.findById(id).then(user => {
+      return !!user;
+    });
+
+    return loggedIn ? id : '';
+  } catch(err) {
+    return '';
   }
 };

@@ -9,11 +9,13 @@ export const VERIFY_USER = gql`
 `;
 
 export const CREATE_ORDER = gql`
-  mutation CreateOrder($items: [Item]!) {
+  mutation CreateOrder($items: [ID]) {
     createOrder(items: $items) {
       id
-      user
-      data
+      user { 
+        id
+      }
+      items
     }
   }
 `;

@@ -14,19 +14,24 @@ import { useMutation } from '@apollo/client';
 
 const ReviewOrderModal = ({ items, merchantName, ...props }) => {
   const closeModal = useCloseModal();
-  debugger
-  const [createOrder, { data }] = useMutation(CREATE_ORDER);
+  const [createOrder] = useMutation(CREATE_ORDER);
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    debugger
     createOrder({
       variables: {
         items: Object.values(items)
+          .reduce((arr, { item, quantity }) => {
+            const items = new Array(quantity).fill(item.id);
+            debugger
+            return [...arr, ...items];
+          }, [])
       }
-    })
+    });
+
+    closeModal();
   }
   
   return (
