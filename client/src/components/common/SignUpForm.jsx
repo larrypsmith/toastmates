@@ -30,7 +30,7 @@ const SignUpForm = () => {
   const [error, setError] = useState();
   const closeModal = useCloseModal();
 
-  const [registerUser, { data }] = useMutation(
+  const [registerUser] = useMutation(
     REGISTER_USER,
     {
       onCompleted: (data) => {

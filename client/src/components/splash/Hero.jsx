@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Container from '../common/Container';
 import FlexContainer from '../common/FlexContainer';
 import FoodBackgroundImage from './FoodBackgroundImage';

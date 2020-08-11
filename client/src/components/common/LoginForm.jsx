@@ -34,7 +34,7 @@ const LoginForm = () => {
   const closeModal = useCloseModal();
   const history = useHistory();
 
-  const [login, { data }] = useMutation(
+  const [login] = useMutation(
     LOGIN_USER,
     {
       onCompleted: (data) => {

@@ -20,7 +20,7 @@ const LOGIN_USER = gql`
 const useLogin = () => {
   const closeModal = useCloseModal();
 
-  const [loginUser, { data }] = useMutation(
+  const [loginUser] = useMutation(
     LOGIN_USER,
     {
       onCompleted: (data) => {

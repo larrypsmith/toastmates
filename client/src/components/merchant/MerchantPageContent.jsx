@@ -5,7 +5,6 @@ import DesktopDeliveryAddressBar from '../common/DesktopDeliveryAddressBar';
 import MerchantDetails from './MerchantDetails';
 import MenuList from './MenuList';
 import MobileMerchantActionBar from './MobileMerchantActionBar';
-import ViewOrderButton from './ViewOrderButton';
 
 const MerchantPageContent = ({ merchant }) => {
   return (
@@ -27,7 +26,6 @@ const ResponsiveComponents = ({ merchant }) => {
       <React.Fragment>
         <MobileMerchantActionBar address={merchant.address} />
         <GutterBottom />
-        {/* <ViewOrderButton /> */}
       </React.Fragment>
     );
   } else {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import useQueryIsLoggedIn from '../../hooks/useQueryIsLoggedIn';
 import LoginModal from './LogInModal';
@@ -7,7 +7,6 @@ import { modalVar, redirectVar, hideCartVar } from '../../cache';
 
 const CheckoutButton = () => {
   const isLoggedIn = useQueryIsLoggedIn();
-  const location = useLocation();
   const history = useHistory();
   
   const handleClick = (e) => {

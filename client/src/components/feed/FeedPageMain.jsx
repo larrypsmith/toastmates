@@ -23,7 +23,7 @@ const GET_ALL_MERCHANTS = gql`
 
 const FeedPageMain = () => {
   const windowWidth = useResponsiveWindowWidth();
-  const { loading, error, data } = useQuery(GET_ALL_MERCHANTS);
+  const { data } = useQuery(GET_ALL_MERCHANTS);
 
   return (
     <MainParent>

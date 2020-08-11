@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import useGetCart from '../../hooks/useGetCart.js';
 import CartItem from './CartItem';

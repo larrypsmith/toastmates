@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { modalVar} from '../../cache';
-// import useNumItemsInCart from '../../hooks/useNumItemsInCart';
 import ViewOrderModal from './ViewOrderModal';
 import useGetCartItems from '../../hooks/useGetCartItems';
 
