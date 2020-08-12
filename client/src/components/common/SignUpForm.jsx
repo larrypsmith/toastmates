@@ -38,6 +38,7 @@ const SignUpForm = () => {
         localStorage.setItem('auth-token', token);
         isLoggedInVar(data.register.loggedIn);
         closeModal();
+        window.location.reload();
       },
       onError: err => setError(err.message)
     }
