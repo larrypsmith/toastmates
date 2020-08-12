@@ -20,10 +20,6 @@ const StyledTopPaddingAndExitButton = styled.div`
   color: rgb(0, 0, 0);
   z-index: 100000;
   
-  @media screen and (max-width: 1059px){
-    display: none;
-  }
-
   @media screen and (min-width: 1060px) {
     padding-left: 36px;
     padding-right: 36px;
