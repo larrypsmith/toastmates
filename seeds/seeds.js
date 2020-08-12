@@ -27,7 +27,6 @@ const { uploadSeedImage, emptySeedsBucket } = require('../services/s3');
     await mongoose.connection.close();
   } catch(err) {
     throw new Error(err.message);
-    console.log(err);
   }
 })();
 
@@ -57,7 +56,6 @@ const seedModel = async (Model, params) => {
     return model;
   } catch(err) {
     throw new Error(err.message);
-    console.log(err);
   }
 };
 
@@ -74,6 +72,10 @@ const seedAllDocuments = async () => {
     const asian = await seedModel(Cuisine, {
       name: 'Asian'
     });
+
+    const friedChicken = await seedModel(Cuisine, {
+      name: 'Fried Chicken'
+    })
 
     const roma = await seedModel(Merchant, {
       name: `Roma`,
@@ -109,6 +111,33 @@ const seedAllDocuments = async () => {
         high: 50
       },
       imgUrl: 'seeds/asian-bowl.webp'
+    });
+    
+    const hopeyes = await seedModel(Merchant, {
+      name: 'Hopeyes Louisiana Kitchen',
+      cuisine: friedChicken.id,
+      address: '1426 Fillmore St',
+      deliveryFee: 2.99,
+      deliveryTime: {
+        low: 50,
+        high: 55
+      },
+      imgUrl: 'seeds/hopeyes.webp'
+    });
+
+    const chickenSandwiches = await seedModel(Menu, {
+      name: 'Chicken Sandwiches',
+      merchant: hopeyes.id
+    });
+
+    const chickenCombos = await seedModel(Menu, {
+      name: 'Chicken Combos',
+      merchant: hopeyes.id
+    });
+
+    const seafoodCombos = await seedModel(Menu, {
+      name: 'Seafood Combos',
+      merchant: hopeyes.id
     });
 
     const signatureBowls = await seedModel(Menu, {
@@ -336,6 +365,54 @@ const seedAllDocuments = async () => {
       price: 5.49,
       menu: rolls.id,
       imgUrl: 'seeds/tofu-spring-roll.webp'
+    });
+
+    const classicChicken = await seedModel(Item, {
+      name: 'Classic Chicken Sandwich Combo',
+      price: 12.49,
+      menu: chickenSandwiches.id,
+      imgUrl: 'seeds/classic-chicken-sandwich.webp',
+      description: 'Includes a choice of side and drink'
+    });
+    
+    const spicyChicken = await seedModel(Item, {
+      name: 'Spicy Chicken Sandwich Combo',
+      price: 12.49,
+      menu: chickenSandwiches.id,
+      imgUrl: 'seeds/classic-chicken-sandwich.webp',
+      description: 'Includes a choice of side and drink'
+    });
+
+    const chickenCombo2 = await seedModel(Item, {
+      name: 'Chicken Combo (2Pcs)',
+      price: 10.89,
+      menu: chickenCombos.id,
+      imgUrl: 'seeds/chicken-combo-2.webp',
+      description: 'Includes a choice of side, biscuit, and a drink'
+    });
+
+    const chickenCombo3 = await seedModel(Item, {
+      name: 'Chicken Combo (3Pcs)',
+      price: 12.49,
+      menu: chickenCombos.id,
+      imgUrl: 'seeds/chicken-combo-3.webp',
+      description: 'Includes a choice of side, biscuit, and a drink'
+    });
+
+    const tenderCombo3 = await seedModel(Item, {
+      name: 'Handcrafted Tender Combo (3Pcs)',
+      price: 11.49,
+      menu: chickenCombos.id,
+      imgUrl: 'seeds/tender-combo-3.webp',
+      description: 'Includes a choice of side, biscuit, and a drink'
+    });
+
+    const tenderCombo5 = await seedModel(Item, {
+      name: 'Handcrafted Tender Combo (5Pcs)',
+      price: 14.49,
+      menu: chickenCombos.id,
+      imgUrl: 'seeds/tender-combo-5.webp',
+      description: 'Includes a choice of side, biscuit, and a drink'
     });
 
     const johnDoe = await seedModel(User, {
