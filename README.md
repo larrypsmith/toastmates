@@ -247,6 +247,8 @@ For the purpose of data fetching, Apollo Client is able to accomplish with one h
 
 Toastmates is a fully responsive, mobile-friendly site. It uses media queries to resize UI components according to screen width. 
 
+![responsiveness](https://user-images.githubusercontent.com/55966501/90052628-43d94280-dc8e-11ea-92ac-8d040c92d9d7.gif)
+
 Most components' default styles are mobile-first, and media queries are applied as screens grow larger. This places the burden of processing media queries on larger machines with more processing power.
 
 ```CSS
@@ -275,7 +277,7 @@ Toastmates requires a user be logged in to place an order. New users must create
 
 A new user can create an account by filling out a registration form:
 
-![signup-form](https://user-images.githubusercontent.com/55966501/89962882-e1833200-dbfa-11ea-93ad-08e42a7d4d52.PNG)
+![registration](https://user-images.githubusercontent.com/55966501/90052974-ba764000-dc8e-11ea-9d37-8e5d9826fdf9.png)
 
 When the form is submitted, a `register` mutation containing the form data is sent to the server.
 
