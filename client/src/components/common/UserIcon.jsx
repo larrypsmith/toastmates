@@ -97,7 +97,7 @@ const StyledDropdownMenuContainer = styled.div`
 
   @media screen and (max-width: 767px) {
     bottom: -13px;
-    left: calc(-50% + 24px + -9px);
+    left: calc(-50% + 32px);
     transform: translate(calc(-100% + 81px), 100%);
     width: 100vw;
     height: calc(100vh - 0px);
