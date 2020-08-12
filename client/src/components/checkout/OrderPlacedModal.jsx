@@ -17,8 +17,6 @@ const OrderPlacedModal = ({ merchantName }) => {
     history.push('/feed');
   }
 
-  debugger
-  
   return (
     <Overlay onClick={handleClick}>
       <StyledOrderPlacedModal>

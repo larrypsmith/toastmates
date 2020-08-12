@@ -18,7 +18,6 @@ import OrderPlacedModal from './OrderPlacedModal'
 const ReviewOrderModal = ({ items, merchantName, ...props }) => {
   const closeModal = useCloseModal();
   const [createOrder] = useMutation(CREATE_ORDER);
-  debugger
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();

@@ -8,7 +8,6 @@ const ContinueButton = ({ items, merchantName }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    debugger
     const component = () => (
       <ReviewOrderModal items={items} merchantName={merchantName} />
     )

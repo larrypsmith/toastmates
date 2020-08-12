@@ -36,7 +36,6 @@ const SignUpForm = () => {
       onCompleted: (data) => {
         const { token } = data.register;
         localStorage.setItem('auth-token', token);
-        console.log('localStorage: ', localStorage.getItem('auth-token'));
         isLoggedInVar(data.register.loggedIn);
         closeModal();
       },

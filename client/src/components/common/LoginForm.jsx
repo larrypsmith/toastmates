@@ -40,7 +40,6 @@ const LoginForm = () => {
       onCompleted: (data) => {
         const { token } = data.login;
         localStorage.setItem('auth-token', token);
-        console.log('auth token:', localStorage.getItem('auth-token'));
         isLoggedInVar(data.login.loggedIn);
 
         if (redirectVar()) {

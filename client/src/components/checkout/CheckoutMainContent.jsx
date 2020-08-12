@@ -17,7 +17,6 @@ const CheckoutMainContent = () => {
   
   if (!merchantData) return null;
   const { merchant: { deliveryTime, name, id, deliveryFee } } = merchantData;
-  debugger
   return (
     <FlexParent>
       <StyledSection1>

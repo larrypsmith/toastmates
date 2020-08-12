@@ -57,6 +57,8 @@ const mutation = new GraphQLObjectType({
         const { items } = data;
         
         const id = await getCurrentUserId(token);
+        
+        if (!id) throw new Error('User ID is missing from JWT')
 
         const order = new Order({
           user: id,

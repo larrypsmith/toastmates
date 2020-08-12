@@ -22,7 +22,7 @@ const client = new ApolloClient({
   uri,
   cache,
   headers: {
-    authorization: localStorage.getItem('auth-token') || ""
+    authorization: localStorage.getItem('auth-token') || ''
   }
 });
 

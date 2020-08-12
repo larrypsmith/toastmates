@@ -19,8 +19,8 @@ const useRegister = () => {
       onCompleted: (data) => {
         const { token } = data.register;
         localStorage.setItem('auth-token', token);
-        console.log('localStorage: ', localStorage.getItem('auth-token'));
-        isLoggedInVar(data.register.loggedIn)
+        isLoggedInVar(data.register.loggedIn);
+        window.location.reload();
       },
       onError: err => errorVar(err.message)
     }
