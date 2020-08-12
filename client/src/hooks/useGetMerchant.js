@@ -15,7 +15,7 @@ const GET_MERCHANT = gql`
   }
 `;
 
-const useGetMerchant = (id) => {
+const useGetMerchant = (id = '') => {
   return useQuery(GET_MERCHANT, {
     variables: { id }
   })

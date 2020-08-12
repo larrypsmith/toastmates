@@ -54,8 +54,7 @@ const StyledButton = styled.button`
   }
 
   cursor: pointer;
-  appearance: none;
-  display: flex;
+  display: ${props => props.disabled ? 'none' : 'flex'};
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 204, 153);

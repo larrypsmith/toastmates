@@ -16,6 +16,8 @@ const OrderPlacedModal = ({ merchantName }) => {
     modalVar(null);
     history.push('/feed');
   }
+
+  debugger
   
   return (
     <Overlay onClick={handleClick}>

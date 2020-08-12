@@ -25,7 +25,6 @@ const CartShow = ({ isHidden }) => {
   
   if (loading || error) return null;
   if (merchantLoading || merchantError) return null;
-  debugger
   return (
     <StyledSection isHidden={isHidden}>
       <Container>

@@ -17,6 +17,7 @@ const CheckoutMainContent = () => {
   
   if (!merchantData) return null;
   const { merchant: { deliveryTime, name, id, deliveryFee } } = merchantData;
+  debugger
   return (
     <FlexParent>
       <StyledSection1>
@@ -40,7 +41,7 @@ const CheckoutMainContent = () => {
         <StyledMarginBottomDiv>
           <ContinueButton
             items={cartItems}
-            merchantName={merchantData.merchant.name}
+            merchantName={name}
           />
         </StyledMarginBottomDiv>
       </StyledSection1>
