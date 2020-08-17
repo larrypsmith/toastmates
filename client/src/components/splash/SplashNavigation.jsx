@@ -18,7 +18,7 @@ export default SplashNavigation;
 const StyledSplashNavigation = styled.nav`
   position: relative;
   background-color: ${props => props.theme.palette.secondary.main};
-  width: 100vw;
+  width: 100%;
 `;
 
 const StyledLoginButton = styled(LoginButton)`
