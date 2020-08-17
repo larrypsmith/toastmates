@@ -23,7 +23,7 @@ const PriceInformation = () => {
 
   const tax = subtotal * .13;
 
-  const total = (subtotal + tax + merchantData.merchant.deliveryFee);
+  const total = subtotal + tax + merchantData.merchant.deliveryFee;
 
   return (
     <StyledPriceInformation>
