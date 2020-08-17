@@ -27,7 +27,7 @@ const Item = ({ item }) => {
           size='13px'
           color='primary'
         >
-          ${item.price}
+          ${item.price.toFixed(2)}
         </StyledTypography>
       </ItemContentContainer>
       <ItemImage src={item.imgUrl} />

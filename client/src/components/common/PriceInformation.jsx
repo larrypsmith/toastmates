@@ -17,25 +17,27 @@ const PriceInformation = () => {
 
   if (loading || error || merchantLoading || merchantError) return null;
 
-  const subtotal = Object.values(data.cartItems)
+  const subtotal = Object
+    .values(data.cartItems)
     .reduce((total, { item, quantity }) => (total + item.price * quantity), 0);
 
-  const tax = Math.round(subtotal * .13 * 100) / 100;
-  const total = Math.round((subtotal + tax + merchantData.merchant.deliveryFee) * 100) / 100;
+  const tax = subtotal * .13;
+
+  const total = (subtotal + tax + merchantData.merchant.deliveryFee);
 
   return (
     <StyledPriceInformation>
       <div>
-        <TotalContributor text='Subtotal' amount={subtotal} />
-        <TotalContributor text='Tax' amount={tax} />
+        <TotalContributor text='Subtotal' amount={subtotal.toFixed(2)} />
+        <TotalContributor text='Tax' amount={tax.toFixed(2)} />
         <TotalContributor
           text='Delivery'
-          amount={merchantData.merchant.deliveryFee}
+          amount={merchantData.merchant.deliveryFee.toFixed(2)}
         />
       </div>
       <StyledTotalContainer>
         <StyledDiv>Total</StyledDiv>
-        <span>{total}</span>
+        <span>{total.toFixed(2)}</span>
       </StyledTotalContainer>
     </StyledPriceInformation>
   );

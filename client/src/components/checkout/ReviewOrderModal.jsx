@@ -182,6 +182,7 @@ const ExitModalButtonContainer = styled.div`
   height: auto;
   display: none;
   padding: 0px;
+  cursor: pointer;
 `;
 
 const CheckmarkIconContainer = styled.div`
@@ -244,6 +245,7 @@ const EditOrderButton = styled(Typography)`
   margin-bottom: 24px;
   color: white;
   text-align: center;
+  cursor: pointer;
 
   @media screen and (min-width: 1060px) {
     color: rgb(0, 204, 153);
