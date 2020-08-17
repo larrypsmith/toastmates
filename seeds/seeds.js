@@ -89,6 +89,18 @@ const seedAllDocuments = async () => {
       imgUrl: 'seeds/roma.png'
     });
 
+    const firella = await seedModel(Merchant, {
+      name: 'Firella Polk',
+      cuisine: pizza.id,
+      address: '2238 Polk St',
+      deliveryFee: 2.99,
+      deliveryTime: {
+        low: 40,
+        high: 50
+      },
+      imgUrl: 'seeds/firella.webp'
+    });
+
     const shakeStop = await seedModel(Merchant, {
       name: 'Shake Stop',
       cuisine: burgers.id,
@@ -123,6 +135,21 @@ const seedAllDocuments = async () => {
         high: 55
       },
       imgUrl: 'seeds/hopeyes.webp'
+    });
+
+    const firellaPizza = await seedModel(Menu, {
+      name: 'Pizza',
+      merchant: firella.id
+    });
+
+    const firellaPasta = await seedModel(Menu, {
+      name: 'Pasta',
+      merchant: firella.id
+    });
+
+    const firellaDessert = await seedModel(Menu, {
+      name: 'Dessert',
+      merchant: firella.id
     });
 
     const chickenSandwiches = await seedModel(Menu, {
@@ -413,6 +440,62 @@ const seedAllDocuments = async () => {
       menu: chickenCombos.id,
       imgUrl: 'seeds/tender-combo-5.webp',
       description: 'Includes a choice of side, biscuit, and a drink'
+    });
+
+    const burrata = await seedModel(Item, {
+      name: 'Burrate Pie',
+      price: 21.99,
+      menu: firellaPizza.id,
+      imgUrl: 'seeds/burrata-pie.webp',
+      description: 'D.O.P. Cherry Tomato, Fresh Basil & A Whole Ball of Angelo and Franco Burrata'
+    });
+
+    const margheritaPie = await seedModel(Item, {
+      name: 'Margherita Pie',
+      price: 16.99,
+      menu: firellaPizza.id,
+      imgUrl: 'seeds/margherita-pie.png',
+      description: 'Tomato, Basil & Fior di Latte'
+    });
+
+    const pepperoniPie = await seedModel(Item, {
+      name: 'Pepperoni Pie',
+      price: 20.99,
+      menu: firellaPizza.id,
+      imgUrl: 'seeds/pepperoni-pie.webp',
+      description: 'Tomato, Basil & Fior di Latte'
+    });
+
+    const cacioEPepe = await seedModel(Item, {
+      name: 'Cacio e Pepe',
+      price: 16.99,
+      menu: firellaPasta.id,
+      imgUrl: 'seeds/cacio-e-pepe.webp',
+      description: 'Chitarra Pasta with Black Pepper, Pecorino & Butter'
+    });
+
+    const pomodoro = await seedModel(Item, {
+      name: 'Pomodoro',
+      price: 17.99,
+      menu: firellaPasta.id,
+      imgUrl: 'seeds/pomodoro.webp',
+      description: 'Bucatini with Cherry Tomatoes, Garlic, Basil & Parmigiano'
+    });
+
+    const budino = await seedModel(Item, {
+      name: 'Budino',
+      price: 10.99,
+      menu: firellaDessert.id,
+      imgUrl: 'seeds/budino.webp',
+      description: 'A Rich and Dense Chocolate pudding with Candied Hazelnuts & Sea Salt'
+    });
+
+    const tiramisu = await seedModel(Item, {
+      name: 'Tiramisu',
+      price: 10.99,
+      menu: firellaDessert.id,
+      imgUrl: 'seeds/tiramisu.webp',
+      description: 'Espresso Soaked Ladyfingers, Mascarpone & Cocoa'
     });
 
     const johnDoe = await seedModel(User, {
